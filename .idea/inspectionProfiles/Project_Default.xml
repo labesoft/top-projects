@@ -1,0 +1,16 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="sarra.sr_cache.check.mock_calls" />
+          <option value="sarra.sr_cache.clean.assert_called_once_with" />
+          <option value="sarra.sr_cache.load.assert_called" />
+          <option value="sarra.sr_cache.clean.assert_called_with" />
+          <option value="sarra.sr_cache.clean.assert_called" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
