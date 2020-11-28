@@ -70,10 +70,10 @@ from tkinter.font import Font
 ENTRY_ROW = 1
 ENTRY_WIDTH = 2
 LABEL_ENTRY_ROW = 0
-MIN_WIDTH = 120
-MIN_HEIGHT = 250
+MIN_WIDTH = 500
+MIN_HEIGHT = 350
 PAD_X = 10
-TITLE = "Labesoft Alarm"
+TITLE = "LABESOFT Alarm"
 
 
 class AlarmView(tkinter.Frame):
@@ -85,20 +85,23 @@ class AlarmView(tkinter.Frame):
         """
         self.master = tkinter.Tk()
         self.master.title(TITLE)
-        self.master.minsize(MIN_HEIGHT, MIN_WIDTH)
+        self.master.config(bg="white")
+        self.master.minsize(MIN_WIDTH, MIN_HEIGHT)
         super().__init__(self.master)
         self.hour_var = None
         self.min_var = None
         self.sec_var = None
-        self.pack()
+        self.pack(pady=20)
+        self.config(bg="white")
 
     def create_gui(self, button_callback):
         """Creates the content of this tkinter object"""
         frame = tkinter.Frame(self)
+        frame.config(bg="white")
         self.create_labels(frame)
         self.init_entry_vars()
         self.create_entries(frame)
-        frame.pack()
+        frame.pack(pady=20)
         self.create_button(button_callback)
 
     def create_labels(self, f):
@@ -106,17 +109,17 @@ class AlarmView(tkinter.Frame):
 
         :return: None
         """
-        f1 = Font(self, font=("Helevetica", 10, "bold"))
-        f2 = Font(self, font=("Arial", 14, "italic"))
+        f1 = Font(self, font=("Helevetica", 40, "bold"))
+        f2 = Font(self, font=("Arial", 25, "italic"))
 
-        l1 = Label(self, text="When to wake you up ?", fg="blue", relief="sunken", font=f1)
-        l2 = Label(self, text="Enter time in 24 hour format!", fg="red", font="Arial", relief="sunken")
-        le1 = Label(f, text="Hour", font=f2)
-        le2 = Label(f, text="Min", font=f2)
-        le3 = Label(f, text="Sec", font=f2)
+        l1 = Label(self, text="  When to wake you up ?  ", fg="black", bg="lightgray", font=f1)
+        l2 = Label(self, text="Enter time in 24 hour format!", fg="green", bg="white", font=("Arial", 30, "italic"))
+        le1 = Label(f, text="Hour", bg="white",  font=f2)
+        le2 = Label(f, text="Min", bg="white", font=f2)
+        le3 = Label(f, text="Sec", bg="white", font=f2)
 
-        l1.pack()
-        l2.pack()
+        l1.pack(pady=20)
+        l2.pack(pady=10)
         le1.grid(row=LABEL_ENTRY_ROW, column=0, padx=PAD_X)
         le2.grid(row=LABEL_ENTRY_ROW, column=1, padx=PAD_X)
         le3.grid(row=LABEL_ENTRY_ROW, column=2, padx=PAD_X)
@@ -135,12 +138,12 @@ class AlarmView(tkinter.Frame):
 
         :return: None
         """
-        f1 = Font(self, font=("Arial", 12, "bold"))
-        e1 = Entry(f, textvariable=self.hour_var, bg="darkblue", fg="white", font=f1, justify="center",
+        f1 = Font(self, font=("Arial", 50, "bold"))
+        e1 = Entry(f, textvariable=self.hour_var, bg="lightyellow", fg="black", font=f1, justify="center",
                    width=ENTRY_WIDTH)
-        e2 = Entry(f, textvariable=self.min_var, bg="darkblue", fg="white", font=f1, justify="center",
+        e2 = Entry(f, textvariable=self.min_var, bg="lightyellow", fg="black", font=f1, justify="center",
                    width=ENTRY_WIDTH)
-        e3 = Entry(f, textvariable=self.sec_var, bg="darkblue", fg="white", font=f1, justify="center",
+        e3 = Entry(f, textvariable=self.sec_var, bg="lightyellow", fg="black", font=f1, justify="center",
                    width=ENTRY_WIDTH)
         e1.grid(row=ENTRY_ROW, column=0, padx=PAD_X)
         e2.grid(row=ENTRY_ROW, column=1, padx=PAD_X)
@@ -151,5 +154,5 @@ class AlarmView(tkinter.Frame):
 
         :return: None
         """
-        b1 = Button(self, text="Set Alarm", fg="red", width=10, command=func)
-        b1.pack()
+        b1 = Button(self, text="Set Alarm", font=("Arial", 30, "bold"), fg="black", bd=17, height=1, width=10, command=func)
+        b1.pack(pady=25)
