@@ -1,6 +1,6 @@
 # Top Python Projects
 
-## Alarm Clock with GUI
+## [Alarm Clock with GUI](https://data-flair.training/blogs/python-project-ideas)
 It is no doubt that an alarm clock is always handy to alert us whenever we 
 sleep, take a short nap, or to remind us about the work, we always get 
 oblivious about.
