@@ -47,8 +47,8 @@ from alarm.controller import AlarmController
 
 # Logging patterns
 LOG_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-LOG_FORMAT = "%(asctime)s.%(msecs).02f %(name)-12s [%(levelname)s] %(message)s"
-logging.basicConfig(format=LOG_FORMAT, level=logging.DEBUG, datefmt=LOG_DATEFORMAT)
+LOG_FORMAT = "%(asctime)s.%(msecs).05f %(name)-12s [%(levelname)s] %(message)s"
+logging.basicConfig(format=LOG_FORMAT, level=logging.INFO, datefmt=LOG_DATEFORMAT)
 
 if __name__ == '__main__':
     AlarmController().run()

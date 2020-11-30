@@ -154,5 +154,6 @@ class AlarmView(tkinter.Frame):
 
         :return: None
         """
-        b1 = Button(self, text="Set Alarm", font=("Arial", 30, "bold"), fg="black", bd=17, height=1, width=10, command=func)
+        b1 = Button(self, text="Set Alarm", font=("Arial", 30, "bold"), fg="black", bd=17, height=1, width=10,
+                    command=func)
         b1.pack(pady=25)

@@ -86,7 +86,7 @@ MSG_DEBUG_SLEEP = "self.alarm_time={}, self.sleep_time={}"
 MSG_INFO_WAKEUP = "Wake up Dude"
 
 # Time related
-ATIME = namedtuple('at', ['hour', 'min', 'sec'])
+ATIME = namedtuple('ATIME', ['hour', 'min', 'sec'])
 TIME_INTERVAL = 0.9985
 TIME_FORMAT = "{:0>2}:{:0>2}:{:0>2}"
 TIME_PATTERN = "%H:%M:%S"
