@@ -72,7 +72,7 @@ class AlarmController:
         """
         atime = ATIME(hour=self.alarm_view.hour_var.get(), min=self.alarm_view.min_var.get(),
                       sec=self.alarm_view.sec_var.get())
-        self.alarm.time(atime)
+        Alarm.time.fset(self.alarm, atime)
 
     def run(self):
         """Initiate the model thread in parallel to the main UI thread
