@@ -69,7 +69,9 @@ File structure
         'Define the main thread that handle the alarm'
 """
 import logging
+import os
 import time
+import winsound
 from collections import namedtuple
 from datetime import datetime
 from subprocess import Popen, DEVNULL
@@ -153,7 +155,10 @@ class Alarm:
         :return: None
         """
         self.logger.info(MSG_INFO_WAKEUP)
-        Popen(FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
+        if os.name == 'nt':
+            winsound.PlaySound("sound.wav", winsound.SND_ASYNC)
+        else:
+            Popen(FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
         time.sleep(self.sleep_time)
 
     def run(self):
