@@ -71,7 +71,8 @@ File structure
 import logging
 import os
 import time
-import winsound
+if os.name == 'nt':
+    import winsound
 from collections import namedtuple
 from datetime import datetime
 from subprocess import Popen, DEVNULL
