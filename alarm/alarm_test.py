@@ -100,16 +100,31 @@ class AlarmTest(TestCase):
         # Evaluate test
         self.assertTrue(result)
 
+    @patch('alarm.model.os')
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     @patch.object(alarm.model, 'Popen')
-    def test_ring(self, popen, logger):
+    def test_ring_posix(self, popen, logger, os):
         """Test that the alarm use the well formed subprocess command to play the sound"""
         # Prepare test
+        os.name = 'posix'
         # Run test
         self.alarm.ring()
         # Evaluate test
         logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
         popen.assert_called_once_with(alarm.model.FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
+
+    @patch('alarm.model.os')
+    @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
+    @patch('alarm.model.winsound.PlaySound')
+    def test_ring_nt(self, sound, logger, amos):
+        """Test that the alarm use the well formed subprocess command to play the sound"""
+        # Prepare test
+        amos.name = 'nt'
+        # Run test
+        self.alarm.ring()
+        # Evaluate test
+        logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
+        sound.assert_called_once_with(*alarm.model.WINSOUNDLIB_ARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     def test_run(self, logger):

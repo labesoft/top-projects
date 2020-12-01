@@ -78,6 +78,7 @@ from datetime import datetime
 from subprocess import Popen, DEVNULL
 
 # Sound play command constants
+WINSOUNDLIB_ARGS = ["sound.wav", winsound.SND_ASYNC]
 FFPLAY_CMD = ['ffplay', '-nodisp', '-autoexit', '-hide_banner', '-v', '0', '/usr/share/sounds/purple/login.wav']
 
 # Logging messages
@@ -157,7 +158,7 @@ class Alarm:
         """
         self.logger.info(MSG_INFO_WAKEUP)
         if os.name == 'nt':
-            winsound.PlaySound("sound.wav", winsound.SND_ASYNC)
+            winsound.PlaySound(*WINSOUNDLIB_ARGS)
         else:
             Popen(FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
         time.sleep(self.sleep_time)
