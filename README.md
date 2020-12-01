@@ -1,41 +1,20 @@
-# Top Python Projects
+# [Top Python Projects](https://data-flair.training/blogs/python-project-ideas/)
 
-## [Alarm Clock with GUI](https://data-flair.training/blogs/python-project-ideas)
-It is no doubt that an alarm clock is always handy to alert us whenever we 
-sleep, take a short nap, or to remind us about the work, we always get 
-oblivious about.
+Working on real-time projects to head start our company. Python is the most used
+programming language on the planet. Gaining Python knowledge is our best investment
+for now. So, we want to achieve expertise in Python with those real-time Python
+projects. That's why we are completing this data-flair formation on Python which will
+level up our programming skills. For more information you may visit the [data-flair 
+website](https://data-flair.training/blogs/python-project-ideas/)
 
-Our ancestors have been using an alarm, going back to its 2,000 years long
-history but over time, the new advancements in technologies allow us to keep
-an alarm clock without it containing a dial, gear trains, etc. How? Let's find
-out further.
-
-### About the project
-he objective of this project is to recreate an alarm that a user could set
-interactively and which will ring back at this preset time.
-
-### Prerequisite
-This project requires good knowledge of Python and GUI (Graphic User Interface). 
-Python when combined with Tkinter provides a fast and easy way to create GUI
-applications. Tkinter provides a powerful object-oriented interface to the Tk
-GUI toolkit. All  the modules used need not be downloaded beforehand like the
-other libreries like NumPy, thus this project will be user friendly and
-accessible in any virtual environment used for python programming.
-
-### Project Plan
-First, let's check the steps to build an Alarm Clock program in Python:
-
-- Importing all the libraries and modules required
-- Putting forward the code that takes a time input, the user wants to set the 
-alarm on and automatically ring a sound when the time is up
-- Create a display window for user input
-
-## Hangman Game in Python
-## Dice Rolling Simulator Python Game
-## Password Generator
-## Currency Converter
-## Text to Speech
-## Message Encode Decode in Python with Tkinter
-## COVID-19 Spread Analysis with Flask
-## Simple Calculator
-## Library Managememnt System
+## Projects Included 
+* [Alarm Clock with GUI](alarm/README.md)
+* [Hangman Game in Python](hangman/README.md)
+* [Dice Rolling Simulator Python Game](dice/README.md)
+* [Password Generator]()
+* [Currency Converter]()
+* [Text to Speech]()
+* [Message Encode Decode in Python with Tkinter]()
+* [COVID-19 Spread Analysis with Flask]()
+* [Simple Calculator]()
+* [Library Managememnt System]()
