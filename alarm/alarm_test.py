@@ -33,16 +33,14 @@ File structure
     **logging**
         provides a logging tool to inform the user of the system
         state through the console.
-    **time, datetime**
+    **os**
+        provides os.name to help check and skip tests based on os under
+        scrutiny
+    **datetime, time**
         helps working with the time of the current day.
-    **subprocess**
-        provides access to a basic sound playing machinery through the Linux
-        system with ffmpeg (ffplay). This was useful to generate the sound
-        immediately when the function is called and not waiting for the
-        response (async).
     **unittest**
         A unit testing framework inspired by JUnit that supports automation,
-        sharing of setup and shutdown code for tests, aggreagation of tests
+        sharing of setup and shutdown code for tests, aggregation of tests
         into collections and independence of the tests from the reporting
         framework.
     **unittest.mock**
@@ -73,10 +71,10 @@ File structure
         ringing'
 """
 import logging
+import os
 from datetime import datetime
-from subprocess import DEVNULL
 
-from unittest import TestCase
+from unittest import TestCase, skipIf
 from unittest.mock import patch, MagicMock, call
 
 import alarm
@@ -101,15 +99,28 @@ class AlarmTest(TestCase):
         self.assertTrue(result)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
-    @patch.object(alarm.model, 'Popen')
-    def test_ring(self, popen, logger):
+    @patch('alarm.model.SOUND_CMD')
+    @skipIf(os.name == 'nt', f"Not on a posix machine os.name={os.name}")
+    def test_ring_posix(self, cmd, logger):
         """Test that the alarm use the well formed subprocess command to play the sound"""
         # Prepare test
         # Run test
         self.alarm.ring()
         # Evaluate test
         logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
-        popen.assert_called_once_with(alarm.model.FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
+        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
+
+    @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
+    @patch('alarm.model.SOUND_CMD')
+    @skipIf(os.name == 'posix', f"Not on a nt machine os.name={os.name}")
+    def test_ring_nt(self, cmd, logger):
+        """Test that the alarm use the well formed subprocess command to play the sound"""
+        # Prepare test
+        # Run test
+        self.alarm.ring()
+        # Evaluate test
+        logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
+        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     def test_run(self, logger):
