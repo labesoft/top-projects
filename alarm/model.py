@@ -43,9 +43,10 @@ File structure
         response (async).
 
 *constant*
-    **FFPLAY_CMD**
-        hardcodes the command to avoid that launching the ffplay GUI hides text
-        printout to console. It also hardcodes the filename to play.
+    **SOUND_CMD**
+        hardcodes the command to launch the sound command (winsound/ffplay)
+        directly with the right ARGS/KWARGS depending on the OS (Windows/Linux)
+        It also hardcodes the filename to play.
     **MSG_***
         string messages usable by the logger at one point in the code.
     **TIME_INTERVAL**
@@ -71,15 +72,20 @@ File structure
 import logging
 import os
 import time
-if os.name == 'nt':
-    import winsound
 from collections import namedtuple
 from datetime import datetime
-from subprocess import Popen, DEVNULL
 
 # Sound play command constants
-WINSOUNDLIB_ARGS = ["sound.wav", winsound.SND_ASYNC]
-FFPLAY_CMD = ['ffplay', '-nodisp', '-autoexit', '-hide_banner', '-v', '0', '/usr/share/sounds/purple/login.wav']
+if os.name == 'nt':
+    import winsound
+    SOUND_CMD = winsound.PlaySound
+    ARGS = ["sound.wav", winsound.SND_ASYNC]
+    KWARGS = {}
+elif os.name == 'posix':
+    from subprocess import Popen, DEVNULL
+    SOUND_CMD = Popen
+    ARGS = [['ffplay', '-nodisp', '-autoexit', '-hide_banner', '-v', '0', '/usr/share/sounds/purple/login.wav']]
+    KWARGS = {'stdout': DEVNULL, 'stderr': DEVNULL}
 
 # Logging messages
 MSG_INFO_START = "Starting alarm"
@@ -157,10 +163,7 @@ class Alarm:
         :return: None
         """
         self.logger.info(MSG_INFO_WAKEUP)
-        if os.name == 'nt':
-            winsound.PlaySound(*WINSOUNDLIB_ARGS)
-        else:
-            Popen(FFPLAY_CMD, stdout=DEVNULL, stderr=DEVNULL)
+        SOUND_CMD(*ARGS, **KWARGS)
         time.sleep(self.sleep_time)
 
     def run(self):
