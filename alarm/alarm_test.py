@@ -101,26 +101,26 @@ class AlarmTest(TestCase):
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     @patch('alarm.model.SOUND_CMD')
     @skipIf(os.name == 'nt', f"Not on a posix machine os.name={os.name}")
-    def test_ring_posix(self, popen, logger):
+    def test_ring_posix(self, cmd, logger):
         """Test that the alarm use the well formed subprocess command to play the sound"""
         # Prepare test
         # Run test
         self.alarm.ring()
         # Evaluate test
         logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
-        popen.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
+        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
-    @patch('winsound.PlaySound')
+    @patch('alarm.model.SOUND_CMD')
     @skipIf(os.name == 'posix', f"Not on a nt machine os.name={os.name}")
-    def test_ring_nt(self, sound, logger):
+    def test_ring_nt(self, cmd, logger):
         """Test that the alarm use the well formed subprocess command to play the sound"""
         # Prepare test
         # Run test
         self.alarm.ring()
         # Evaluate test
         logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
-        sound.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
+        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     def test_run(self, logger):
