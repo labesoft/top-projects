@@ -18,15 +18,18 @@ defined in a global scope which can be further used in other functions to improv
 quality. It can also be used to provide different steps when required to execute upon
 conditions by the for and while loops.
 
-## Project Plan
-First, let's check the steps to build the Hangman game in Python:
+## Project Plan Checklist
+First, let's check the parts needed to build this the Hangman game in Python:
 
-1. Copy paste the data-flair origin project
-1. Add a rich name dictionary
-1. Define the model, hinting on length, with guess left, wrong guesses and drawing 
+[X] Core hangman Program
+[X] Add a rich name dictionary
+[X] A model hinting on length, with guess left, wrong guesses and drawing 
 the hangman.
-1. Implement a command line main thread.
-1. Passing the function in the program to run.
+[X] Implement a command line main thread.
+[X] Passing the function in the program to run.
+[ ] Create a OO design
+[ ] Create a tkinter GUI
+[ ] Create an Angular GUI
 
 So that is basically what we will do in this Python project. Let's start.
 

@@ -4,22 +4,21 @@
 About this Project
 ------------------
 The objective of this project is to recreate the hangman game that a user could
-play interactively trying to guess a to_guess with a limited number of guess.
+play interactively trying to guess a word with a limited number of guess.
 
 Project structure
 -----------------
 *alarm/*
     **__main__.py**:
         The application of the hangman game
-    **model.py**:
+    **game.py**:
         The model of the hangman game
 
 About this module
 -----------------
 The objective of this module is to run the hangman game using Python. It uses
-innovative python libraries such as logging which helped us to build this
-module, to setup the logger and it runs the application when the hangman
-package is called from the console.
+logging, argparse and sys to parse the user arguments, to setup the logger and
+to run the application when the hangman package is called from the console.
 
 File structure
 --------------

@@ -4,7 +4,7 @@
 About this Project
 ------------------
 The objective of this project is to recreate the hangman game that a user could
-play interactively trying to guess a to_guess with a limited number of guess.
+play interactively trying to guess a word with a limited number of guess.
 
 Project structure
 -----------------
@@ -39,7 +39,7 @@ File structure
     **greetings()**
         Welcome the user in the game
     **main()**
-        Initialize the hangman game
+        Initialize the hangman game attributes
     **play_loop()**
         A loop to re-execute the game when the first round ends
     **hangman()**
@@ -68,10 +68,10 @@ def main():
      already_guessed, global length and global play_game. They can be used further in other functions too depending on
      how we want to call them.
     Words_to_guess: Contains all the Hangman words we want the user to guess in the game.
-    Word: we use the random module in this variable to randomly choose the to_guess from words_to_guess in the game.
+    Word: we use the random module in this variable to randomly choose the word from words_to_guess in the game.
     Length: len() helps us to get the length of the string.
     Count: is initialized to zero and would increment in the further code.
-    Display: This draws a line for us according to the length of the to_guess to guess.
+    Display: This draws a line for us according to the length of the word to guess.
     Already_guessed: This would contain the string indices of the correctly guessed words.
     """
     global count
@@ -116,23 +116,24 @@ def play_loop():
         logger.info("Thanks For Playing! We expect you back again!")
         exit()
 
+
 def hangman():
     """Checking all the conditions required for the game
 
     We call all the arguments again under the hangman() function.
-    Limit: It is the maximum guesses we provide to the user to guess a particular to_guess.
-    Guess: Takes the input from the user for the guessed letter. Guess.strip() removes the letter from the given to_guess.
+    Limit: It is the maximum guesses we provide to the user to guess a particular word.
+    Guess: Takes the input from the user for the guessed letter. Guess.strip() removes the letter from the given word.
     If loop checks that if no input is given, or two letters are given at once, or a number is entered as an input, it
      tells the user about the invalid input and executes hangman again.
-    If the letter is correctly guessed, index searches for that letter in the to_guess.
-    Display adds that letter in the given space according to its index or where it belongs in the given to_guess.
+    If the letter is correctly guessed, index searches for that letter in the word.
+    Display adds that letter in the given space according to its index or where it belongs in the given word.
     If we have already guessed the correct letter before and we guess it again, It tells the user to try again and does
      not lessen any chances.
     If the user guessed the wrong letter, the hangman starts to appear which also tells us how many guesses are left.
      Count was initialized to zero and so with every wrong guess its value increases with one.
     Limit is set to 5 and so (limit- count) is the guesses left for the user with every wrong input. If it reaches the
-     limit, the game ends, showing the right guesses (if any) and the to_guess that was supposed to be guessed.
-    If the to_guess is guessed correctly, matching the length of the display argument, the user has won the game.
+     limit, the game ends, showing the right guesses (if any) and the word that was supposed to be guessed.
+    If the word is guessed correctly, matching the length of the display argument, the user has won the game.
     Play_loop asks the user to play the game again or exit.
     Main() and hangman() would start again if the play_loop executes to yes.
 
@@ -168,61 +169,61 @@ def hangman():
         if count == 1:
             time.sleep(1)
             logger.info("   _____ \n"
-                  "  |     | \n"
-                  "  |     |\n"
-                  "  |     | \n"
-                  "  |     O \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "__|__\n")
+                        "  |     | \n"
+                        "  |     |\n"
+                        "  |     | \n"
+                        "  |     O \n"
+                        "  |      \n"
+                        "  |      \n"
+                        "__|__\n")
             logger.info("Wrong guess. " + str(limit - count) + " guesses remaining\n")
 
         elif count == 2:
             time.sleep(1)
             logger.info("   _____ \n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     O\n"
-                  "  |     |\n"
-                  "  |      \n"
-                  "__|__\n")
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     O\n"
+                        "  |     |\n"
+                        "  |      \n"
+                        "__|__\n")
             logger.info("Wrong guess. " + str(limit - count) + " guesses remaining\n")
 
         elif count == 3:
             time.sleep(1)
             logger.info("   _____ \n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     O\n"
-                  "  |    /|\ \n"
-                  "  |       \n"
-                  "__|__\n")
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     O\n"
+                        "  |    /|\\ \n"
+                        "  |       \n"
+                        "__|__\n")
             logger.info("Wrong guess. " + str(limit - count) + " guesses remaining\n")
 
         elif count == 4:
             time.sleep(1)
             logger.info("   _____ \n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     O\n"
-                  "  |    /|\ \n"
-                  "  |    / \n"
-                  "__|__\n")
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     O\n"
+                        "  |    /|\\ \n"
+                        "  |    / \n"
+                        "__|__\n")
             logger.info("Wrong guess. " + str(limit - count) + " last guess remaining\n")
 
         elif count == 5:
             time.sleep(1)
             logger.info("   _____ \n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     |\n"
-                  "  |     O\n"
-                  "  |    /|\ \n"
-                  "  |    / \ \n"
-                  "__|__\n")
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     |\n"
+                        "  |     O\n"
+                        "  |    /|\\ \n"
+                        "  |    / \\ \n"
+                        "__|__\n")
             logger.info("Wrong guess. You are hanged!!!\n")
             logger.info(f"The word was: {word}")
             logger.debug(f"already_guessed={already_guessed}, display={display}, to_guess={to_guess}")
@@ -230,7 +231,7 @@ def hangman():
             play_loop()
 
     if to_guess == '_' * length:
-        logger.info("Congrats! You have guessed the to_guess correctly!")
+        logger.info("Congrats! You have guessed the word correctly!")
         time.sleep(1)
         play_loop()
 
