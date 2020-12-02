@@ -21,9 +21,11 @@ conditions by the for and while loops.
 ## Project Plan
 First, let's check the steps to build the Hangman game in Python:
 
-1. Importing the random and time modules.
-1. Defining functions with specific global arguments
-1. Implementing loops to execute the program.
+1. Copy paste the data-flair origin project
+1. Add a rich name dictionary
+1. Define the model, hinting on length, with guess left, wrong guesses and drawing 
+the hangman.
+1. Implement a command line main thread.
 1. Passing the function in the program to run.
 
 So that is basically what we will do in this Python project. Let's start.
