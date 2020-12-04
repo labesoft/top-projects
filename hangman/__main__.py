@@ -42,19 +42,21 @@ import argparse
 import logging
 import sys
 
-from hangman.game import greetings, main, hangman
+from hangman.game import HangGame, Level
 
 # Logging patterns
 LOG_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-GAMELOG_FORMAT = "%(message)s"
+LOG_FORMAT = "%(asctime)s.%(msecs).05f %(name)-12s [%(levelname)s] %(message)s"
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Ring an alarm')
-    parser.add_argument('--verbose', '-v', action='store_const', const=logging.DEBUG, default=logging.INFO,
-                        help='run in debug mode')
+    parser.add_argument('--verbose', '-v', action='store_const', const=logging.DEBUG,
+                        default=logging.INFO, help='run in debug mode')
+    parser.add_argument('--level', '-l', type=int, choices=range(6), help='run in debug mode',
+                        default=0)
     args = parser.parse_args(sys.argv[1:])
-    logging.basicConfig(format=GAMELOG_FORMAT, level=args.verbose)
-    greetings()
-    main()
-    hangman()
+    logging.basicConfig(format=LOG_FORMAT, level=args.verbose)
+    game = HangGame(game_level=list(Level)[args.level])
+    game.greetings()
+    game.play()
