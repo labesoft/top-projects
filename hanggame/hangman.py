@@ -40,8 +40,10 @@ File structure
 *constant*
     **GALLOWS**
         parts list of the gallows without the hanged man
-    **GALLOWS_***
+    **PART_* or PART_*_HANGED***
         parts of the gallows with the hanged man parts
+    **PART_* or PART_*_SAVED**
+        parts of the gallows with the saved man parts
 *class*
     **Hangman**
         'The Hangman draws the state of the hanged player'
@@ -72,14 +74,14 @@ GALLOWS = [
     "\t  |",
     "\t__|__"
 ]
-GALLOWS_HEAD = "\t  |     O"
-GALLOWS_BODY = "\t  |     |"
-GALLOWS_ARM_LEFT = "\t  |    /|"
-GALLOWS_ARMS = "\t  |    /|\\"
-GALLOWS_LEG_LEFT = "\t  |    /"
-GALLOWS_LEGS = "\t  |    / \\"
-WINNER_HEAD = "\t  |    \\O/"
-WINNER_LEGS = "\t__|__  / \\"
+PART_ARM_LEFT = "\t  |    /|"
+PART_ARMS = "\t  |    /|\\"
+PART_BODY = "\t  |     |"
+PART_HEAD_HANGED = "\t  |     O"
+PART_HEAD_SAVED = "\t  |    \\O/"
+PART_LEG_LEFT = "\t  |    /"
+PART_LEGS_HANGED = "\t  |    / \\"
+PART_LEGS_SAVED = "\t__|__  / \\"
 
 
 class Hangman:
@@ -127,42 +129,42 @@ class Hangman:
         """
         self.__missed_count += increment
 
-    def draw(self, hanged=False, safe=False):
+    def draw(self, hanged=False, saved=False):
         """Change the hangman drawing to the current state
 
         The current state is based on the player misses related to max attempts
         allowed. It is also possible to draw a complete man on the fly totally
         unrelated with the current state which could be hanged or saved
 
-        :param safe: if True, the player wins and is happy to be safe. Otherwise,
+        :param saved: if True, the player wins and is happy to be safe. Otherwise,
          False will fall back to the current state
         :param hanged: if True, draw a complete hanged man on the fly. Otherwise,
          False will fall back to the current state.
         """
         self.gallows = list(GALLOWS)
-        if safe:
-            self.gallows[5] = WINNER_HEAD
-            self.gallows[6] = GALLOWS_BODY
-            self.gallows[7] = WINNER_LEGS
+        if saved:
+            self.gallows[5] = PART_HEAD_SAVED
+            self.gallows[6] = PART_BODY
+            self.gallows[7] = PART_LEGS_SAVED
         elif self.__missed_count == self.max_attempt or hanged:
-            self.gallows[4] = GALLOWS_HEAD
-            self.gallows[5] = GALLOWS_ARMS
-            self.gallows[6] = GALLOWS_LEGS
+            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[5] = PART_ARMS
+            self.gallows[6] = PART_LEGS_HANGED
         elif self.__missed_count == self.max_attempt - GameLevel.EXTREME.value:
-            self.gallows[4] = GALLOWS_HEAD
-            self.gallows[5] = GALLOWS_ARMS
-            self.gallows[6] = GALLOWS_LEG_LEFT
+            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[5] = PART_ARMS
+            self.gallows[6] = PART_LEG_LEFT
         elif self.__missed_count == self.max_attempt - GameLevel.INFERNO.value:
-            self.gallows[4] = GALLOWS_HEAD
-            self.gallows[5] = GALLOWS_ARMS
+            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[5] = PART_ARMS
         elif self.__missed_count == self.max_attempt - GameLevel.ELITE.value:
-            self.gallows[4] = GALLOWS_HEAD
-            self.gallows[5] = GALLOWS_ARM_LEFT
+            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[5] = PART_ARM_LEFT
         elif self.__missed_count == self.max_attempt - GameLevel.PRO.value:
-            self.gallows[4] = GALLOWS_HEAD
-            self.gallows[5] = GALLOWS_BODY
+            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[5] = PART_BODY
         elif self.__missed_count == self.max_attempt - GameLevel.INTERMEDIARY.value:
-            self.gallows[4] = GALLOWS_HEAD
+            self.gallows[4] = PART_HEAD_HANGED
 
     def reset(self):
         """Remove the hanged player from the gallows"""

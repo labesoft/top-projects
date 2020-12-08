@@ -102,7 +102,7 @@ class HangGame:
             self.greeter.farewell()
 
     def run(self):
-        """Runs the game until it is over and asked to stop
+        """Runs the game until the player does not want to play again
 
         This is the running loop which handles each step of The Hangman Game.
         """
@@ -116,7 +116,7 @@ class HangGame:
             if self.word.unmask(current_letter):
                 self.greeter.end_turn(random.choice(OUT_MSG_CONGRATS))
                 if not self.word.is_mask():
-                    self.hangman.draw(safe=True)
+                    self.hangman.draw(saved=True)
                     self.greeter.end_game(str(self.hangman), OUT_MSG_WINNER, self.word.reveal)
                     self.play_again()
             else:
