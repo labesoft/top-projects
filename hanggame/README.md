@@ -7,9 +7,9 @@ advancement in technologies allows us to play hangman using our own computer als
 without any other player. How? Let’s find out further
 
 ## About the project
-The objective of our project is to implement The Hangman Game using Python. It doesn't
-require any specific modules other than random and time. Python loops and functions are
-enough to build this game here.
+The objective of this project is to recreate The Hangman Game that a user could
+play interactively by attempting to unmask a word one letter at a time using a
+limited number of attempts without being hanged by the hangman.
 
 ## Prerequisite
 This project requires good knowledge of Python which includes defining functions and 

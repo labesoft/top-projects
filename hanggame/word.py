@@ -1,11 +1,11 @@
 """The word handling logic of The Hangman Game
------------------------------
+-----------------------------------
 
 About this Project
 ------------------
 The objective of this project is to recreate The Hangman Game that a user could
-play interactively trying to guess a word with a limited number of guess attempts
-depending on his game level.
+play interactively by attempting to unmask a word one letter at a time using a
+limited number of attempts without being hanged by the hangman.
 
 Project structure
 -----------------
@@ -13,7 +13,9 @@ Project structure
     **__main__.py**:
         The application of The Hangman Game
     **game.py**:
-        The play rules of The Hangman Game
+        The play logic of The Hangman Game
+    **game.py**:
+        The greeter of The Hangman Game
     **hangman.py**:
         The drawing logic of the hangman on the gallows
     **level.py**:
@@ -25,8 +27,9 @@ Project structure
 
 About this module
 -----------------
-This module handle the word behavior of The Hangman Game. It choose a word, masks
-and unmasks the letters of the word. It finally reveals it when required.
+This module handle the word behavior of The Hangman Game. It choose a word and
+then, masks and unmasks the letters of the word. It is also designed to reveal
+a word only once making it impossible to undo when this is done.
 
 File structure
 --------------
@@ -48,15 +51,15 @@ File structure
     **Word**
         'The representation of a word for The Hangman Game'
     **__init__(self, words_file=DEFAULT_WORDS_FILE)**
-        'Initialize without choosing one yet'
+        'Initializes the words bank without choosing one yet'
     **__str__(self)**
-        'The string representation of the chosen word masked'
+        'Generates a masked string of the word'
     **reveal(self)**
-        'Unmask all the letters of the word and destroy it'
+        'Unmasks all the letters of the word and destroy it'
     **unmask_set(self)**
-        'Create a set with the letters that have been unmasked so far'
+        'Gets a set with the letters that have been unmasked so far'
     **choose(self)**
-        'Choose a new word from the word bank and assign it'
+        'Chooses a new word from the word bank and assign it'
     **is_mask(self)**
         'Tells if the word still contains masked letters'
     **is_unmask(self, letter)**
@@ -76,9 +79,7 @@ DEFAULT_WORDS_FILE = Path(dirname(__file__), 'words_alpha.txt')
 class Word:
     """The representation of a word for The Hangman Game"""
     def __init__(self, words_file=DEFAULT_WORDS_FILE):
-        """Initialize without choosing one yet
-
-        It also initialize the word bank that it will use
+        """Initializes the words bank without choosing one yet
 
         :param words_file: a file containing all available words
         """
@@ -89,7 +90,7 @@ class Word:
         self.__mask = {}
 
     def __str__(self):
-        """The string representation of the chosen word masked
+        """Generates a masked string of the word
 
         :return: the word masked
         """
@@ -98,7 +99,7 @@ class Word:
 
     @property
     def reveal(self):
-        """Unmask all the letters of the word and destroy it
+        """Unmasks all the letters of the word and destroy it
 
         :return: the word unmasked
         """
@@ -109,14 +110,14 @@ class Word:
 
     @property
     def unmask_set(self):
-        """Create a set with the letters that have been unmasked so far
+        """Gets a set with the letters that have been unmasked so far
 
         :return: a set of unmasked letters from the word
         """
         return set(str(self).replace(MASK, ''))
 
     def choose(self):
-        """Choose a new word from the word bank and assign it"""
+        """Chooses a new word from the word bank and assign it"""
         self.__word = random.choice(self.__word_bank)
         self.__mask = dict.fromkeys(set(self.__word), MASK)
 

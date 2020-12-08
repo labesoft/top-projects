@@ -1,11 +1,11 @@
 """The drawing logic of the hangman's gallows
------------------------------
+------------------------------------------
 
 About this Project
 ------------------
 The objective of this project is to recreate The Hangman Game that a user could
-play interactively trying to guess a word with a limited number of guess attempts
-depending on his game level.
+play interactively by attempting to unmask a word one letter at a time using a
+limited number of attempts without being hanged by the hangman.
 
 Project structure
 -----------------
@@ -13,7 +13,9 @@ Project structure
     **__main__.py**:
         The application of The Hangman Game
     **game.py**:
-        The play rules of The Hangman Game
+        The play logic of The Hangman Game
+    **greeter.py**:
+        The greeter of The Hangman Game
     **hangman.py**:
         The drawing logic of the hangman on the gallows
     **level.py**:
@@ -26,8 +28,9 @@ Project structure
 About this module
 -----------------
 The objective of this module is to draw a hanged man one part at a time.
-The drawing is based on how many time the player missed versus its game level.
-The player that will reach its max attempts allowed will then be drewn hanged.
+The drawing is intended for the console and represents on how many time the
+player missed. Based on its game level, the player that will reach its max
+attempts allowed will be hanged (and Hallowed be thy name).
 
 File structure
 --------------
@@ -43,13 +46,15 @@ File structure
     **Hangman**
         'The Hangman draws the state of the hanged player'
     **__init__(self, level)**
-        'Initialize the player hanged state'
+        'Initializes the players gallows'
     **__str__(self)**
         'Provides the string image of the current hanged state of a player'
     **attempt(self)**
-        'The getter of the number of guess attempts remaining'
+        'Gets the number of guess attempts remaining'
     **missed(self)**
-        'The getter of missed counts which is a private attribute'
+        'Gets the missed counts which should remains private'
+    **missed(self, increment: int)**
+        'Add last missed attempts to the current missed count'
     **draw(self, hanged=False)**
         'Change the hangman drawing to the current state'
     **reset(self)**
@@ -80,17 +85,15 @@ WINNER_LEGS = "\t__|__  / \\"
 class Hangman:
     """The Hangman draws the state of the hanged player"""
     def __init__(self, level=GameLevel.BEGINNER):
-        """Initialize the player hanged state
+        """Initializes the players gallows
 
-        Which include the maximum attempts allowed, the count of missed
-        attempts and the hanged state drawing. The GALLOWS is cloned to
+        Which include the maximum attempts allowed. The GALLOWS is cloned to
         prevent operating changes on the original list.
 
         :param level: current player's game level
         """
         self.max_attempt = level.value
         self.__missed_count = 0
-        # Cloning (with list()) the GALLOWS list in order to keep the original list intact
         self.gallows = list(GALLOWS)
 
     def __str__(self):
@@ -102,7 +105,7 @@ class Hangman:
 
     @property
     def attempt(self):
-        """The getter of the number of guess attempts remaining
+        """Gets the number of guess attempts remaining
 
         :return: the number of attempt(s) remaining
         """
@@ -110,7 +113,7 @@ class Hangman:
 
     @property
     def missed(self):
-        """The getter of missed counts which is a private attribute
+        """Gets the number of missed attempts
 
         :return: the number of attempts missed
         """
@@ -118,24 +121,26 @@ class Hangman:
 
     @missed.setter
     def missed(self, increment: int):
-        """Add missed attempts number defined by the increment
+        """Add last missed attempts to the current missed count
 
         :param increment: missed attempt(s) to add
         """
         self.__missed_count += increment
 
-    def draw(self, hanged=False, winner=False):
+    def draw(self, hanged=False, safe=False):
         """Change the hangman drawing to the current state
 
         The current state is based on the player misses related to max attempts
-        allowed. It is also possible to draw a complete hanged man on the fly
-        unrelated with the current state.
+        allowed. It is also possible to draw a complete man on the fly totally
+        unrelated with the current state which could be hanged or saved
 
+        :param safe: if True, the player wins and is happy to be safe. Otherwise,
+         False will fall back to the current state
         :param hanged: if True, draw a complete hanged man on the fly. Otherwise,
-         False will draw the current hanged state.
+         False will fall back to the current state.
         """
         self.gallows = list(GALLOWS)
-        if winner:
+        if safe:
             self.gallows[5] = WINNER_HEAD
             self.gallows[6] = GALLOWS_BODY
             self.gallows[7] = WINNER_LEGS
