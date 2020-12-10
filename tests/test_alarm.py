@@ -85,7 +85,7 @@ TEST_DATE = (2020, 1, 1)
 TEST_TIME = "00:00:00"
 
 
-class AlarmTest(TestCase):
+class TestAlarm(TestCase):
     """Test the core functionalities of the alarm"""
     def setUp(self) -> None:
         self.alarm = Alarm()
