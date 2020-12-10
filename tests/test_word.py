@@ -36,18 +36,6 @@ class TestWord(TestCase):
         # Evaluate test
         self.assertEqual(len(words), alpha_words_size)
 
-    def test_show(self):
-        """Tests that showing the word then empty it"""
-        # Prepare test
-        self.word.choose()
-
-        # Run test
-        self.word.show()
-        w2 = self.word.show()
-
-        # Evaluate test
-        self.assertEqual(w2, EMPTY_WORD)
-
     def test_unmasked_set(self):
         """Tests that no letter unmasked at the beginning and that returns a set"""
         # Prepare test
@@ -114,6 +102,18 @@ class TestWord(TestCase):
 
         # Evaluate test
         self.assertTrue(result)
+
+    def test_show(self):
+        """Tests that showing the word then empty it"""
+        # Prepare test
+        self.word.choose()
+
+        # Run test
+        self.word.show()
+        w2 = self.word.show()
+
+        # Evaluate test
+        self.assertEqual(w2, EMPTY_WORD)
 
     def test_unmask_worked(self):
         """Test if the a letter from the word could be unmasked and reports it properly"""
