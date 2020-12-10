@@ -9,7 +9,7 @@ using a limited number of attempts without being hanged by the hangman.
 
 Project structure
 -----------------
-*alarm/*
+*hanggame/*
     **__main__.py**:
         The application of The Hangman Game
     **game.py**:
@@ -38,6 +38,8 @@ File structure
         printing its output too fast.
 
 *constant*
+    **SPACING**
+        standard spacing constant
     **IN_SLEEP**
         the delay time of 100ms is usually enough and goes unnoticed to
         the player
@@ -47,29 +49,10 @@ File structure
         message printed to the player when asked for input
     **OUT_MSG_***
         message printed to the player
-
-*class*
-    **__init__(self, cb_out=print, cb_in=input)**
-        'Initializes the out/in tools used as callbacks'
-    **welcome(self, hangman)**
-        'Welcomes the player in the game'
-    **farewell(self)**
-        'Says goodbye to the player when the game is over'
-    **end_turn(self, good_wrong_msg)**
-        'Congratulates or complains the player choice at the end of a turn'
-    **end_game(self, hanged_image, end_msg, word)**
-        'Congratulates or hangs the player at the end of the game'
-    **new_letter(self)**
-        'Asks the player for a letter which is then returned'
-    **new_game(self)**
-        'Asks the player to play a new game'
-    **invalid_letter(self)**
-        'Informs the player that his choice is invalid'
-    **init_attempt(self, hangman, attempt_nb, word)**
-        'Informs the player of the state of the game'
 """
 from time import sleep
 
+SPACING = ' '
 
 IN_SLEEP = 0.1
 
@@ -106,34 +89,25 @@ class Greeter:
         self._in = cb_in
         self.player_name = ''
 
-    def welcome(self, hangman):
-        """Welcomes the player in the game
-
-        It prints the welcome message, the image of a hanged man, ask the name
-        of the player, greets him and print the start of the game.
-
-        :param hangman: the image of a hanged man
-        """
-        self._out(OUT_MSG_WELCOME)
-        self._out(hangman)
+    def input(self, in_msg):
         sleep(IN_SLEEP)
-        self.player_name = self._in(IN_MSG_NAME)
-        self._out(OUT_MSG_LUCK.format(self.player_name))
-        self._out(FORMAT_NEWLINE_PRE(OUT_MSG_READY))
+        return self._in(in_msg)
 
-    def farewell(self):
-        """Says goodbye to the player when the game is over"""
-        self._out(OUT_MSG_THANKS)
-        self._out(OUT_MSG_GOODBYE.format(self.player_name))
+    def in_new_letter(self):
+        """Asks the player for a letter which is then returned
 
-    def end_turn(self, good_wrong_msg):
-        """Congratulates or complains the player's fate at the end of a turn
-
-        :param good_wrong_msg: a congratulation or a complaint message string
+        :return: the player's choice, a stripped letter string
         """
-        self._out(FORMAT_NEWLINE_PRE(good_wrong_msg))
+        return self.input(IN_MSG_LETTER).strip()
 
-    def end_game(self, hanged_image, end_msg, word):
+    def in_new_game(self):
+        """Asks the player to play a new game
+
+        :return: the player's choice
+        """
+        return self.input(FORMAT_NEWLINE_END(IN_MSG_REPLAY))
+
+    def out_end_game(self, hanged_image, end_msg, word):
         """Congratulates or hangs the player at the end of the game
 
         :param hanged_image: the image of the hanged(or saved) player
@@ -144,27 +118,23 @@ class Greeter:
         self._out(end_msg)
         self._out(OUT_MSG_ANSWER.format(word))
 
-    def new_letter(self):
-        """Asks the player for a letter which is then returned
+    def out_end_turn(self, good_wrong_msg):
+        """Congratulates or complains the player's fate at the end of a turn
 
-        :return: the player's choice, a stripped letter string
+        :param good_wrong_msg: a congratulation or a complaint message string
         """
-        sleep(IN_SLEEP)
-        return self._in(IN_MSG_LETTER).strip()
+        self._out(FORMAT_NEWLINE_PRE(good_wrong_msg))
 
-    def new_game(self):
-        """Asks the player to play a new game
+    def out_farewell(self):
+        """Says goodbye to the player when the game is over"""
+        self._out(OUT_MSG_THANKS)
+        self._out(OUT_MSG_GOODBYE.format(self.player_name))
 
-        :return: the player's choice
-        """
-        sleep(IN_SLEEP)
-        return self._in(FORMAT_NEWLINE_END(IN_MSG_REPLAY))
-
-    def invalid_letter(self):
+    def out_invalid_letter(self):
         """Informs the player that his choice is invalid"""
         self._out(OUT_MSG_INVALID)
 
-    def init_attempt(self, hangman, attempt_nb, word):
+    def out_init_attempt(self, hangman, attempt_nb, word):
         """Informs the player of the state of the game
 
         :param hangman: the image of the parts hanged yet
@@ -173,4 +143,18 @@ class Greeter:
         """
         self._out(hangman)
         self._out(OUT_MSG_NB_ATTEMPT.format(attempt_nb))
-        self._out(' '.join(list(str(word))))
+        self._out(SPACING.join(list(word)))
+
+    def out_in_welcome(self, hangman):
+        """Welcomes the player in the game
+
+        It prints the welcome message, the image of a hanged man, ask the name
+        of the player, greets him and print the start of the game.
+
+        :param hangman: the image of a hanged man
+        """
+        self._out(OUT_MSG_WELCOME)
+        self._out(hangman)
+        self.player_name = self.input(IN_MSG_NAME)
+        self._out(OUT_MSG_LUCK.format(self.player_name))
+        self._out(FORMAT_NEWLINE_PRE(OUT_MSG_READY))

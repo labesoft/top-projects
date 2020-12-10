@@ -9,7 +9,7 @@ limited number of attempts without being hanged by the hangman.
 
 Project structure
 -----------------
-*alarm/*
+*hanggame/*
     **__main__.py**:
         The application of The Hangman Game
     **game.py**:
@@ -42,52 +42,33 @@ File structure
         provides a OS agnostic way of handling paths
 
 *constant*
+    **EMPTY_***
+        the empty constants
     **MASK**
         the symbol used to mask a letter
-    **DEFAULT_WORDS_FILE**
+    **DEFAULT_WORDS_FILEPATH**
         the default word dictionary
-
-*class*
-    **Word**
-        'The representation of a word for The Hangman Game'
-    **__init__(self, words_file=DEFAULT_WORDS_FILE)**
-        'Initializes the words bank without choosing one yet'
-    **__str__(self)**
-        'Generates a masked string of the word'
-    **reveal(self)**
-        'Unmasks all the letters of the word and destroy it'
-    **unmask_set(self)**
-        'Gets a set with the letters that have been unmasked so far'
-    **choose(self)**
-        'Chooses a new word from the word bank and assign it'
-    **is_mask(self)**
-        'Tells if the word still contains masked letters'
-    **is_unmask(self, letter)**
-        'Tells if a letter has been unmasked'
-    **unmask(self, letter)**
-        'Unmasked a letter if the word contains it'
 """
 import random
 from os.path import dirname
 from pathlib import Path
 
-
+EMPTY_MASK = {}
+EMPTY_WORD = ''
 MASK = '_'
-DEFAULT_WORDS_FILE = Path(dirname(__file__), 'words_alpha.txt')
+DEFAULT_WORDS_FILEPATH = Path(dirname(__file__), 'words_alpha.txt')
 
 
 class Word:
     """The representation of a word for The Hangman Game"""
-    def __init__(self, words_file=DEFAULT_WORDS_FILE):
+    def __init__(self, words_file=DEFAULT_WORDS_FILEPATH):
         """Initializes the words bank without choosing one yet
 
         :param words_file: a file containing all available words
         """
-        with open(words_file) as f:
-            all_words = f.readlines()
-        self.__word_bank = [w.strip('\n') for w in all_words if len(w.strip('\n')) > 2]
-        self.__word = ''
-        self.__mask = {}
+        self.word_bank = self.load_words(words_file)
+        self.__word = EMPTY_WORD
+        self.__mask = EMPTY_MASK
 
     def __str__(self):
         """Generates a masked string of the word
@@ -97,19 +78,29 @@ class Word:
         mask_table = str.maketrans(self.__mask)
         return self.__word.translate(mask_table)
 
-    @property
-    def reveal(self):
-        """Unmasks all the letters of the word and destroy it
+    @staticmethod
+    def load_words(words_file=DEFAULT_WORDS_FILEPATH):
+        """Loads all words from a file with more than 2 letters
 
-        :return: the word unmasked
+        :param words_file: the path of the file to load
+        :return: a list with all the words loaded
         """
-        result = self.__word
-        self.__word = ''
-        self.__mask = {}
-        return result
+        with open(words_file) as f:
+            all_words = f.readlines()
+        return [w.strip('\n') for w in all_words]
 
     @property
-    def unmask_set(self):
+    def word_bank(self):
+        """Gets the current list of words"""
+        return self.__word_bank
+
+    @word_bank.setter
+    def word_bank(self, words):
+        """Sets the current list of words"""
+        self.__word_bank = [w for w in words if len(w) > 2 and w.isalpha()]
+
+    @property
+    def unmasked_set(self):
         """Gets a set with the letters that have been unmasked so far
 
         :return: a set of unmasked letters from the word
@@ -121,28 +112,38 @@ class Word:
         self.__word = random.choice(self.__word_bank)
         self.__mask = dict.fromkeys(set(self.__word), MASK)
 
-    def is_mask(self):
+    def is_masked(self):
         """Tells if the word still contains masked letters
 
         :return: True if 1 or more letter are masked, False otherwise
         """
         return bool(self.__mask)
 
-    def is_unmask(self, letter):
-        """Tells if a letter has been unmasked
+    def is_unmasked(self, letter):
+        """Tells if a letter has already been unmasked
 
         :return: True if the letter has been unmasked, False otherwise
         """
-        return letter in self.unmask_set
+        return letter in self.unmasked_set
+
+    def show(self):
+        """Unmasks all the letters of the word and destroy it
+
+        :return: the word with all letters unmasked
+        """
+        result = self.__word
+        self.__word = EMPTY_WORD
+        self.__mask = EMPTY_MASK
+        return result
 
     def unmask(self, letter):
-        """Unmasked a letter if the word contains it
+        """Tries to unmask a letter and tells if it worked
 
         :param letter: the letter to unmask
         :return: True if the word contains the letter and was not unmasked already,
                   False otherwise
         """
-        was_unmask = self.is_unmask(letter)
+        was_unmask = self.is_unmasked(letter)
         if letter in self.__mask:
             del self.__mask[letter]
         return letter in self.__word and not was_unmask

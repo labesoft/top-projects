@@ -9,7 +9,7 @@ limited number of attempts without being hanged by the hangman.
 
 Project structure
 -----------------
-*alarm/*
+*hanggame/*
     **__main__.py**:
         The application of The Hangman Game
     **game.py**:
