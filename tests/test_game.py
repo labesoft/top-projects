@@ -89,7 +89,8 @@ class TestHangGame(TestCase):
         self.game.greeter.has_calls(calls)
         self.game.accept_letter.assert_called_once()
         self.game.greeter.out_end_turn.assert_called_once()
-        self.assertIn(self.game.greeter.out_end_turn.call_args.args[0], hanggame.game.OUT_MSG_CONGRATS)
+        out_msg = self.game.greeter.out_end_turn.call_args[0][0]
+        self.assertIn(out_msg, hanggame.game.OUT_MSG_CONGRATS)
         self.game.word.unmask.assert_called_once_with(result)
         self.game.word.is_masked.assert_called_once()
 
@@ -128,7 +129,8 @@ class TestHangGame(TestCase):
         self.assertIn(call.missed.__iadd__(1), self.game.hangman.mock_calls)
         self.game.hangman.draw.assert_any_call()
         self.game.greeter.out_end_turn.assert_called_once()
-        self.assertIn(self.game.greeter.out_end_turn.call_args.args[0], hanggame.game.OUT_MSG_COMPLAINTS)
+        out_msg = self.game.greeter.out_end_turn.call_args[0][0]
+        self.assertIn(out_msg, hanggame.game.OUT_MSG_COMPLAINTS)
 
     def test_run_loser_game(self):
         """Test that the run works properly"""
