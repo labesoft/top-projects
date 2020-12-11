@@ -89,9 +89,12 @@ class Greeter:
         self._in = cb_in
         self.player_name = ''
 
-    def input(self, in_msg):
-        sleep(IN_SLEEP)
-        return self._in(in_msg)
+    def in_new_game(self):
+        """Asks the player to play a new game
+
+        :return: the player's choice
+        """
+        return self.input(FORMAT_NEWLINE_END(IN_MSG_REPLAY))
 
     def in_new_letter(self):
         """Asks the player for a letter which is then returned
@@ -100,12 +103,9 @@ class Greeter:
         """
         return self.input(IN_MSG_LETTER).strip()
 
-    def in_new_game(self):
-        """Asks the player to play a new game
-
-        :return: the player's choice
-        """
-        return self.input(FORMAT_NEWLINE_END(IN_MSG_REPLAY))
+    def input(self, in_msg):
+        sleep(IN_SLEEP)
+        return self._in(in_msg)
 
     def out_end_game(self, hanged_image, end_msg, word):
         """Congratulates or hangs the player at the end of the game

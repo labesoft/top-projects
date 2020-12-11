@@ -156,8 +156,10 @@ class TestHangGame(TestCase):
         letter = 'a'
         self.game.is_valid = MagicMock(side_effect=[False, True, True, StopIteration])
         self.game.greeter.in_new_letter = MagicMock(return_value=letter)
+
         # Run test
         result = self.game.accept_letter()
+
         # Evaluate test
         calls = [call(letter), call(letter), call(letter)]
         self.game.is_valid.has_calls(calls)
@@ -169,8 +171,10 @@ class TestHangGame(TestCase):
         self.game.is_valid = MagicMock(side_effect=[False, False, False, True, True, StopIteration])
         letters = ['ah', 'a']
         self.game.greeter.in_new_letter = MagicMock(side_effect=letters)
+
         # Run test
         result = self.game.accept_letter()
+
         # Evaluate test
         calls = [call(hanggame.game.EMPTY_STR), call(letters[0]), call(letters[0]), call(letters[1]), call(letters[1])]
         self.game.is_valid.has_calls(calls)
@@ -182,8 +186,10 @@ class TestHangGame(TestCase):
         # Prepare test
         candidate = 'a'
         self.game.word.is_unmasked.return_value = False
+
         # Run test
         result = self.game.is_valid(candidate)
+
         # Evaluate test
         self.assertTrue(result)
 
@@ -192,8 +198,10 @@ class TestHangGame(TestCase):
         # Prepare test
         candidate = 'ah'
         self.game.word.is_unmasked.return_value = False
+
         # Run test
         result = self.game.is_valid(candidate)
+
         # Evaluate test
         self.assertFalse(result)
 
@@ -202,8 +210,10 @@ class TestHangGame(TestCase):
         # Prepare test
         candidate = '1'
         self.game.word.is_unmasked.return_value = False
+
         # Run test
         result = self.game.is_valid(candidate)
+
         # Evaluate test
         self.assertFalse(result)
 
@@ -211,8 +221,10 @@ class TestHangGame(TestCase):
         """Test that the game properly validate the letter candidate"""
         # Prepare test
         candidate = 'a'
+
         # Run test
         result = self.game.is_valid(candidate)
+
         # Evaluate test
         self.assertFalse(result)
         self.game.word.is_unmasked.assert_called_once_with(candidate)

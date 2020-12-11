@@ -70,16 +70,10 @@ File structure
         'Test that the alarm sleep at the ideal 1s time internal while not
         ringing'
 """
-import logging
-import os
-from datetime import datetime
-
 from unittest import TestCase, skipIf
 from unittest.mock import patch, MagicMock, call
 
-import alarm
-
-from alarm.model import Alarm
+from alarm.model import *
 
 TEST_DATE = (2020, 1, 1)
 TEST_TIME = "00:00:00"
@@ -90,11 +84,27 @@ class TestAlarm(TestCase):
     def setUp(self) -> None:
         self.alarm = Alarm()
 
+    def test_time_setter(self):
+        """Test the time setter useing the namedTuple"""
+        # Prepare test
+        hour = 1
+        min = 2
+        sec = 3
+        atime = ATIME(hour, min, sec)
+
+        # Run test
+        self.alarm.time = atime
+
+        # Evaluate test
+        self.assertEqual(self.alarm.hour, hour)
+        self.assertEqual(self.alarm.min, min)
+        self.assertEqual(self.alarm.sec, sec)
+
     def test_is_alive(self):
         """Test that the alarm is alive by default"""
-        # Prepare test
         # Run test
         result = self.alarm.is_alive()
+
         # Evaluate test
         self.assertTrue(result)
 
@@ -103,24 +113,24 @@ class TestAlarm(TestCase):
     @skipIf(os.name == 'nt', f"Not on a posix machine os.name={os.name}")
     def test_ring_posix(self, cmd, logger):
         """Test that the alarm use the well formed subprocess command to play the sound"""
-        # Prepare test
         # Run test
         self.alarm.ring()
+
         # Evaluate test
-        logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
-        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
+        logger.assert_called_once_with(MSG_INFO_WAKEUP)
+        cmd.assert_called_once_with(*ARGS, **KWARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     @patch('alarm.model.SOUND_CMD')
     @skipIf(os.name == 'posix', f"Not on a nt machine os.name={os.name}")
     def test_ring_nt(self, cmd, logger):
         """Test that the alarm use the well formed subprocess command to play the sound"""
-        # Prepare test
         # Run test
         self.alarm.ring()
+
         # Evaluate test
-        logger.assert_called_once_with(alarm.model.MSG_INFO_WAKEUP)
-        cmd.assert_called_once_with(*alarm.model.ARGS, **alarm.model.KWARGS)
+        logger.assert_called_once_with(MSG_INFO_WAKEUP)
+        cmd.assert_called_once_with(*ARGS, **KWARGS)
 
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'info')
     def test_run(self, logger):
@@ -130,19 +140,22 @@ class TestAlarm(TestCase):
         self.alarm.manage_time = MagicMock()
         # Run test
         self.alarm.run()
+
         # Evaluate test
-        calls = [call.info(alarm.model.MSG_INFO_START), call.info(alarm.model.MSG_INFO_STOP)]
+        calls = [call.info(MSG_INFO_START), call.info(MSG_INFO_STOP)]
         logger.assert_has_calls(calls)
         self.alarm.manage_time.assert_called_once()
 
     @patch('alarm.model.datetime')
-    @patch.object(alarm.model.Alarm, 'ring')
+    @patch.object(Alarm, 'ring')
     def test_time_to_ring(self, ring, dt):
         """Test that the alarm ring at the proper time"""
         # Prepare test
         dt.now.return_value = datetime(*TEST_DATE)
+
         # Run test
         self.alarm.manage_time()
+
         # Evaluate test
         ring.assert_called_once()
 
@@ -150,10 +163,10 @@ class TestAlarm(TestCase):
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'debug')
     def test_time_to_sleep(self, logger, sleep):
         """Test that the alarm sleep at the ideal 1s time internal while not ringing"""
-        # Prepare test
         # Run test
         self.alarm.manage_time()
+
         # Evaluate test
-        msg = alarm.model.MSG_DEBUG_SLEEP.format(self.alarm.time, alarm.model.TIME_INTERVAL)
+        msg = MSG_DEBUG_SLEEP.format(self.alarm.time, TIME_INTERVAL)
         logger.assert_called_once_with(msg)
-        sleep.assert_called_once_with(alarm.model.TIME_INTERVAL)
+        sleep.assert_called_once_with(TIME_INTERVAL)

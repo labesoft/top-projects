@@ -12,7 +12,7 @@ About this module
 The objective of this module is to test the greeter module
 """
 from unittest import TestCase
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock, call, patch
 
 from hanggame.greeter import *
 
@@ -49,6 +49,15 @@ class TestGreeter(TestCase):
         # Evaluate test
         self.greeter.input.assert_called_once_with(IN_MSG_LETTER)
         self.assertEqual(self.input.strip(), result)
+
+    @patch('hanggame.greeter.sleep')
+    def test_input(self, sl):
+        # Run test
+        self.greeter.input(self.message)
+
+        # Evaluate test
+        sl.assert_called_once_with(IN_SLEEP)
+        self.greeter._in.assert_called_once_with(self.message)
 
     def test_out_farewell(self):
         """Tests the thanks and goodbye message"""

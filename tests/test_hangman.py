@@ -27,6 +27,10 @@ class TestHangman(TestCase):
         # Evaluate test
         self.assertEqual(self.hangman.max_attempt, GameLevel.BEGINNER.value)
 
+    def test___str__(self):
+        # Evaluate test
+        self.assertEqual(str(self.hangman), IMAGE_STRING_SEP.join(self.hangman.gallows))
+
     def test_attempt(self):
         """Tests that the attempt is max_attempt - missed"""
         # Run test
