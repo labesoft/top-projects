@@ -36,6 +36,13 @@ class TestWord(TestCase):
         # Evaluate test
         self.assertEqual(len(words), alpha_words_size)
 
+    def test_word_bank(self):
+        # Run test
+        result = self.word.word_bank
+
+        # Evaluate test
+        self.assertEqual(result, [TEST_WORDS[1], TEST_WORDS[4]])
+
     def test_unmasked_set(self):
         """Tests that no letter unmasked at the beginning and that returns a set"""
         # Prepare test
