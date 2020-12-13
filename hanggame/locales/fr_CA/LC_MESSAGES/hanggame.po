@@ -1,0 +1,195 @@
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-12-12 15:50-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: game.py:68
+msgid "y"
+msgstr "o"
+
+#: game.py:68
+msgid "yes"
+msgstr "oui"
+
+#: game.py:68
+msgid "yeah"
+msgstr "ouais"
+
+#: game.py:68
+msgid "sure"
+msgstr "certain"
+
+#: game.py:68
+msgid "ok"
+msgstr "d'accord"
+
+#: game.py:68
+msgid "always"
+msgstr "toujours"
+
+#: game.py:68
+msgid "positive"
+msgstr "positif"
+
+#: game.py:68
+msgid "you bet"
+msgstr "tu paries"
+
+#: game.py:69
+msgid "give it to me"
+msgstr "donne le moi"
+
+#: game.py:69
+msgid "go for it"
+msgstr "on fonce"
+
+#: game.py:70
+msgid "n"
+msgstr "n"
+
+#: game.py:70
+msgid "no"
+msgstr "non"
+
+#: game.py:70
+msgid "nope"
+msgstr "nan"
+
+#: game.py:70
+msgid "not at all"
+msgstr "pas du tout"
+
+#: game.py:70
+msgid "fuck off"
+msgstr "va te faire foutre"
+
+#: game.py:70
+msgid "no fucking way"
+msgstr "pas question putain"
+
+#: game.py:71
+msgid "never"
+msgstr "jamais"
+
+#: game.py:71
+msgid "negative"
+msgstr "négatif"
+
+#: game.py:71
+msgid "this is rigged"
+msgstr "c'est truqué"
+
+#: game.py:71
+msgid "toaster"
+msgstr "grille-pain"
+
+#: game.py:71
+msgid "not a chance"
+msgstr "aucune chance"
+
+#: greeter.py:68
+msgid "Enter your letter: "
+msgstr "Entrez votre lettre: "
+
+#: greeter.py:69
+msgid "Enter your name: "
+msgstr "Entrez votre nom: "
+
+#: greeter.py:70
+msgid "Do You want to play again? y = yes, n = no"
+msgstr "Voulez-vous rejouer? o = oui, n = non"
+
+#: greeter.py:71
+msgid "The word was: {}"
+msgstr "Le mot était: {}"
+
+#: greeter.py:72
+msgid "Wrong guess ?! :O"
+msgstr "Mauvais choix ?! :O"
+
+#: greeter.py:72
+msgid "Error :("
+msgstr "Erreur :("
+
+#: greeter.py:72
+msgid "Missed ???"
+msgstr "Manqué ???"
+
+#: greeter.py:72
+msgid "Sorry, you were wrong :_("
+msgstr "Désolé, vous vous êtes trompé :_("
+
+#: greeter.py:73
+msgid "Good guess! Keep it up!!"
+msgstr "Bon choix! Continuez comme ça!!"
+
+#: greeter.py:73
+msgid "Wow! you're strong!!"
+msgstr "Hou la la! vous êtes fort!!"
+
+#: greeter.py:73
+msgid "I want to marry you <3"
+msgstr "Je veux t'épouser <3"
+
+#: greeter.py:73
+msgid "What a genius!!"
+msgstr "Quel génie !!"
+
+#: greeter.py:74
+msgid "Dude, you're a machine!!"
+msgstr "Mec, tu es une machine !!"
+
+#: greeter.py:75
+msgid "See you soon {}!"
+msgstr "À bientôt {}!"
+
+#: greeter.py:76
+msgid "Invalid input, try another letter"
+msgstr "Entrée non valide, essayez une autre lettre"
+
+#: greeter.py:77
+msgid "You are out of attempt... Hanged!!"
+msgstr "Vous avez épuisé vos choix... Pendu!!"
+
+#: greeter.py:78
+msgid "Hello {}! Best of Luck!"
+msgstr "Bonjour {}! Bonne chance!"
+
+#: greeter.py:79
+msgid "You have {} attempt"
+msgstr "Il vous reste {} choix"
+
+#: greeter.py:80
+msgid "The game is about to start... let's play Hangman!"
+msgstr "Le jeu est sur le point de commencer ... jouons au Pendu!"
+
+#: greeter.py:81
+msgid "Thanks for playing The Hangman Game!"
+msgstr "Merci d'avoir joué au Jeu Du Pendu!"
+
+#: greeter.py:82
+msgid "Try another letter plz"
+msgstr "Essayez une autre lettre svp"
+
+#: greeter.py:83
+msgid "Welcome to The Hangman Game by labesoft"
+msgstr "Bienvenue dans le Jeu du Pendu par labesoft"
+
+#: greeter.py:84
+msgid "Congrats!! You have guessed the word correctly.."
+msgstr "Félicitations!! Vous avez bien deviné le mot."
+

@@ -1,0 +1,195 @@
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-12-12 15:50-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: game.py:68
+msgid "y"
+msgstr ""
+
+#: game.py:68
+msgid "yes"
+msgstr ""
+
+#: game.py:68
+msgid "yeah"
+msgstr ""
+
+#: game.py:68
+msgid "sure"
+msgstr ""
+
+#: game.py:68
+msgid "ok"
+msgstr ""
+
+#: game.py:68
+msgid "always"
+msgstr ""
+
+#: game.py:68
+msgid "positive"
+msgstr ""
+
+#: game.py:68
+msgid "you bet"
+msgstr ""
+
+#: game.py:69
+msgid "give it to me"
+msgstr ""
+
+#: game.py:69
+msgid "go for it"
+msgstr ""
+
+#: game.py:70
+msgid "n"
+msgstr ""
+
+#: game.py:70
+msgid "no"
+msgstr ""
+
+#: game.py:70
+msgid "nope"
+msgstr ""
+
+#: game.py:70
+msgid "not at all"
+msgstr ""
+
+#: game.py:70
+msgid "fuck off"
+msgstr ""
+
+#: game.py:70
+msgid "no fucking way"
+msgstr ""
+
+#: game.py:71
+msgid "never"
+msgstr ""
+
+#: game.py:71
+msgid "negative"
+msgstr ""
+
+#: game.py:71
+msgid "this is rigged"
+msgstr ""
+
+#: game.py:71
+msgid "toaster"
+msgstr ""
+
+#: game.py:71
+msgid "not a chance"
+msgstr ""
+
+#: greeter.py:68
+msgid "Enter your letter: "
+msgstr ""
+
+#: greeter.py:69
+msgid "Enter your name: "
+msgstr ""
+
+#: greeter.py:70
+msgid "Do You want to play again? y = yes, n = no"
+msgstr ""
+
+#: greeter.py:71
+msgid "The word was: {}"
+msgstr ""
+
+#: greeter.py:72
+msgid "Wrong guess ?! :O"
+msgstr ""
+
+#: greeter.py:72
+msgid "Error :("
+msgstr ""
+
+#: greeter.py:72
+msgid "Missed ???"
+msgstr ""
+
+#: greeter.py:72
+msgid "Sorry, you were wrong :_("
+msgstr ""
+
+#: greeter.py:73
+msgid "Good guess! Keep it up!!"
+msgstr ""
+
+#: greeter.py:73
+msgid "Wow! you're strong!!"
+msgstr ""
+
+#: greeter.py:73
+msgid "I want to marry you <3"
+msgstr ""
+
+#: greeter.py:73
+msgid "What a genius!!"
+msgstr ""
+
+#: greeter.py:74
+msgid "Dude, you're a machine!!"
+msgstr ""
+
+#: greeter.py:75
+msgid "See you soon {}!"
+msgstr ""
+
+#: greeter.py:76
+msgid "Invalid input, try another letter"
+msgstr ""
+
+#: greeter.py:77
+msgid "You are out of attempt... Hanged!!"
+msgstr ""
+
+#: greeter.py:78
+msgid "Hello {}! Best of Luck!"
+msgstr ""
+
+#: greeter.py:79
+msgid "You have {} attempt"
+msgstr ""
+
+#: greeter.py:80
+msgid "The game is about to start... let's play Hangman!"
+msgstr ""
+
+#: greeter.py:81
+msgid "Thanks for playing The Hangman Game!"
+msgstr ""
+
+#: greeter.py:82
+msgid "Try another letter plz"
+msgstr ""
+
+#: greeter.py:83
+msgid "Welcome to The Hangman Game by labesoft"
+msgstr ""
+
+#: greeter.py:84
+msgid "Congrats!! You have guessed the word correctly.."
+msgstr ""
+

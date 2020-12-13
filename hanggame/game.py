@@ -50,19 +50,30 @@ File structure
         lists of yes/no options that the player may use to answer the play again
         question.
 """
+import gettext
 import logging
 import random
+from pathlib import Path
 
 from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS
 from hanggame.hangman import Hangman
 from hanggame.level import GameLevel
 from hanggame.word import Word
 
+
+t = gettext.translation('hanggame', localedir='locales')
+#t = gettext.translation('hanggame', localedir='locales', languages=['en_US'])
+#t = gettext.translation('hanggame', localedir='locales', languages=['en_CA'])
+#t = gettext.translation('hanggame', localedir='locales', languages=['fr_CA'])
+t.install()
+_ = t.gettext
+
+
 EMPTY_STR = ''
-YES_LIST = ['y', 'yes', 'yeah', 'sure', 'ok', 'always', 'positive', 'you bet',
-            'give it to me', 'go for it']
-NO_LIST = ['n', 'no', 'nope', 'not at all', 'fuck off', 'no fucking way',
-           'never', 'negative', 'this is rigged', 'toaster', 'not a chance']
+YES_LIST = [_('y'), _('yes'), _('yeah'), _('sure'), _('ok'), _('always'), _('positive'), _('you bet'),
+            _('give it to me'), _('go for it')]
+NO_LIST = [_('n'), _('no'), _('nope'), _('not at all'), _('fuck off'), _('no fucking way'),
+           _('never'), _('negative'), _('this is rigged'), _('toaster'), _('not a chance')]
 YES_NO_LIST = YES_LIST + NO_LIST
 
 
