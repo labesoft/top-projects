@@ -53,7 +53,6 @@ File structure
 import gettext
 import logging
 import random
-from pathlib import Path
 
 from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS
 from hanggame.hangman import Hangman
@@ -62,9 +61,6 @@ from hanggame.word import Word
 
 
 t = gettext.translation('hanggame', localedir='locales')
-#t = gettext.translation('hanggame', localedir='locales', languages=['en_US'])
-#t = gettext.translation('hanggame', localedir='locales', languages=['en_CA'])
-#t = gettext.translation('hanggame', localedir='locales', languages=['fr_CA'])
 t.install()
 _ = t.gettext
 

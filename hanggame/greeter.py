@@ -56,8 +56,6 @@ from time import sleep
 
 
 t = gettext.translation('hanggame', localedir='locales')
-#t = gettext.translation('hanggame', localedir='locales', languages=['en_US'])
-#t = gettext.translation('hanggame', localedir='locales', languages=['fr_CA'])
 t.install()
 _ = t.gettext
 
