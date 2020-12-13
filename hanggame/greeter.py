@@ -51,13 +51,16 @@ File structure
         message printed to the player
 """
 import gettext
+import os
 
 from time import sleep
 
 
-t = gettext.translation('hanggame', localedir='locales')
-t.install()
-_ = t.gettext
+if os.name == 'posix':
+    t = gettext.translation('hanggame', localedir='locales')
+    _ = t.gettext
+else:
+    _ = str
 
 
 SPACING = ' '

@@ -52,6 +52,7 @@ File structure
 """
 import gettext
 import logging
+import os
 import random
 
 from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS
@@ -60,9 +61,11 @@ from hanggame.level import GameLevel
 from hanggame.word import Word
 
 
-t = gettext.translation('hanggame', localedir='locales')
-t.install()
-_ = t.gettext
+if os.name == 'posix':
+    t = gettext.translation('hanggame', localedir='locales')
+    _ = t.gettext
+else:
+    _ = str
 
 
 EMPTY_STR = ''
