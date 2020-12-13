@@ -50,22 +50,13 @@ File structure
         lists of yes/no options that the player may use to answer the play again
         question.
 """
-import gettext
 import logging
-import os
 import random
 
-from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS
+from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS, _
 from hanggame.hangman import Hangman
 from hanggame.level import GameLevel
 from hanggame.word import Word
-
-
-if os.name == 'posix':
-    t = gettext.translation('hanggame', localedir='locales')
-    _ = t.gettext
-else:
-    _ = str
 
 
 EMPTY_STR = ''

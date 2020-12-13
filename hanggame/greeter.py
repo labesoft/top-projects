@@ -51,22 +51,24 @@ File structure
         message printed to the player
 """
 import gettext
-import os
+import logging
 
 from time import sleep
 
 
-if os.name == 'posix':
+try:
     t = gettext.translation('hanggame', localedir='locales')
-    _ = t.gettext
-else:
-    _ = str
+except FileNotFoundError as err:
+    logger = logging.getLogger(__name__)
+    default_lang = 'en_US'
+    logger.warning(f'no language set, falling back to default: {default_lang}')
+    t = gettext.translation('hanggame', localedir='locales', languages=[default_lang])
+    t.install()
+_ = t.gettext
 
 
 SPACING = ' '
-
 IN_SLEEP = 0.1
-
 FORMAT_NEWLINE_PRE = "\n{}".format
 FORMAT_NEWLINE_END = "{}\n".format
 
@@ -75,8 +77,8 @@ IN_MSG_NAME = _('Enter your name: ')
 IN_MSG_REPLAY = _('Do You want to play again? y = yes, n = no')
 OUT_MSG_ANSWER = _("The word was: {}")
 OUT_MSG_COMPLAINTS = [_('Wrong guess ?! :O'), _('Error :('), _('Missed ???'), _('Sorry, you were wrong :_(')]
-OUT_MSG_CONGRATS = [_('Good guess! Keep it up!!'), _("Wow! you're strong!!"), _('I want to marry you <3'), _('What a genius!!'),
-                    _("Dude, you're a machine!!")]
+OUT_MSG_CONGRATS = [_('Good guess! Keep it up!!'), _("Wow! you're strong!!"), _('I want to marry you <3'),
+                    _('What a genius!!'), _("Dude, you're a machine!!")]
 OUT_MSG_GOODBYE = _('See you soon {}!')
 OUT_MSG_INVALID = _('Invalid input, try another letter')
 OUT_MSG_LOSER = _('You are out of attempt... Hanged!!')
