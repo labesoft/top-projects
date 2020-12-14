@@ -52,12 +52,13 @@ File structure
 """
 import gettext
 import logging
+import os
 
 from time import sleep
 
 
 try:
-    t = gettext.translation('hanggame', localedir='locales')
+    t = gettext.translation('hanggame', localedir=os.path.join(os.path.dirname(__file__), 'locales'))
 except FileNotFoundError as err:
     logger = logging.getLogger(__name__)
     default_lang = 'en_US'
