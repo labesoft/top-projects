@@ -1,0 +1,136 @@
+"""The greeting in the Hangman Game
+--------------------------------
+
+About this module
+-----------------
+This module is intended to manage out/in message to/from the player which will
+make the game more interactive.
+
+File structure
+--------------
+*import*
+    **time.sleep**
+        the time.sleep module allows delaying the input which is sometime
+        printing its output too fast.
+
+*constant*
+    **SPACING**
+        standard spacing constant
+    **IN_SLEEP**
+        the delay time of 100ms is usually enough and goes unnoticed to
+        the player
+    **FORMAT_NEWLINE_**
+        used to add new lines to strings
+    **IN_MSG_***
+        message printed to the player when asked for input
+    **OUT_MSG_***
+        message printed to the player
+"""
+from time import sleep
+
+SPACING = ' '
+
+IN_SLEEP = 0.1
+
+FORMAT_NEWLINE_PRE = "\n{}".format
+FORMAT_NEWLINE_END = "{}\n".format
+
+IN_MSG_LETTER = 'Enter your letter: '
+IN_MSG_NAME = 'Enter your name: '
+IN_MSG_REPLAY = 'Do You want to play again? y = yes, n = no'
+OUT_MSG_ANSWER = "The word was: {}"
+OUT_MSG_COMPLAINTS = ['Wrong guess ?! :O', 'Error :(', 'Missed ???', 'Sorry, you were wrong :_(']
+OUT_MSG_CONGRATS = ['Good guess! Keep it up!!', "Wow! you're strong!!", 'I want to marry you <3', 'What a genius!!',
+                    "Dude, you're a machine!!"]
+OUT_MSG_GOODBYE = 'See you soon {}!'
+OUT_MSG_INVALID = 'Invalid input, try another letter'
+OUT_MSG_LOSER = 'You are out of attempt... Hanged!!'
+OUT_MSG_LUCK = "Hello {}! Best of Luck!"
+OUT_MSG_NB_ATTEMPT = "You have {} attempt"
+OUT_MSG_READY = "The game is about to start... let's play Hangman!"
+OUT_MSG_THANKS = 'Thanks for playing The Hangman Game!'
+OUT_MSG_TRY_AGAIN = 'Try another letter plz'
+OUT_MSG_WELCOME = 'Welcome to The Hangman Game by labesoft'
+OUT_MSG_WINNER = "Congrats!! You have guessed the word correctly.."
+
+
+class Greeter:
+    def __init__(self, cb_out=print, cb_in=input):
+        """Initializes the out/in tools used as callbacks
+
+        :param cb_out: the callback used as the stdout
+        :param cb_in: the callback used as the stdin
+        """
+        self._out = cb_out
+        self._in = cb_in
+        self.player_name = ''
+
+    def in_new_game(self):
+        """Asks the player to play a new game
+
+        :return: the player's choice
+        """
+        return self.input(FORMAT_NEWLINE_END(IN_MSG_REPLAY))
+
+    def in_new_letter(self):
+        """Asks the player for a letter which is then returned
+
+        :return: the player's choice, a stripped letter string
+        """
+        return self.input(IN_MSG_LETTER).strip()
+
+    def input(self, in_msg):
+        sleep(IN_SLEEP)
+        return self._in(in_msg)
+
+    def out_end_game(self, hanged_image, end_msg, word):
+        """Congratulates or hangs the player at the end of the game
+
+        :param hanged_image: the image of the hanged(or saved) player
+        :param end_msg: a congratulation or a complaint message string
+        :param word: the whole word revealed
+        """
+        self._out(hanged_image)
+        self._out(end_msg)
+        self._out(OUT_MSG_ANSWER.format(word))
+
+    def out_end_turn(self, good_wrong_msg):
+        """Congratulates or complains the player's fate at the end of a turn
+
+        :param good_wrong_msg: a congratulation or a complaint message string
+        """
+        self._out(FORMAT_NEWLINE_PRE(good_wrong_msg))
+
+    def out_farewell(self):
+        """Says goodbye to the player when the game is over"""
+        self._out(OUT_MSG_THANKS)
+        self._out(OUT_MSG_GOODBYE.format(self.player_name))
+
+    def out_invalid_letter(self):
+        """Informs the player that his choice is invalid"""
+        self._out(OUT_MSG_INVALID)
+
+    def out_init_attempt(self, hangman, attempt_nb, word):
+        """Informs the player of the state of the game
+
+        :param hangman: the image of the parts hanged yet
+        :param attempt_nb: the number ot attempt outstanding
+        :param word: the current status of masked word
+        """
+        self._out(hangman)
+        self._out(OUT_MSG_NB_ATTEMPT.format(attempt_nb))
+        self._out(SPACING.join(list(word)))
+
+    def out_in_welcome(self, hangman):
+        """Welcomes the player in the game
+
+        It prints the welcome message, the image of a hanged man, ask the name
+        of the player, greets him and print the start of the game.
+
+        :param hangman: the image of a hanged man
+        """
+        self._out(OUT_MSG_WELCOME)
+        self._out(hangman)
+        self.player_name = self.input(IN_MSG_NAME)
+        self._out(OUT_MSG_LUCK.format(self.player_name))
+        self._out(FORMAT_NEWLINE_PRE(OUT_MSG_READY))

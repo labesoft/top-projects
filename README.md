@@ -9,7 +9,7 @@ website](https://data-flair.training/blogs)
 
 ## Projects Included 
 * [Alarm Clock with GUI](alarm/README.md)
-* [Hangman Game in Python](hangman/README.md)
+* [Hangman Game in Python](hanggame/README.md)
 * [Dice Rolling Simulator Python Game](dice/README.md)
 * [Password Generator]()
 * [Currency Converter]()
