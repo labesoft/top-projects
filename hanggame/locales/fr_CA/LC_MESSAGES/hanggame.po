@@ -139,7 +139,7 @@ msgstr "Bon choix! Continuez comme ça!!"
 
 #: greeter.py:73
 msgid "Wow! you're strong!!"
-msgstr "Hou la la! vous êtes fort!!"
+msgstr "Hou là là! vous êtes fort!!"
 
 #: greeter.py:73
 msgid "I want to marry you <3"
@@ -191,5 +191,5 @@ msgstr "Bienvenue dans le Jeu du Pendu par labesoft"
 
 #: greeter.py:84
 msgid "Congrats!! You have guessed the word correctly.."
-msgstr "Félicitations!! Vous avez bien deviné le mot."
+msgstr "Félicitation!! Vous avez bien deviné le mot."
 
