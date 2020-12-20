@@ -1,12 +1,6 @@
 """The tests for level.py of The Hangman Game
 -----------------------------------------
 
-About this Project
-------------------
-The objective of this project is to recreate The Hangman Game that a user could
-play interactively by attempting to unmask a word one letter at a time using a
-limited number of attempts without being hanged by the hangman.
-
 About this module
 -----------------
 The objective of this module is to test the level module
