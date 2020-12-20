@@ -90,6 +90,9 @@ OUT_MSG_THANKS = _('Thanks for playing The Hangman Game!')
 OUT_MSG_TRY_AGAIN = _('Try another letter plz')
 OUT_MSG_WELCOME = _('Welcome to The Hangman Game by labesoft')
 OUT_MSG_WINNER = _("Congrats!! You have guessed the word correctly..")
+OUT_NEW_GAME = _("Hit SPACE bar to begin")
+OUT_MSG_LEVEL = _("Level")
+OUT_MSG_ERROR = _("Error")
 
 
 class Greeter:

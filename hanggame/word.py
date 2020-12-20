@@ -109,6 +109,7 @@ class Word:
 
     def choose(self):
         """Chooses a new word from the word bank and assign it"""
+        self.show()
         self.__word = random.choice(self.__word_bank)
         self.__mask = dict.fromkeys(set(self.__word), MASK)
 
