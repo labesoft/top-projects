@@ -29,16 +29,17 @@ File structure
 import logging
 import random
 
-from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS
+from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS, _
 from hanggame.hangman import Hangman
 from hanggame.level import GameLevel
 from hanggame.word import Word
 
+
 EMPTY_STR = ''
-YES_LIST = ['y', 'yes', 'yeah', 'sure', 'ok', 'always', 'positive', 'you bet',
-            'give it to me', 'go for it']
-NO_LIST = ['n', 'no', 'nope', 'not at all', 'fuck off', 'no fucking way',
-           'never', 'negative', 'this is rigged', 'toaster', 'not a chance']
+YES_LIST = [_('y'), _('yes'), _('yeah'), _('sure'), _('ok'), _('always'), _('positive'), _('you bet'),
+            _('give it to me'), _('go for it')]
+NO_LIST = [_('n'), _('no'), _('nope'), _('not at all'), _('fuck off'), _('no fucking way'),
+           _('never'), _('negative'), _('this is rigged'), _('toaster'), _('not a chance')]
 YES_NO_LIST = YES_LIST + NO_LIST
 
 
