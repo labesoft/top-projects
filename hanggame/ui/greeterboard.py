@@ -1,20 +1,6 @@
 """The greeterboard of The Hangman Game$
 -----------------------------
 
-About this Project
-------------------
-The objective of this project is to recreate The Hangman Game that a user could
-play interactively by attempting to unmask a word one letter at a time using a
-limited number of attempts without being hanged by the hangman.
-
-Project structure
------------------
-*hanggame.ui/*
-    **greeterboard.py**:
-        The greeterboard ui design of The Hangman Game
-    **greeterboard.ui**:
-        The greeterboard of The Hangman Game
-        
 About this module
 -----------------
 The objective of this module is to view most of the messages sent to the player
@@ -37,10 +23,9 @@ __copyright__ = "Copyright 2020, labesoft"
 
 __version__ = "1.0.0"
 
-
 from PyQt5 import QtWidgets, uic
 
-from hanggame import greeter
+from hanggame import i18n
 from hanggame.hangman import Hangman
 
 
@@ -85,8 +70,8 @@ class Greeterboard(QtWidgets.QWidget):
         """Presents the current status of the gallows"""
         self.gallows.setText(str(self.hangman))
 
-    def welcome_player(self):
+    def welcome_player(self, msg):
         """Welcomes the players in the game with a hanged man and wish him luck"""
-        self.welcome_title.setText(greeter.OUT_MSG_WELCOME)
+        self.welcome_title.setText(i18n.OUT_MSG_WELCOME)
         self.hangman.draw(hanged=True)
-        self.greets(greeter.OUT_MSG_LUCK)
+        self.greets(msg)

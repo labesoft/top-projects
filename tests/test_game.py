@@ -10,6 +10,7 @@ from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 
 import hanggame
+import hanggame.i18n
 from hanggame.game import HangGame
 
 
@@ -37,7 +38,7 @@ class TestHangGame(TestCase):
         """Test that the game ask play again to player and handles the answer"""
         # Prepare test
         self.game.reset = MagicMock()
-        choice = random.choice(hanggame.game.YES_LIST)
+        choice = random.choice(hanggame.i18n.YES_LIST)
         self.game.greeter.in_new_game.side_effect = ['WRONG', choice, 'yes', StopIteration]
 
         # Run test
@@ -53,7 +54,7 @@ class TestHangGame(TestCase):
         """Test that the game ask play again to player and handles the answer"""
         # Prepare test
         self.game.reset = MagicMock()
-        choice = random.choice(hanggame.game.NO_LIST)
+        choice = random.choice(hanggame.i18n.NO_LIST)
         self.game.greeter.in_new_game.side_effect = [choice, 'no', StopIteration]
 
         # Run test
@@ -84,7 +85,7 @@ class TestHangGame(TestCase):
         self.game.accept_letter.assert_called_once()
         self.game.greeter.out_end_turn.assert_called_once()
         out_msg = self.game.greeter.out_end_turn.call_args[0][0]
-        self.assertIn(out_msg, hanggame.game.OUT_MSG_CONGRATS)
+        self.assertIn(out_msg, hanggame.i18n.OUT_MSG_CONGRATS)
         self.game.word.unmask.assert_called_once_with(result)
         self.game.word.is_masked.assert_called_once()
 
@@ -103,7 +104,7 @@ class TestHangGame(TestCase):
 
         # Evaluate test
         self.game.hangman.draw.assert_any_call(saved=True)
-        self.game.greeter.out_end_game.assert_called_once_with(str(self.game.hangman), hanggame.game.OUT_MSG_WINNER,
+        self.game.greeter.out_end_game.assert_called_once_with(str(self.game.hangman), hanggame.i18n.OUT_MSG_WINNER,
                                                                self.game.word.show())
         self.game.ask_play_again.assert_called_once()
 
@@ -124,7 +125,7 @@ class TestHangGame(TestCase):
         self.game.hangman.draw.assert_any_call()
         self.game.greeter.out_end_turn.assert_called_once()
         out_msg = self.game.greeter.out_end_turn.call_args[0][0]
-        self.assertIn(out_msg, hanggame.game.OUT_MSG_COMPLAINTS)
+        self.assertIn(out_msg, hanggame.i18n.OUT_MSG_COMPLAINTS)
 
     def test_run_loser_game(self):
         """Test that the run works properly"""
@@ -142,7 +143,7 @@ class TestHangGame(TestCase):
 
         # Evaluate test
         self.game.hangman.attempt.__bool__.assert_called_once()
-        self.game.greeter.out_end_game.assert_called_once_with(str(self.game.hangman), hanggame.game.OUT_MSG_LOSER,
+        self.game.greeter.out_end_game.assert_called_once_with(str(self.game.hangman), hanggame.i18n.OUT_MSG_LOSER,
                                                                self.game.word.show())
         self.game.ask_play_again.assert_called_once()
 

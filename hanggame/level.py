@@ -17,6 +17,9 @@ File structure
         'The Hangman Game levels defining their maximum number of attempts'
 """
 from enum import Enum
+from types import DynamicClassAttribute
+
+from hanggame import i18n
 
 
 class GameLevel(Enum):
@@ -27,3 +30,8 @@ class GameLevel(Enum):
     ELITE = 3
     INFERNO = 2
     EXTREME = 1
+
+    @DynamicClassAttribute
+    def translated_name(self):
+        """The translatable name of an enum"""
+        return i18n.LEVELS[self.name]

@@ -1,20 +1,6 @@
-"""The word UI of The Hangman Game$
------------------------------
+"""The word label view of The Hangman Game
+---------------------------------------
 
-About this Project
-------------------
-The objective of this project is to recreate The Hangman Game that a user could
-play interactively by attempting to unmask a word one letter at a time using a
-limited number of attempts without being hanged by the hangman.
-
-Project structure
------------------
-*hanggame/*
-    **word_view.py**:
-        The word UI design of The Hangman Game
-    **word_view.ui**:
-        The word UI of The Hangman Game
-        
 About this module
 -----------------
 The objective of this module is to view the word to discover of The Hangman
@@ -29,7 +15,7 @@ File structure
         Useful modules for a PyQt module
 
 *constant*
-
+    None
 """
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
@@ -39,6 +25,7 @@ __version__ = "1.0.0"
 
 from PyQt5 import QtWidgets
 
+from hanggame import i18n
 from hanggame.word import Word
 
 
@@ -51,6 +38,43 @@ class WordView(QtWidgets.QLabel):
         Also loads the UI from a .ui template file
         """
         super(WordView, self).__init__()
-        self.word = Word()
-        self.word.load_words()
-        self.setText(' '.join(list(str(self.word))))
+        self.__word = Word()
+        self.__word.load_words()
+
+    @property
+    def word(self):
+        """Gets the masked word each character spaced
+
+        :return: the masked word for the ui
+        """
+        return ' '.join(list(str(self.__word)))
+
+    def update_word(self):
+        """Sets the text of the label with the current word state"""
+        self.setText(self.word)
+
+    def reveal_word(self):
+        """Reveal the word and display the answer in the label"""
+        w = self.__word.show()
+        self.setText(i18n.OUT_MSG_ANSWER.format(w))
+
+    def next_word(self):
+        """Chooses the next word and displays it"""
+        self.__word.choose()
+        self.setText(self.word)
+
+    def guess(self, letter):
+        """Tries to unmask a letter of the word
+
+        :param letter: the letter to try
+        :return:
+        """
+        return self.__word.unmask(letter)
+
+    def is_masked(self):
+        """Tells if the is masked or entirely unmasked
+
+        :return: True, the word is still masked
+        False, the word is entirely unmasked
+        """
+        return self.__word.is_masked()

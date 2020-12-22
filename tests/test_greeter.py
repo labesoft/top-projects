@@ -9,6 +9,8 @@ from unittest import TestCase
 from unittest.mock import MagicMock, call, patch
 
 from hanggame.greeter import *
+from hanggame.i18n import IN_MSG_LETTER, IN_MSG_REPLAY, OUT_MSG_ANSWER, OUT_MSG_GOODBYE, OUT_MSG_INVALID, OUT_MSG_LUCK, \
+    OUT_MSG_NB_ATTEMPT, OUT_MSG_READY, OUT_MSG_THANKS, OUT_MSG_WELCOME
 
 
 class TestGreeter(TestCase):
@@ -91,7 +93,7 @@ class TestGreeter(TestCase):
         self.greeter.out_init_attempt(self.image, attempt_nb, self.word)
 
         # Evaluate test
-        calls = [call(self.image), call(OUT_MSG_NB_ATTEMPT.format(attempt_nb)), call(SPACING.join(list(self.word)))]
+        calls = [call(self.image), call(OUT_MSG_NB_ATTEMPT.format(attempt_nb)), call(SPACE_STR.join(list(self.word)))]
         self.greeter._out.has_calls(calls)
 
     def test_out_in_welcome(self):

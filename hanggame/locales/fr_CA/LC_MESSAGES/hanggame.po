@@ -1,195 +1,248 @@
-# Translations template for PROJECT.
+# French (Canada) translations for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 15:50-0500\n"
+"POT-Creation-Date: 2020-12-22 11:24-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr_CA\n"
+"Language-Team: fr_CA <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: game.py:68
-msgid "y"
-msgstr "o"
-
-#: game.py:68
-msgid "yes"
-msgstr "oui"
-
-#: game.py:68
-msgid "yeah"
-msgstr "ouais"
-
-#: game.py:68
-msgid "sure"
-msgstr "certain"
-
-#: game.py:68
-msgid "ok"
-msgstr "d'accord"
-
-#: game.py:68
-msgid "always"
-msgstr "toujours"
-
-#: game.py:68
-msgid "positive"
-msgstr "positif"
-
-#: game.py:68
-msgid "you bet"
-msgstr "tu paries"
-
-#: game.py:69
-msgid "give it to me"
-msgstr "donne le moi"
-
-#: game.py:69
-msgid "go for it"
-msgstr "on fonce"
-
-#: game.py:70
-msgid "n"
-msgstr "n"
-
-#: game.py:70
-msgid "no"
-msgstr "non"
-
-#: game.py:70
-msgid "nope"
-msgstr "nan"
-
-#: game.py:70
-msgid "not at all"
-msgstr "pas du tout"
-
-#: game.py:70
-msgid "fuck off"
-msgstr "va te faire foutre"
-
-#: game.py:70
-msgid "no fucking way"
-msgstr "pas question putain"
-
-#: game.py:71
-msgid "never"
-msgstr "jamais"
-
-#: game.py:71
-msgid "negative"
-msgstr "négatif"
-
-#: game.py:71
-msgid "this is rigged"
-msgstr "c'est truqué"
-
-#: game.py:71
-msgid "toaster"
-msgstr "grille-pain"
-
-#: game.py:71
-msgid "not a chance"
-msgstr "aucune chance"
-
-#: greeter.py:68
+#: i18n.py:46
 msgid "Enter your letter: "
-msgstr "Entrez votre lettre: "
+msgstr "Entre une lettre: "
 
-#: greeter.py:69
+#: i18n.py:47
 msgid "Enter your name: "
 msgstr "Entrez votre nom: "
 
-#: greeter.py:70
+#: i18n.py:48
 msgid "Do You want to play again? y = yes, n = no"
-msgstr "Voulez-vous rejouer? o = oui, n = non"
+msgstr "Veux-tu rejouer? o = oui, n = non"
 
-#: greeter.py:71
+#: i18n.py:50
 msgid "The word was: {}"
 msgstr "Le mot était: {}"
 
-#: greeter.py:72
+#: i18n.py:51
+msgid "You must enter you name to play"
+msgstr "Vous devez entrer votre nom pour jouer"
+
+#: i18n.py:52
 msgid "Wrong guess ?! :O"
 msgstr "Mauvais choix ?! :O"
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Error :("
 msgstr "Erreur :("
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Missed ???"
 msgstr "Manqué ???"
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Sorry, you were wrong :_("
-msgstr "Désolé, vous vous êtes trompé :_("
+msgstr "Désolé, tu t'es trompé :_("
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "Good guess! Keep it up!!"
-msgstr "Bon choix! Continuez comme ça!!"
+msgstr "Bon choix! Continue comme ça!!"
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "Wow! you're strong!!"
-msgstr "Hou là là! vous êtes fort!!"
+msgstr "Hou là là! tu es fort!!"
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "I want to marry you <3"
 msgstr "Je veux t'épouser <3"
 
-#: greeter.py:73
+#: i18n.py:54
 msgid "What a genius!!"
-msgstr "Quel génie !!"
+msgstr "Quel génie!!"
 
-#: greeter.py:74
+#: i18n.py:54
 msgid "Dude, you're a machine!!"
-msgstr "Mec, tu es une machine !!"
+msgstr "Mec, tu es une machine!!"
 
-#: greeter.py:75
+#: i18n.py:55
+msgid "Errors so far: "
+msgstr "Erreurs accumulés: "
+
+#: i18n.py:56
 msgid "See you soon {}!"
 msgstr "À bientôt {}!"
 
-#: greeter.py:76
+#: i18n.py:57
 msgid "Invalid input, try another letter"
-msgstr "Entrée non valide, essayez une autre lettre"
+msgstr "Entrée non valide, essaie une autre lettre"
 
-#: greeter.py:77
+#: i18n.py:58
 msgid "You are out of attempt... Hanged!!"
-msgstr "Vous avez épuisé vos choix... Pendu!!"
+msgstr "Tu as épuisé tes choix... Pendu!!"
 
-#: greeter.py:78
+#: i18n.py:59
 msgid "Hello {}! Best of Luck!"
 msgstr "Bonjour {}! Bonne chance!"
 
-#: greeter.py:79
-msgid "You have {} attempt"
-msgstr "Il vous reste {} choix"
+#: i18n.py:60
+msgid "Hit SPACE bar to begin"
+msgstr "Appuyez sur la barre d'espace pour commencer"
 
-#: greeter.py:80
+#: i18n.py:61
+msgid "Attempts remaining: {}"
+msgstr "Choix restant: {}"
+
+#: i18n.py:62
 msgid "The game is about to start... let's play Hangman!"
-msgstr "Le jeu est sur le point de commencer ... jouons au Pendu!"
+msgstr "Le jeu est sur le point de démarrer... jouons au Pendu!"
 
-#: greeter.py:81
+#: i18n.py:63
 msgid "Thanks for playing The Hangman Game!"
-msgstr "Merci d'avoir joué au Jeu Du Pendu!"
+msgstr "Merci d'avoir joué au Jeu du Pendu"
 
-#: greeter.py:82
+#: i18n.py:64
+msgid "The Hangman Game"
+msgstr "Le Jeu Du Pendu"
+
+#: i18n.py:65
 msgid "Try another letter plz"
-msgstr "Essayez une autre lettre svp"
+msgstr "Essaie une autre lettre svp"
 
-#: greeter.py:83
+#: i18n.py:66
 msgid "Welcome to The Hangman Game by labesoft"
-msgstr "Bienvenue dans le Jeu du Pendu par labesoft"
+msgstr "Bienvenue dans le Jeu du Pendu de labesoft"
 
-#: greeter.py:84
+#: i18n.py:67
 msgid "Congrats!! You have guessed the word correctly.."
-msgstr "Félicitation!! Vous avez bien deviné le mot."
+msgstr "Félicitation!! Tu as bien deviné le mot.."
+
+#: i18n.py:68
+msgid "Level: "
+msgstr "Niveau: "
+
+#: i18n.py:70
+msgid "Space"
+msgstr "Espace"
+
+#: i18n.py:71
+msgid "Start"
+msgstr "Démarrer"
+
+#: i18n.py:73
+msgid "n"
+msgstr "n"
+
+#: i18n.py:73
+msgid "no"
+msgstr "non"
+
+#: i18n.py:73
+msgid "nope"
+msgstr "nan"
+
+#: i18n.py:73
+msgid "not at all"
+msgstr "pas du tout"
+
+#: i18n.py:73
+msgid "fuck off"
+msgstr "va te faire foutre"
+
+#: i18n.py:73
+msgid "no fucking way"
+msgstr "pas question putain"
+
+#: i18n.py:74
+msgid "never"
+msgstr "jamais"
+
+#: i18n.py:74
+msgid "negative"
+msgstr "négatif"
+
+#: i18n.py:74
+msgid "this is rigged"
+msgstr "c'est truqué"
+
+#: i18n.py:74
+msgid "toaster"
+msgstr "grille-pain"
+
+#: i18n.py:74
+msgid "not a chance"
+msgstr "aucune chance"
+
+#: i18n.py:75
+msgid "y"
+msgstr "o"
+
+#: i18n.py:75
+msgid "yes"
+msgstr "oui"
+
+#: i18n.py:75
+msgid "yeah"
+msgstr "ouais"
+
+#: i18n.py:75
+msgid "sure"
+msgstr "certain"
+
+#: i18n.py:75
+msgid "ok"
+msgstr "d'accord"
+
+#: i18n.py:75
+msgid "always"
+msgstr "toujours"
+
+#: i18n.py:75
+msgid "positive"
+msgstr "positif"
+
+#: i18n.py:75
+msgid "you bet"
+msgstr "tu paries"
+
+#: i18n.py:76
+msgid "give it to me"
+msgstr "donne le moi"
+
+#: i18n.py:76
+msgid "go for it"
+msgstr "on fonce"
+
+#: i18n.py:78
+msgid "BEGINNER"
+msgstr "DÉBUTANT"
+
+#: i18n.py:78
+msgid "INTERMEDIARY"
+msgstr "INTERMÉDIAIRE"
+
+#: i18n.py:78
+msgid "PRO"
+msgstr "PRO"
+
+#: i18n.py:78
+msgid "ELITE"
+msgstr "ÉLITE"
+
+#: i18n.py:79
+msgid "INFERNO"
+msgstr "INFERNAL"
+
+#: i18n.py:79
+msgid "EXTREME"
+msgstr "EXTRÊME"
 

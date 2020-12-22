@@ -1,195 +1,248 @@
-# Translations template for PROJECT.
+# English (Canada) translations for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
-#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-12 15:50-0500\n"
+"POT-Creation-Date: 2020-12-22 11:24-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_CA\n"
+"Language-Team: en_CA <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: game.py:68
-msgid "y"
-msgstr ""
-
-#: game.py:68
-msgid "yes"
-msgstr ""
-
-#: game.py:68
-msgid "yeah"
-msgstr ""
-
-#: game.py:68
-msgid "sure"
-msgstr ""
-
-#: game.py:68
-msgid "ok"
-msgstr ""
-
-#: game.py:68
-msgid "always"
-msgstr ""
-
-#: game.py:68
-msgid "positive"
-msgstr ""
-
-#: game.py:68
-msgid "you bet"
-msgstr ""
-
-#: game.py:69
-msgid "give it to me"
-msgstr ""
-
-#: game.py:69
-msgid "go for it"
-msgstr ""
-
-#: game.py:70
-msgid "n"
-msgstr ""
-
-#: game.py:70
-msgid "no"
-msgstr ""
-
-#: game.py:70
-msgid "nope"
-msgstr ""
-
-#: game.py:70
-msgid "not at all"
-msgstr ""
-
-#: game.py:70
-msgid "fuck off"
-msgstr ""
-
-#: game.py:70
-msgid "no fucking way"
-msgstr ""
-
-#: game.py:71
-msgid "never"
-msgstr ""
-
-#: game.py:71
-msgid "negative"
-msgstr ""
-
-#: game.py:71
-msgid "this is rigged"
-msgstr ""
-
-#: game.py:71
-msgid "toaster"
-msgstr ""
-
-#: game.py:71
-msgid "not a chance"
-msgstr ""
-
-#: greeter.py:68
+#: i18n.py:46
 msgid "Enter your letter: "
 msgstr ""
 
-#: greeter.py:69
+#: i18n.py:47
 msgid "Enter your name: "
 msgstr ""
 
-#: greeter.py:70
+#: i18n.py:48
 msgid "Do You want to play again? y = yes, n = no"
 msgstr ""
 
-#: greeter.py:71
+#: i18n.py:50
 msgid "The word was: {}"
 msgstr ""
 
-#: greeter.py:72
+#: i18n.py:51
+msgid "You must enter you name to play"
+msgstr ""
+
+#: i18n.py:52
 msgid "Wrong guess ?! :O"
 msgstr ""
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Error :("
 msgstr ""
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Missed ???"
 msgstr ""
 
-#: greeter.py:72
+#: i18n.py:52
 msgid "Sorry, you were wrong :_("
 msgstr ""
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "Good guess! Keep it up!!"
 msgstr ""
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "Wow! you're strong!!"
 msgstr ""
 
-#: greeter.py:73
+#: i18n.py:53
 msgid "I want to marry you <3"
 msgstr ""
 
-#: greeter.py:73
+#: i18n.py:54
 msgid "What a genius!!"
 msgstr ""
 
-#: greeter.py:74
+#: i18n.py:54
 msgid "Dude, you're a machine!!"
 msgstr ""
 
-#: greeter.py:75
+#: i18n.py:55
+msgid "Errors so far: "
+msgstr ""
+
+#: i18n.py:56
 msgid "See you soon {}!"
 msgstr ""
 
-#: greeter.py:76
+#: i18n.py:57
 msgid "Invalid input, try another letter"
 msgstr ""
 
-#: greeter.py:77
+#: i18n.py:58
 msgid "You are out of attempt... Hanged!!"
 msgstr ""
 
-#: greeter.py:78
+#: i18n.py:59
 msgid "Hello {}! Best of Luck!"
 msgstr ""
 
-#: greeter.py:79
-msgid "You have {} attempt"
+#: i18n.py:60
+msgid "Hit SPACE bar to begin"
 msgstr ""
 
-#: greeter.py:80
+#: i18n.py:61
+msgid "Attempts remaining: {}"
+msgstr ""
+
+#: i18n.py:62
 msgid "The game is about to start... let's play Hangman!"
 msgstr ""
 
-#: greeter.py:81
+#: i18n.py:63
 msgid "Thanks for playing The Hangman Game!"
 msgstr ""
 
-#: greeter.py:82
+#: i18n.py:64
+msgid "The Hangman Game"
+msgstr ""
+
+#: i18n.py:65
 msgid "Try another letter plz"
 msgstr ""
 
-#: greeter.py:83
+#: i18n.py:66
 msgid "Welcome to The Hangman Game by labesoft"
 msgstr ""
 
-#: greeter.py:84
+#: i18n.py:67
 msgid "Congrats!! You have guessed the word correctly.."
+msgstr ""
+
+#: i18n.py:68
+msgid "Level: "
+msgstr ""
+
+#: i18n.py:70
+msgid "Space"
+msgstr ""
+
+#: i18n.py:71
+msgid "Start"
+msgstr ""
+
+#: i18n.py:73
+msgid "n"
+msgstr ""
+
+#: i18n.py:73
+msgid "no"
+msgstr ""
+
+#: i18n.py:73
+msgid "nope"
+msgstr ""
+
+#: i18n.py:73
+msgid "not at all"
+msgstr ""
+
+#: i18n.py:73
+msgid "fuck off"
+msgstr ""
+
+#: i18n.py:73
+msgid "no fucking way"
+msgstr ""
+
+#: i18n.py:74
+msgid "never"
+msgstr ""
+
+#: i18n.py:74
+msgid "negative"
+msgstr ""
+
+#: i18n.py:74
+msgid "this is rigged"
+msgstr ""
+
+#: i18n.py:74
+msgid "toaster"
+msgstr ""
+
+#: i18n.py:74
+msgid "not a chance"
+msgstr ""
+
+#: i18n.py:75
+msgid "y"
+msgstr ""
+
+#: i18n.py:75
+msgid "yes"
+msgstr ""
+
+#: i18n.py:75
+msgid "yeah"
+msgstr ""
+
+#: i18n.py:75
+msgid "sure"
+msgstr ""
+
+#: i18n.py:75
+msgid "ok"
+msgstr ""
+
+#: i18n.py:75
+msgid "always"
+msgstr ""
+
+#: i18n.py:75
+msgid "positive"
+msgstr ""
+
+#: i18n.py:75
+msgid "you bet"
+msgstr ""
+
+#: i18n.py:76
+msgid "give it to me"
+msgstr ""
+
+#: i18n.py:76
+msgid "go for it"
+msgstr ""
+
+#: i18n.py:78
+msgid "BEGINNER"
+msgstr ""
+
+#: i18n.py:78
+msgid "INTERMEDIARY"
+msgstr ""
+
+#: i18n.py:78
+msgid "PRO"
+msgstr ""
+
+#: i18n.py:78
+msgid "ELITE"
+msgstr ""
+
+#: i18n.py:79
+msgid "INFERNO"
+msgstr ""
+
+#: i18n.py:79
+msgid "EXTREME"
 msgstr ""
 

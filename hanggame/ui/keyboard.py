@@ -1,19 +1,5 @@
-"""The keyboard of The Hangman Game$
------------------------------
-
-About this Project
-------------------
-The objective of this project is to recreate The Hangman Game that a user could
-play interactively by attempting to unmask a word one letter at a time using a
-limited number of attempts without being hanged by the hangman.
-
-Project structure
------------------
-*hanggame.ui/*
-    **keyboard.py**:
-        The keyboard of The Hangman Game
-    **keyboard.ui**:
-        The keyboard design of The Hangman Game
+"""The keyboard of The Hangman Game
+--------------------------------
 
 About this module
 -----------------
@@ -30,7 +16,8 @@ File structure
         Useful modules for a PyQt module
 
 *constant*
-
+    **ALPHA_LAYOUT**
+        Layout of the keyboard. Each string represents a row of keys
 """
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
@@ -42,6 +29,7 @@ import functools
 
 from PyQt5 import QtCore, QtWidgets, uic
 
+from hanggame import i18n
 
 ALPHA_LAYOUT = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
 
@@ -63,23 +51,25 @@ class Keyboard(QtWidgets.QWidget):
                 self.keys[letter] = self.findChild(QtWidgets.QPushButton, f'Key_{letter.upper()}')
                 self.keys[letter].setShortcut(getattr(QtCore.Qt, self.keys[letter].objectName()))
         self.keys['Space'] = self.findChild(QtWidgets.QPushButton, 'Key_Space')
-        self.keys['Space'].setShortcut(getattr(QtCore.Qt, 'Key_Space'))
+        self.keys['Space'].setShortcut(QtCore.Qt.Key_Space)
+        self.keys['Space'].setText(i18n.SPACE_KEY)
 
-    def bind(self, new_game, play_turn):
-        """Binds every letter keys to a player's turn in the game.
+    def bind_keys(self, play_turn):
+        """Binds every letter keys to a player's guess during the game.
 
-        Also the space bar is used to start a new game.
-
-        :param new_game: func to start a new game
-        :param play_turn: func to play a turn
+        :param play_turn: method to play a turn
         """
         for k, v in self.keys.items():
-            if k == 'Space':
-                # New game
-                v.pressed.connect(new_game)
-            else:
-                # 1 guess
+            if k != 'Space':
                 v.pressed.connect(functools.partial(play_turn, v.text()))
+
+    def bind_space(self, new_game):
+        """Binds the space bar to start a new game.
+
+        :param new_game: method to start a new game
+        """
+        self.keys['Space'].pressed.connect(new_game)
+        self.keys['Space'].setFocus()
 
     def reset(self):
         """Reenables all the keys that were disable during a previous game
