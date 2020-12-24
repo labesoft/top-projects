@@ -12,8 +12,10 @@ used).
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
+    **functools**
+        provides useful args addictions when delgating a method
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 
 *constant*
     **ALPHA_LAYOUT**
@@ -30,8 +32,7 @@ import functools
 from PyQt5 import QtCore, QtWidgets, uic
 
 from hanggame import i18n
-
-ALPHA_LAYOUT = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
+from hanggame.word import ALPHA_LAYOUT
 
 
 class Keyboard(QtWidgets.QWidget):
@@ -51,25 +52,23 @@ class Keyboard(QtWidgets.QWidget):
                 self.keys[letter] = self.findChild(QtWidgets.QPushButton, f'Key_{letter.upper()}')
                 self.keys[letter].setShortcut(getattr(QtCore.Qt, self.keys[letter].objectName()))
         self.keys['Space'] = self.findChild(QtWidgets.QPushButton, 'Key_Space')
-        self.keys['Space'].setShortcut(QtCore.Qt.Key_Space)
         self.keys['Space'].setText(i18n.SPACE_KEY)
 
-    def bind_keys(self, play_turn):
-        """Binds every letter keys to a player's guess during the game.
+        # Looks like the order is important and like it is a bug in Qt
+        #  that setting text after the shortcut voids the shortcut
+        self.keys['Space'].setShortcut(QtCore.Qt.Key_Space)
+
+    def connect_keys(self, play_turn, new_game):
+        """Binds every keys pressed action to game methods.
 
         :param play_turn: method to play a turn
+        :param new_game: method to set a new game
         """
         for k, v in self.keys.items():
-            if k != 'Space':
-                v.pressed.connect(functools.partial(play_turn, v.text()))
-
-    def bind_space(self, new_game):
-        """Binds the space bar to start a new game.
-
-        :param new_game: method to start a new game
-        """
-        self.keys['Space'].pressed.connect(new_game)
-        self.keys['Space'].setFocus()
+            if k == 'Space':
+                v.pressed.connect(new_game)
+            else:
+                v.pressed.connect(functools.partial(play_turn, v))
 
     def reset(self):
         """Reenables all the keys that were disable during a previous game
@@ -78,7 +77,11 @@ class Keyboard(QtWidgets.QWidget):
         """
         for k in self.keys.values():
             k.setEnabled(True)
-        self.keys['Space'].setFocus()
+        self.set_focus('Space')
 
+    def set_focus(self, key_str):
+        """Sets the focus to the specified key
 
-
+        :param key_str: the name of the key where to set the focus
+        """
+        self.keys[key_str].setFocus()

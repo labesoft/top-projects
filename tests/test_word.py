@@ -62,7 +62,7 @@ class TestWord(TestCase):
         self.word.choose()
 
         # Run test
-        result = self.word.is_masked()
+        result = self.word.is_mask()
 
         # Evaluate test
         self.assertTrue(result)
@@ -74,7 +74,7 @@ class TestWord(TestCase):
 
         # Run test
         self.word.show()
-        result = self.word.is_masked()
+        result = self.word.is_mask()
 
         # Evaluate test
         self.assertFalse(result)
@@ -86,10 +86,10 @@ class TestWord(TestCase):
         self.word.choose()
 
         # Run test
-        result = self.word.is_unmasked(letter)
+        result = self.word.is_masked(letter)
 
         # Evaluate test
-        self.assertFalse(result)
+        self.assertTrue(result)
 
     def test_is_unmasked_true(self):
         """Tests that an unmasked letter is reported unmasked"""
@@ -99,10 +99,10 @@ class TestWord(TestCase):
 
         # Run test
         self.word.unmask(letter)
-        result = self.word.is_unmasked(letter)
+        result = self.word.is_masked(letter)
 
         # Evaluate test
-        self.assertTrue(result)
+        self.assertFalse(result)
 
     def test_show(self):
         """Tests that showing the word then empty it"""

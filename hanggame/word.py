@@ -29,9 +29,10 @@ import random
 from os.path import dirname
 from pathlib import Path
 
+ALPHA_LAYOUT = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
 EMPTY_MASK = {}
 EMPTY_WORD = ''
-MASK = '_'
+MASK_STR = '_'
 DEFAULT_WORDS_FILEPATH = Path(dirname(__file__), 'words_alpha.txt')
 
 
@@ -66,14 +67,8 @@ class Word:
         return [w.strip('\n') for w in all_words]
 
     @property
-    def word_bank(self):
-        """Gets the current list of words"""
-        return self.__word_bank
-
-    @word_bank.setter
-    def word_bank(self, words):
-        """Sets the current list of words"""
-        self.__word_bank = [w for w in words if len(w) > 2 and w.isalpha()]
+    def available(self):
+        return list(self.__mask)
 
     @property
     def unmasked_set(self):
@@ -81,27 +76,49 @@ class Word:
 
         :return: a set of unmasked letters from the word
         """
-        return set(str(self).replace(MASK, ''))
+        return set(str(self).replace(MASK_STR, ''))
+
+    @property
+    def word_bank(self):
+        """Gets the current list of words"""
+        return self.__word_bank
+
+    @word_bank.setter
+    def word_bank(self, words):
+        """Sets the current list of words"""
+        self.__word_bank = [w for w in words if len(w) > 2 and w.isalpha() and self.has_vowel(w)]
+
+    def has_vowel(self, w):
+        """Checks if a word has at least one vowel
+
+        :param w: the word to check
+        :return: True if it detected at least one vowel, false otherwise
+        """
+        w = w.lower()
+        vowels = 'aeiouy'
+        for v in vowels:
+            if v in w:
+                return True
+        return False
 
     def choose(self):
         """Chooses a new word from the word bank and assign it"""
-        self.show()
         self.__word = random.choice(self.__word_bank)
-        self.__mask = dict.fromkeys(set(self.__word), MASK)
+        self.__mask = dict.fromkeys(set(''.join(ALPHA_LAYOUT)), MASK_STR)
 
-    def is_masked(self):
+    def is_mask(self):
         """Tells if the word still contains masked letters
 
         :return: True if 1 or more letter are masked, False otherwise
         """
-        return bool(self.__mask)
+        return bool(MASK_STR in str(self))
 
-    def is_unmasked(self, letter):
+    def is_masked(self, letter):
         """Tells if a letter has already been unmasked
 
         :return: True if the letter has been unmasked, False otherwise
         """
-        return letter in self.unmasked_set
+        return letter in self.__mask
 
     def show(self):
         """Unmasks all the letters of the word and destroy it
@@ -120,7 +137,7 @@ class Word:
         :return: True if the word contains the letter and was not unmasked already,
                   False otherwise
         """
-        was_unmask = self.is_unmasked(letter)
-        if letter in self.__mask:
+        if self.is_masked(letter):
             del self.__mask[letter]
-        return letter in self.__word and not was_unmask
+            return letter in self.__word
+        return False

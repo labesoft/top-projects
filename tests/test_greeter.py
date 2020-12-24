@@ -8,14 +8,14 @@ The objective of this module is to test the greeter module
 from unittest import TestCase
 from unittest.mock import MagicMock, call, patch
 
-from hanggame.greeter import *
+from hanggame.console import *
 from hanggame.i18n import IN_MSG_LETTER, IN_MSG_REPLAY, OUT_MSG_ANSWER, OUT_MSG_GOODBYE, OUT_MSG_INVALID, OUT_MSG_LUCK, \
     OUT_MSG_NB_ATTEMPT, OUT_MSG_READY, OUT_MSG_THANKS, OUT_MSG_WELCOME
 
 
 class TestGreeter(TestCase):
     def setUp(self) -> None:
-        self.greeter = Greeter(cb_out=MagicMock(), cb_in=MagicMock())
+        self.greeter = Console(c_out=MagicMock(), c_in=MagicMock())
         self.message = 'My test message'
         self.image = 'My test image'
         self.input = ' My user input '
@@ -53,7 +53,7 @@ class TestGreeter(TestCase):
 
         # Evaluate test
         sl.assert_called_once_with(IN_SLEEP)
-        self.greeter._in.assert_called_once_with(self.message)
+        self.greeter.c_in.assert_called_once_with(self.message)
 
     def test_out_farewell(self):
         """Tests the thanks and goodbye message"""
@@ -65,24 +65,24 @@ class TestGreeter(TestCase):
 
         # Evaluate test
         calls = [call(OUT_MSG_THANKS), call(OUT_MSG_GOODBYE.format(self.name))]
-        self.greeter._out.has_call(calls)
+        self.greeter.c_out.has_call(calls)
 
     def test_out_end_game(self):
         """Tests the output of image, message and word at the end of the game"""
         # Run test
-        self.greeter.out_end_game(self.image, self.message, self.word)
+        self.greeter.end_game(self.image, self.message, self.word)
 
         # Evaluate test
         calls = [call(self.image), call(self.message), call(OUT_MSG_ANSWER.format(self.word))]
-        self.greeter._out.has_calls(calls)
+        self.greeter.c_out.has_calls(calls)
 
     def test_out_end_turn(self):
         """Tests the end turn message"""
         # Run test
-        self.greeter.out_end_turn(self.message)
+        self.greeter.end_turn(self.message)
 
         # Evaluate test
-        self.greeter._out.assert_called_once_with(FORMAT_NEWLINE_PRE(self.message))
+        self.greeter.c_out.assert_called_once_with(FORMAT_NEWLINE_PRE(self.message))
 
     def test_out_init_attempt(self):
         """Tests the first msg of each attempt with the image, attempts remaining and masked word"""
@@ -90,11 +90,11 @@ class TestGreeter(TestCase):
         attempt_nb = 1
 
         # Run test
-        self.greeter.out_init_attempt(self.image, attempt_nb, self.word)
+        self.greeter.init_game_metrics(self.image, attempt_nb, self.word)
 
         # Evaluate test
         calls = [call(self.image), call(OUT_MSG_NB_ATTEMPT.format(attempt_nb)), call(SPACE_STR.join(list(self.word)))]
-        self.greeter._out.has_calls(calls)
+        self.greeter.c_out.has_calls(calls)
 
     def test_out_in_welcome(self):
         """Test the format of welcome message and input of his name"""
@@ -102,12 +102,12 @@ class TestGreeter(TestCase):
         self.greeter.input = MagicMock(return_value=self.name)
 
         # Run test
-        self.greeter.out_in_welcome(self.image)
+        self.greeter.welcome_player(self.image)
 
         # Evaluate test
         calls = [call(OUT_MSG_WELCOME), call(self.image), call(OUT_MSG_LUCK.format(self.greeter.player_name)),
                  call(FORMAT_NEWLINE_PRE(OUT_MSG_READY))]
-        self.greeter._out.has_calls(calls)
+        self.greeter.c_out.has_calls(calls)
         self.assertEqual(self.greeter.player_name, self.name)
 
     def test_out_invalid_letter(self):
@@ -116,4 +116,4 @@ class TestGreeter(TestCase):
         self.greeter.out_invalid_letter()
 
         # Evaluate test
-        self.greeter._out.assert_called_once_with(OUT_MSG_INVALID)
+        self.greeter.c_out.assert_called_once_with(OUT_MSG_INVALID)

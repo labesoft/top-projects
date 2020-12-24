@@ -16,6 +16,8 @@ File structure
 *constant*
     **GALLOWS**
         parts list of the gallows without the hanged man
+    **IMAGE_STR_SEP**
+        the character used to join lines of the image
     **PART_* or PART_*_HANGED***
         parts of the gallows with the hanged man parts
     **PART_* or PART_*_SAVED**
@@ -26,31 +28,34 @@ File structure
 from hanggame.level import GameLevel
 
 
-GALLOWS = [
-    "    _____",
-    "   |       |",
-    "   |       |",
-    "   |       |",
-    "   |",
-    "   |",
-    "   |",
-    "__|__"
-]
 IMAGE_STRING_SEP = "\n"
-PART_ARM_LEFT = "   |      /|"
-PART_ARMS_HANGED = "   |      /|\\"
-PART_BODY = "   |       |"
-PART_HEAD_HANGED = "   |       O"
-PART_HEAD_SAVED = "   |     \\O/"
-PART_LEG_LEFT = "   |      /"
-PART_LEGS_HANGED = "   |      / \\"
-PART_LEGS_SAVED = "__|__   / \\"
+SPACE_STR = ' '
 ZERO = 0
+
+GALLOWS = [
+    "{left} _____ ",
+    "{left}|{middle} |",
+    "{left}|{middle} |",
+    "{left}|{middle} |",
+    "{left}|{middle}  ",
+    "{left}|{middle}  ",
+    "{left}|{middle}  ",
+    "{lfoot}__|__{middle}"
+]
+PART_ARM_LEFT = "{left}|{middle}/|"
+PART_ARMS_HANGED = "{left}|{middle}/|\\"
+PART_BODY = "{left}|{middle} |"
+PART_HEAD_HANGED = "{left}|{middle} O"
+PART_HEAD_SAVED = "{left}|{middle}\\O/"
+PART_LEG_LEFT = "{left}|{middle}/"
+PART_LEGS_HANGED = "{left}|{middle}/ \\"
+PART_LEGS_SAVED = "{lfoot}__|__{rfoot}/ \\"
 
 
 class Hangman:
     """The Hangman draws the state of the hanged player"""
-    def __init__(self, level=GameLevel.BEGINNER):
+    def __init__(self, level=GameLevel.BEGINNER, sep=IMAGE_STRING_SEP, lspaces=SPACE_STR*2,
+                 mspaces=SPACE_STR*4, lfoot='', rfoot=SPACE_STR*2):
         """Initializes the players gallows
 
         Which include the maximum attempts allowed. The GALLOWS is cloned to
@@ -58,6 +63,11 @@ class Hangman:
 
         :param level: current player's game level
         """
+        self.lspaces = lspaces
+        self.mspaces = mspaces
+        self.lfoot = lfoot
+        self.rfoot = rfoot
+        self.sep = sep
         self.max_attempt = level.value
         self.missed = ZERO
         self.gallows = list(GALLOWS)
@@ -67,7 +77,11 @@ class Hangman:
 
         :return: an image of a hangman
         """
-        return IMAGE_STRING_SEP.join(self.gallows)
+        lines_result = [line.format(left=self.lspaces, middle=self.mspaces,
+                                    lfoot=self.lfoot, rfoot=self.rfoot)
+                        for line in self.gallows]
+        result = self.sep.join(lines_result)
+        return result
 
     @property
     def attempt(self):
@@ -91,7 +105,8 @@ class Hangman:
 
         :param missed: missed attempt(s) to add
         """
-        if not hasattr(self, '_Hangman__missed') or self.missed < self.max_attempt or missed == 0:
+        if (not hasattr(self, '_Hangman__missed') or
+                self.missed < self.max_attempt or missed == 0):
             self.__missed = missed
 
     def draw(self, hanged=False, saved=False):

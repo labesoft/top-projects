@@ -11,11 +11,8 @@ the game.
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
-
-*constant*
-
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 """
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
@@ -45,7 +42,15 @@ class Scoreboard(QtWidgets.QWidget):
         self.level_name_map = {level.translated_name: level.name for level in GameLevel}
         self.level_combo.addItems([level for level in self.level_name_map])
 
-    def bind(self, level_changed):
+    @property
+    def current_level(self):
+        """Returns the level name currently selected in the combo
+
+        The name returned is also translated in the appropriate locale.
+        """
+        return self.level_name_map[self.level_combo.currentText()]
+
+    def connect_combo(self, level_changed):
         """Connects the combo selection to the level settings of the game
 
         :param level_changed: func that set the new level selected
@@ -61,18 +66,15 @@ class Scoreboard(QtWidgets.QWidget):
         self.remaining_label.setText(hanggame.i18n.OUT_MSG_NB_ATTEMPT.format(''))
         self.missed_label.setText(hanggame.i18n.OUT_MSG_ERROR)
 
-    def set_score(self, missed: int, attempt: int):
-        """Sets the score at different steps during the game
+    def set_level(self, level):
+        """Sets the combo to the level provided
 
-        :param missed: how many missed shot
-        :param attempt: how many attempt remaining
+        :param level: the game level
         """
-        self.missed_nb.setText(str(missed))
-        self.remaining_nb.setText(str(attempt))
+        level_idx = list(self.level_name_map).index(level.translated_name)
+        self.level_combo.setCurrentIndex(level_idx)
 
-    def current_level(self):
-        """Returns the level name currently selected in the combo
-
-        The name returned is also translated in the appropriate locale.
-        """
-        return self.level_name_map[self.level_combo.currentText()]
+    def update_score(self):
+        """Sets the score at different steps during the game"""
+        self.missed_nb.setText(str(self.hangman.missed))
+        self.remaining_nb.setText(str(self.hangman.attempt))

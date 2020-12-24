@@ -11,10 +11,8 @@ File structure
 *import*
     **enum.Enum**
         the parent which defines the rules to build enum classes
-
-*class*
-    **GameLevel(Enum)**
-        'The Hangman Game levels defining their maximum number of attempts'
+    **types.DynamicClassAttribute
+        routes dynamically the enum to the current translated name attribute
 """
 from enum import Enum
 from types import DynamicClassAttribute

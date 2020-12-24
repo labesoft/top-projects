@@ -1,5 +1,5 @@
-"""The translation of The Hangman Game
------------------------------------
+"""The international strings of The Hangman Game
+---------------------------------------------
 
 About this module
 -----------------
@@ -49,6 +49,7 @@ IN_MSG_REPLAY = _('Do You want to play again? y = yes, n = no')
 
 OUT_MSG_ANSWER = _("The word was: {}")
 OUT_MSG_BAD_ENTRY = _('You must enter you name to play')
+OUT_MSG_CHOICES = _('Letters available')
 OUT_MSG_COMPLAINTS = [_('Wrong guess ?! :O'), _('Error :('), _('Missed ???'), _('Sorry, you were wrong :_(')]
 OUT_MSG_CONGRATS = [_('Good guess! Keep it up!!'), _("Wow! you're strong!!"), _('I want to marry you <3'),
                     _('What a genius!!'), _("Dude, you're a machine!!")]

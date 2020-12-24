@@ -9,11 +9,8 @@ starts that offers the player to enter his name.
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
-
-*constant*
-
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 """
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-22"
@@ -29,13 +26,14 @@ from hanggame import i18n
 class Login(QtWidgets.QDialog):
     """This class is the login page which will spawn before the game is loaded"""
 
-    def __init__(self):
+    def __init__(self, hangman):
         """Initialize the Login while inheriting QtWidget properties
 
         Also loads the UI from a .ui template file
         """
         super(Login, self).__init__()
         uic.loadUi('login.ui', self)
+        self.greeterboard.hangman = hangman
         self.greeterboard.welcome_player(i18n.IN_MSG_NAME)
         self.greeterboard.update_gallows()
         self.start.setText(i18n.START)

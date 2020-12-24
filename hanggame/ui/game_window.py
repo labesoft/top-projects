@@ -11,9 +11,10 @@ our code. That way we created highly modular, modifiable and testable UI code.
 File structure
 --------------
 *import*
-
-*constant*
-    None
+    **random**
+        provides a random choice of congrats/complains message
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 """
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
@@ -21,16 +22,13 @@ __copyright__ = "Copyright 2020, labesoft"
 
 __version__ = "1.0.0"
 
-import random
-import sys
-
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QShortcut, QApplication
 
-from hanggame import word, i18n
+from hanggame import i18n
 from hanggame.level import GameLevel
-from hanggame.ui.login import Login
+from hanggame.word import MASK_STR
 
 
 class GameWindow(QtWidgets.QMainWindow):
@@ -38,8 +36,8 @@ class GameWindow(QtWidgets.QMainWindow):
 
     It will show The Hangman Game widgets
     """
-    def __init__(self, name):
-        """Initializes the game window setting all the boards to their initial values
+    def __init__(self, name, level, w, hangman):
+        """Initializes the game window setting all the boards to initial values
 
         It also binds the keyboard and level combo box events to proper methods
         """
@@ -47,100 +45,101 @@ class GameWindow(QtWidgets.QMainWindow):
         uic.loadUi('game_window.ui', self)
         self.setWindowTitle(i18n.OUT_MSG_TITLE)
         self.name = name
+        self.greeterboard.hangman = hangman
+        self.scoreboard.hangman = hangman
+        self.word_view.word = w
         self.greeterboard.welcome_player(i18n.OUT_MSG_LUCK.format(self.name))
         self.scoreboard.set_labels()
+        self.scoreboard.set_level(level)
         self.word_view.setText(i18n.OUT_MSG_NEW_GAME)
         self.init_game_metrics()
-        self.keyboard.bind_keys(self.play_turn)
-        self.keyboard.bind_space(self.start_game)
-        self.scoreboard.bind(self.change_level)
-        self.bind('Alt+F4', QApplication.instance().quit)
         self.show()
 
-    def bind(self, seq, action):
-        """Binds a shortcut sequence to an action
+    def accept_letter(self, key):
+        """Gets the letter from the key typed by the user
 
-        :param seq: a str representation of the sequence
-        :param action: the app method to connect to
+        It also disable it and reset the focus to the space bar
+
+        :param key: the key typed by the player
+        :return: the letter took from the key
         """
-        quit_sc = QShortcut(QKeySequence(seq), self)
+        letter = key.text()
+        key.setEnabled(False)
+        self.keyboard.set_focus('Space')
+        return letter.lower()
+
+    def ask_play_again(self):
+        """Ask the player to play again
+
+        This is not useful in the GUI
+
+        :return: True
+        """
+        return True
+
+    def connect_all(self, play_turn):
+        """Connects all actions
+
+        It includes exit, play a turn, start a game, change level
+
+        :param play_turn: plays one turn from the game
+        """
+        # Exit
+        quit_sc = QShortcut(QKeySequence('Alt+F4'), self)
         # noinspection PyUnresolvedReferences
-        quit_sc.activated.connect(action)
+        quit_sc.activated.connect(QApplication.instance().quit)
+
+        # Play turn, start game
+        self.keyboard.connect_keys(play_turn, self.start_game)
+
+        # Levels
+        self.scoreboard.connect_combo(self.change_level)
 
     def change_level(self):
-        """Changes the level to the combo value and aborts the current game to restart a new one"""
-        self.greeterboard.reset(GameLevel[self.scoreboard.current_level()], '')
-        self.word_view.reveal_word()
-        self.word_view.setText(i18n.OUT_MSG_NEW_GAME)
-        self.init_game_metrics()
+        """Changes the level to the combo value and aborts the current game
 
-    def start_game(self):
-        """Start a new game choosing a new word resetting all game components"""
-        self.word_view.next_word()
-        self.greeterboard.reset(msg=i18n.OUT_MSG_LUCK.format(self.name))
-        self.keyboard.reset()
-        self.init_game_metrics()
-
-    def out_end_turn(self, end_msg):
-        """Presents the states of the game to the player after a turn has ended
-
-        :param w: the word revealed so far
-        :param end_msg: the msg provided to end the turn
+        It then waits to restart a new one.
         """
-        self.progress_bar.set_value(self.word_view.word, word.MASK)
-        self.greeterboard.greets(end_msg)
-        self.scoreboard.set_score(self.greeterboard.hangman.missed, self.greeterboard.hangman.attempt)
-        self.word_view.update_word()
+        new_level = GameLevel[self.scoreboard.current_level]
+        self.greeterboard.reset(level=new_level, msg='')
+        self.end_game(i18n.OUT_MSG_NEW_GAME)
+        self.init_game_metrics()
 
-    def out_end_game(self, end_msg):
+    def end_game(self, end_msg):
         """Presents the state of the game to the player after a game has ended
 
-        :param w: the word revealed to the player
         :param end_msg: the msg provided to end the game
-        :return:
         """
         self.greeterboard.greets(end_msg)
         self.word_view.reveal_word()
+        self.greeterboard.update_gallows()
 
-    def play_turn(self, letter):
-        """Plays this cycle for each letter chosen by the player
+    def end_turn(self, end_msg):
+        """Presents the states of the game to the player after a turn has ended
 
-        It tries to unmask a letter, but if it fails the player see one of his body part
-        being hanged to the gallows until no parts are left which would loose the game.
-        The goal is to reveal the whole word.
-        :param letter: a letter to try
+        :param end_msg: the msg provided to end the turn
         """
-        if self.word_view.word and self.greeterboard.hangman.attempt:
-            if self.word_view.guess(letter.lower()):
-                self.out_end_turn(random.choice(i18n.OUT_MSG_CONGRATS))
-                if not self.word_view.is_masked():
-                    self.greeterboard.saved()
-                    self.out_end_game(i18n.OUT_MSG_WINNER)
-            else:
-                self.greeterboard.missed()
-                self.out_end_turn(random.choice(i18n.OUT_MSG_COMPLAINTS))
-                if not self.greeterboard.hangman.attempt:
-                    self.out_end_game(i18n.OUT_MSG_LOSER)
-            self.greeterboard.update_gallows()
-            self.keyboard.keys[letter.lower()].setEnabled(False)
-        self.keyboard.keys['Space'].setFocus()
+        self.progress_bar.set_value(self.word_view.word)
+        self.greeterboard.greets(end_msg)
+        self.scoreboard.update_score()
+        self.word_view.update_word()
+        self.greeterboard.update_gallows()
 
     def init_game_metrics(self):
         """Initialize all dynamic content of the game display
 
         It is usually at the end of a turn, a game or at the beginning.
-
-        :param msg: a message to set at the word view
         """
         self.greeterboard.update_gallows()
-        self.scoreboard.set_score(self.greeterboard.hangman.missed, self.greeterboard.hangman.attempt)
-        self.progress_bar.set_value(word.MASK, word.MASK)
+        self.scoreboard.update_score()
+        self.progress_bar.set_value(MASK_STR)
 
+    def start_game(self):
+        """Start a new game choosing a new word resetting all game components
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    login = Login()
-
-    if login.exec_() == QtWidgets.QDialog.Accepted:
-        window = GameWindow(login.name.text())
-        app.exec_()
+        This method is connected to the space bar
+        """
+        self.word_view.next_word()
+        self.greeterboard.reset(msg=i18n.OUT_MSG_LUCK.format(self.name))
+        self.keyboard.reset()
+        self.init_game_metrics()

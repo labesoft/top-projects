@@ -8,9 +8,9 @@ level up our programming skills. For more information you may visit the [data-fl
 website](https://data-flair.training/blogs)
 
 ## Projects Included 
-* [Alarm Clock with GUI](alarm/README.md)
-* [Hangman Game in Python](hanggame/README.md)
-* [Dice Rolling Simulator Python Game](dice/README.md)
+* [Alarm Clock with GUI](alarm/)
+* [Hangman Game in Python](hanggame/)
+* [Dice Rolling Simulator Python Game](dice/)
 * [Password Generator]()
 * [Currency Converter]()
 * [Text to Speech]()
