@@ -25,12 +25,14 @@ File structure
 from time import sleep
 
 from hanggame import i18n
+from hanggame.game import HangGame
+from hanggame.hangman import Hangman
 
 SPACE_STR = ' '
 IN_SLEEP = 0.1
 FORMAT_NEWLINE_PRE = "\n{}".format
 FORMAT_NEWLINE_END = "{}\n".format
-YES_NO_LIST = i18n.YES_LIST + i18n.NO_LIST
+YES_NO_LIST = i18n.IN_YES_LIST + i18n.IN_NO_LIST
 
 
 class Console:
@@ -70,7 +72,7 @@ class Console:
         choice = ''
         while choice.lower() not in YES_NO_LIST:
             choice = self.in_new_game()
-        if choice.lower() in i18n.YES_LIST:
+        if choice.lower() in i18n.IN_YES_LIST:
             self.hangman.reset()
             self.word.choose()
             return True
@@ -154,3 +156,15 @@ class Console:
         self.player_name = self.input(i18n.IN_MSG_NAME)
         self.c_out(i18n.OUT_MSG_LUCK.format(self.player_name))
         self.c_out(FORMAT_NEWLINE_PRE(i18n.OUT_MSG_READY))
+
+
+def main(level, word):
+    """Launch the console game
+
+    :param level: the level chosen on the cli
+    :param word: the word initialized in the __main__
+    """
+    hangman = Hangman(level=level)
+    ui = Console(word=word, hangman=hangman)
+    game = HangGame(level, word, hangman, ui)
+    game.run_loop()

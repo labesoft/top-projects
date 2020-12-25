@@ -29,11 +29,13 @@ import random
 from os.path import dirname
 from pathlib import Path
 
-ALPHA_LAYOUT = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
+from hanggame import i18n
+
 EMPTY_MASK = {}
 EMPTY_WORD = ''
 MASK_STR = '_'
-DEFAULT_WORDS_FILEPATH = Path(dirname(__file__), 'words_alpha.txt')
+DEFAULT_WORDS_FILEPATH = Path(dirname(__file__), i18n.WORDS_ALPHA_TXT)
+TRANSLATION_TABLE = str.maketrans("àâçéêèëîïôùûüÿ", "aaceeeeiiouuuy")
 
 
 class Word:
@@ -104,7 +106,7 @@ class Word:
     def choose(self):
         """Chooses a new word from the word bank and assign it"""
         self.__word = random.choice(self.__word_bank)
-        self.__mask = dict.fromkeys(set(''.join(ALPHA_LAYOUT)), MASK_STR)
+        self.__mask = dict.fromkeys(set(''.join(i18n.ALPHA_LAYOUT)), MASK_STR)
 
     def is_mask(self):
         """Tells if the word still contains masked letters
@@ -139,5 +141,5 @@ class Word:
         """
         if self.is_masked(letter):
             del self.__mask[letter]
-            return letter in self.__word
+            return letter in self.__word.translate(TRANSLATION_TABLE)
         return False

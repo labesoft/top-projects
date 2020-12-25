@@ -22,12 +22,17 @@ __copyright__ = "Copyright 2020, labesoft"
 
 __version__ = "1.0.0"
 
+import sys
+
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QShortcut, QApplication
 
 from hanggame import i18n
+from hanggame.game import HangGame
+from hanggame.hangman import Hangman, SPACE_STR
 from hanggame.level import GameLevel
+from hanggame.ui.login import Login
 from hanggame.word import MASK_STR
 
 
@@ -143,3 +148,20 @@ class GameWindow(QtWidgets.QMainWindow):
         self.greeterboard.reset(msg=i18n.OUT_MSG_LUCK.format(self.name))
         self.keyboard.reset()
         self.init_game_metrics()
+
+
+def main(level, word):
+    """Launch the GUI game
+
+    :param level: the level chosen on the cli
+    :param word: the word initialized in the __main__
+    """
+    hangman = Hangman(level=level, lspaces=SPACE_STR * 10, mspaces=SPACE_STR * 6,
+                      lfoot=SPACE_STR * 7, rfoot=SPACE_STR * 3)
+    app = QtWidgets.QApplication(sys.argv)
+    login = Login(hangman)
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        ui = GameWindow(login.name.text(), level, word, hangman)
+        game = HangGame(level, word, hangman, ui)
+        ui.connect_all(game.play_turn)
+        app.exec_()

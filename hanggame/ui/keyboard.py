@@ -32,7 +32,6 @@ import functools
 from PyQt5 import QtCore, QtWidgets, uic
 
 from hanggame import i18n
-from hanggame.word import ALPHA_LAYOUT
 
 
 class Keyboard(QtWidgets.QWidget):
@@ -45,9 +44,9 @@ class Keyboard(QtWidgets.QWidget):
         setting the shorcut for every key.
         """
         super(Keyboard, self).__init__()
-        uic.loadUi('keyboard.ui', self)
+        uic.loadUi(i18n.KEYBOARD_LAYOUT, self)
         self.keys = {}
-        for row in ALPHA_LAYOUT:
+        for row in i18n.ALPHA_LAYOUT:
             for letter in row:
                 self.keys[letter] = self.findChild(QtWidgets.QPushButton, f'Key_{letter.upper()}')
                 self.keys[letter].setShortcut(getattr(QtCore.Qt, self.keys[letter].objectName()))

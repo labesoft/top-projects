@@ -29,14 +29,9 @@ import argparse
 import logging
 import sys
 
-from PyQt5 import QtWidgets
-
-from hanggame.console import Console
-from hanggame.game import HangGame
-from hanggame.hangman import Hangman, SPACE_STR
+from hanggame import console
 from hanggame.level import GameLevel
-from hanggame.ui.game_window import GameWindow
-from hanggame.ui.login import Login
+from hanggame.ui import game_window
 from hanggame.word import Word
 
 LOG_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
@@ -45,9 +40,9 @@ LOG_FORMAT = "%(asctime)s.%(msecs).05f %(name)-12s [%(levelname)s] %(message)s"
 if __name__ == '__main__':
     # Parser
     parser = argparse.ArgumentParser(description='Ring an alarm')
-    parser.add_argument('--gui', '-g', action='store_true', help='')
-    parser.add_argument('--verbose', '-v', action='store_const', const=logging.DEBUG, default=logging.INFO,
-                        help='run in debug mode')
+    parser.add_argument('--gui', '-g', action='store_true', help='Run the graphical version')
+    parser.add_argument('--verbose', '-v', action='store_const', const=logging.DEBUG,
+                        default=logging.INFO, help='run in debug mode')
     parser.add_argument('--level', '-l', type=int, choices=range(6), default=0,
                         help=' '.join(f'{i}={l.name}|{l.value}-try' for i, l in enumerate(GameLevel)))
     args = parser.parse_args(sys.argv[1:])
@@ -60,21 +55,8 @@ if __name__ == '__main__':
     # Game
     level = list(GameLevel)[args.level]
     word = Word()
-    word.load_words()
     word.choose()
     if not args.gui:
-        hangman = Hangman(level=level)
-        ui = Console(word=word, hangman=hangman)
-        game = HangGame(level, word, hangman, ui)
-        game.run_loop()
+        console.main(level, word)
     else:
-        hangman = Hangman(level=level, lspaces=SPACE_STR*10, mspaces=SPACE_STR*6,
-                          lfoot=SPACE_STR*7, rfoot=SPACE_STR*3)
-        app = QtWidgets.QApplication(sys.argv)
-        login = Login(hangman)
-
-        if login.exec_() == QtWidgets.QDialog.Accepted:
-            ui = GameWindow(login.name.text(), level, word, hangman)
-            game = HangGame(level, word, hangman, ui)
-            ui.connect_all(game.play_turn)
-            app.exec_()
+        game_window.main(level, word)

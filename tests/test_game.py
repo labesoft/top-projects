@@ -38,7 +38,7 @@ class TestHangGame(TestCase):
         """Test that the game ask play again to player and handles the answer"""
         # Prepare test
         self.game.reset = MagicMock()
-        choice = random.choice(hanggame.i18n.YES_LIST)
+        choice = random.choice(hanggame.i18n.IN_YES_LIST)
         self.game.ui.in_new_game.side_effect = ['WRONG', choice, 'yes', StopIteration]
 
         # Run test
@@ -54,7 +54,7 @@ class TestHangGame(TestCase):
         """Test that the game ask play again to player and handles the answer"""
         # Prepare test
         self.game.reset = MagicMock()
-        choice = random.choice(hanggame.i18n.NO_LIST)
+        choice = random.choice(hanggame.i18n.IN_NO_LIST)
         self.game.ui.in_new_game.side_effect = [choice, 'no', StopIteration]
 
         # Run test
