@@ -36,29 +36,39 @@ from hanggame.ui.login import Login
 from hanggame.word import MASK_STR
 
 
-class GameWindow(QtWidgets.QMainWindow):
+class Window(QtWidgets.QMainWindow):
     """This class puts in place the base layout of the game window
 
     It will show The Hangman Game widgets
     """
-    def __init__(self, name, level, w, hangman):
+
+    def __init__(self, player_name, word, hangman):
         """Initializes the game window setting all the boards to initial values
 
         It also binds the keyboard and level combo box events to proper methods
+
+        :param player_name: the name of the player string
+        :param word: the Word object of the game
+        :param hangman: the Hangman object of the game
         """
-        super(GameWindow, self).__init__()
-        uic.loadUi('game_window.ui', self)
+        super(Window, self).__init__()
+        uic.loadUi('window.ui', self)
         self.setWindowTitle(i18n.OUT_MSG_TITLE)
-        self.name = name
+        self.player_name = player_name
         self.greeterboard.hangman = hangman
         self.scoreboard.hangman = hangman
-        self.word_view.word = w
-        self.greeterboard.welcome_player(i18n.OUT_MSG_LUCK.format(self.name))
+        self.word_view.word = word
+
+    def prepare(self, level):
+        """Prepares UI sub component to the first game startup
+
+        :param level: the level chosen at the beginning
+        """
+        self.greeterboard.welcome_player(i18n.OUT_MSG_LUCK.format(self.player_name))
         self.scoreboard.set_labels()
         self.scoreboard.set_level(level)
         self.word_view.setText(i18n.OUT_MSG_NEW_GAME)
         self.init_game_metrics()
-        self.show()
 
     def accept_letter(self, key):
         """Gets the letter from the key typed by the user
@@ -76,7 +86,8 @@ class GameWindow(QtWidgets.QMainWindow):
     def ask_play_again(self):
         """Ask the player to play again
 
-        This is not useful in the GUI
+        This is not useful in the GUI but needs to be part of the interface for the
+        game to work properly
 
         :return: True
         """
@@ -115,9 +126,9 @@ class GameWindow(QtWidgets.QMainWindow):
 
         :param end_msg: the msg provided to end the game
         """
-        self.greeterboard.greets(end_msg)
         self.word_view.reveal_word()
         self.greeterboard.update_gallows()
+        self.greeterboard.greets(end_msg)
 
     def end_turn(self, end_msg):
         """Presents the states of the game to the player after a turn has ended
@@ -145,7 +156,7 @@ class GameWindow(QtWidgets.QMainWindow):
         This method is connected to the space bar
         """
         self.word_view.next_word()
-        self.greeterboard.reset(msg=i18n.OUT_MSG_LUCK.format(self.name))
+        self.greeterboard.reset(msg=i18n.OUT_MSG_LUCK.format(self.player_name))
         self.keyboard.reset()
         self.init_game_metrics()
 
@@ -161,7 +172,9 @@ def main(level, word):
     app = QtWidgets.QApplication(sys.argv)
     login = Login(hangman)
     if login.exec_() == QtWidgets.QDialog.Accepted:
-        ui = GameWindow(login.name.text(), level, word, hangman)
+        ui = Window(login.name.text(), word, hangman)
         game = HangGame(level, word, hangman, ui)
         ui.connect_all(game.play_turn)
+        ui.prepare(level)
+        ui.show()
         app.exec_()

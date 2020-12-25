@@ -16,11 +16,6 @@ File structure
         the console.
     **random**
         randomly choose an item from a list or basically a sequence.
-
-*constant*
-    **YES_NO_LIST**
-        lists of yes/no options that the player may use to answer the play again
-        question.
 """
 import random
 
@@ -52,12 +47,12 @@ class HangGame:
         It includes the running loop which processes The Hangman Game.
         """
         self.hangman.draw(hanged=True)
-        self.ui.welcome_player(str(self.hangman))
+        self.ui.welcome_player()
         self.hangman.draw()
 
         while self.is_playing:
-            self.ui.init_game_metrics(str(self.hangman), self.hangman.attempt, str(self.word))
-            self.play_turn(self.ui.in_new_letter())
+            self.ui.init_game_metrics()
+            self.play_turn(self.ui.in_valid_letter())
 
     def play_turn(self, key):
         """Plays one complete turn with the letter provided

@@ -10,7 +10,7 @@ limited number of attempts without being hanged by the hangman.
 Project structure
 -----------------
 *hanggame.ui/*
-    **game_window.py**:
+    **window.py**:
         The game window of The Hangman Game
     **greeterboard.py**:
         The greeterboard of The Hangman Game
@@ -30,3 +30,7 @@ __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
 
 __version__ = "1.0.0"
+
+import os
+
+os.chdir(os.path.dirname(__file__))

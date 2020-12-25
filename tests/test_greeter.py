@@ -40,7 +40,7 @@ class TestGreeter(TestCase):
         self.greeter.input = MagicMock(return_value=self.input)
 
         # Run test
-        result = self.greeter.in_new_letter()
+        result = self.greeter.in_valid_letter()
 
         # Evaluate test
         self.greeter.input.assert_called_once_with(IN_MSG_LETTER)

@@ -152,7 +152,7 @@ class TestHangGame(TestCase):
         # Prepare test
         letter = 'a'
         self.game.is_valid = MagicMock(side_effect=[False, True, True, StopIteration])
-        self.game.ui.in_new_letter = MagicMock(return_value=letter)
+        self.game.ui.in_valid_letter = MagicMock(return_value=letter)
 
         # Run test
         result = self.game.accept_letter()
@@ -167,7 +167,7 @@ class TestHangGame(TestCase):
         # Prepare test
         self.game.is_valid = MagicMock(side_effect=[False, False, False, True, True, StopIteration])
         letters = ['ah', 'a']
-        self.game.ui.in_new_letter = MagicMock(side_effect=letters)
+        self.game.ui.in_valid_letter = MagicMock(side_effect=letters)
 
         # Run test
         result = self.game.accept_letter()

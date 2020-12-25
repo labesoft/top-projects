@@ -62,7 +62,10 @@ class Greeterboard(QtWidgets.QWidget):
         self.gallows.setText(str(self.hangman))
 
     def welcome_player(self, msg):
-        """Welcomes the players in the game with a hanged man greetings"""
+        """Welcomes the players in the game with a hanged man greetings
+
+        :param msg: the message to greets the player
+        """
         self.welcome_title.setText(i18n.OUT_MSG_WELCOME)
         self.hangman.draw(hanged=True)
         self.greets(msg)

@@ -31,7 +31,7 @@ import sys
 
 from hanggame import console
 from hanggame.level import GameLevel
-from hanggame.ui import game_window
+from hanggame.ui import window
 from hanggame.word import Word
 
 LOG_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
@@ -59,4 +59,4 @@ if __name__ == '__main__':
     if not args.gui:
         console.main(level, word)
     else:
-        game_window.main(level, word)
+        window.main(level, word)
