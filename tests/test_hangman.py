@@ -23,7 +23,12 @@ class TestHangman(TestCase):
 
     def test___str__(self):
         # Evaluate test
-        self.assertEqual(str(self.hangman), IMAGE_STRING_SEP.join(self.hangman.gallows))
+        lines_result = [line.format(left=self.hangman.lspaces, middle=self.hangman.mspaces,
+                                    lfoot=self.hangman.lfoot, rfoot=self.hangman.rfoot)
+                        for line in self.hangman.gallows]
+        result = self.hangman.sep.join(lines_result)
+
+        self.assertEqual(str(self.hangman), result)
 
     def test_attempt(self):
         """Tests that the attempt is max_attempt - missed"""

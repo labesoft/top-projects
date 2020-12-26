@@ -70,6 +70,10 @@ class Word:
 
     @property
     def available(self):
+        """Lists the letters still keys of the mask
+
+        :return: a list of the mask keys
+        """
         return list(self.__mask)
 
     @property
@@ -105,7 +109,7 @@ class Word:
 
     def choose(self):
         """Chooses a new word from the word bank and assign it"""
-        self.__word = random.choice(self.__word_bank)
+        self.__word = random.choice(self.__word_bank).lower()
         self.__mask = dict.fromkeys(set(''.join(i18n.ALPHA_LAYOUT)), MASK_STR)
 
     def is_mask(self):

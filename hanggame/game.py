@@ -30,7 +30,7 @@ class HangGame:
     def __init__(self, level, word, hangman, ui):
         """Initializes The Hangman Game and all of its attributes
 
-        :param level: the level of The Hangman Game (default: Beginner)
+        :param level: the level of The Hangman Game
         :param word: the word to unveil and its inner logic
         :param hangman: the hangman that tries to hang the player
         :param ui: the user interface (console
@@ -39,7 +39,6 @@ class HangGame:
         self.hangman = hangman
         self.word = word
         self.ui = ui
-        self.is_playing = True
 
     def run_loop(self):
         """Runs the game until the player does not want to play again
@@ -50,9 +49,9 @@ class HangGame:
         self.ui.welcome_player()
         self.hangman.draw()
 
-        while self.is_playing:
+        self.ui.init_game_metrics()
+        while self.play_turn(self.ui.in_valid_letter()):
             self.ui.init_game_metrics()
-            self.play_turn(self.ui.in_valid_letter())
 
     def play_turn(self, key):
         """Plays one complete turn with the letter provided
@@ -68,11 +67,12 @@ class HangGame:
                 if not self.word.is_mask():
                     self.hangman.draw(saved=True)
                     self.ui.end_game(i18n.OUT_MSG_WINNER)
-                    self.is_playing = self.ui.ask_play_again()
+                    return self.ui.ask_play_again()
             else:
                 self.hangman.missed += 1
                 self.hangman.draw()
                 self.ui.end_turn(random.choice(i18n.OUT_MSG_COMPLAINTS))
                 if not self.hangman.attempt:
                     self.ui.end_game(i18n.OUT_MSG_LOSER)
-                    self.is_playing = self.ui.ask_play_again()
+                    return self.ui.ask_play_again()
+        return True

@@ -69,8 +69,7 @@ class Console:
         """
         choices = ' '.join(sorted(self.word.available))
         while not self.word.is_masked(key):
-            msg = '{}: [{}]'.format(i18n.OUT_MSG_CHOICES, choices)
-            self.c_out(msg)
+            self.c_out('{}: [{}]'.format(i18n.OUT_MSG_CHOICES, choices))
             key = self.in_valid_letter()
         return key
 
@@ -108,9 +107,9 @@ class Console:
         self.c_out(FORMAT_NEWLINE_PRE(end_msg))
 
     def in_valid_letter(self):
-        """Asks the player for a letter which is then returned
+        """Asks the player for a letter which is then returned in lowercase
 
-        :return: the player's choice, a stripped letter string
+        :return: the player's choice, a lowercase letter string
         """
         result = self.input(i18n.IN_MSG_LETTER)
         while len(result) != 1 or not result.isalpha():
@@ -128,7 +127,7 @@ class Console:
         """Output message that asks the player to type an input
 
         :param in_msg: the message printed out to the player
-        :return: the message typed by the player
+        :return: the stripped from space message typed by the player
         """
         sleep(IN_SLEEP)
         return self.c_in(in_msg).strip()

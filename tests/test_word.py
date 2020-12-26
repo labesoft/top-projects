@@ -22,7 +22,7 @@ class TestWord(TestCase):
     def test_load_words(self):
         """Tests that game has a default 370103 alpha words"""
         # Prepare test
-        alpha_words_size = 370103
+        alpha_words_size = 208915
 
         # Run test
         words = Word.load_words()
@@ -54,9 +54,9 @@ class TestWord(TestCase):
         self.word.choose()
 
         # Evaluate test
-        self.assertIn(self.word.show(), TEST_WORDS)
+        self.assertIn(self.word.show(), [w.lower() for w in TEST_WORDS])
 
-    def test_is_masked_true(self):
+    def test_is_mask_true(self):
         """Tests that the word correctly report that it is masked"""
         # Prepare test
         self.word.choose()
@@ -67,7 +67,7 @@ class TestWord(TestCase):
         # Evaluate test
         self.assertTrue(result)
 
-    def test_is_masked_false(self):
+    def test_is_mask_false(self):
         """Tests that the word correctly report that it is not masked"""
         # Prepare test
         self.word.choose()
@@ -79,10 +79,10 @@ class TestWord(TestCase):
         # Evaluate test
         self.assertFalse(result)
 
-    def test_is_unmasked_false(self):
+    def test_is_masked_true(self):
         """Tests that a masked letter is not reported unmasked"""
         # Prepare test
-        letter = 'T'
+        letter = 't'
         self.word.choose()
 
         # Run test
@@ -91,10 +91,10 @@ class TestWord(TestCase):
         # Evaluate test
         self.assertTrue(result)
 
-    def test_is_unmasked_true(self):
+    def test_is_masked_false(self):
         """Tests that an unmasked letter is reported unmasked"""
         # Prepare test
-        letter = 'T'
+        letter = 't'
         self.word.choose()
 
         # Run test
@@ -119,7 +119,7 @@ class TestWord(TestCase):
     def test_unmask_worked(self):
         """Test if the a letter from the word could be unmasked and reports it properly"""
         # Prepare test
-        letter = 'T'
+        letter = 't'
         self.word.choose()
 
         # Run test
@@ -132,7 +132,7 @@ class TestWord(TestCase):
     def test_unmasked_already_unmasked(self):
         """Tests trying to unmask an unmasked letter does not work"""
         # Prepare test
-        letter = 'T'
+        letter = 't'
         self.word.choose()
 
         # Run test
@@ -146,7 +146,7 @@ class TestWord(TestCase):
     def test_unmask_failed_not_in_word(self):
         """Tests that unmasking a letter not in word fails"""
         # Prepare test
-        letter = 'Z'
+        letter = 'z'
         self.word.choose()
 
         # Run test
