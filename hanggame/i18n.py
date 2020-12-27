@@ -36,18 +36,25 @@ import os
 # Setups the gettext used for string translation
 LOCALES_DIR = os.path.join(os.path.dirname(__file__), 'locales')
 DEFAULT_LANG = 'en_US'
-try:
-    t = gettext.translation('hanggame', localedir=LOCALES_DIR)
-except FileNotFoundError as err:
-    logger = logging.getLogger(__name__)
-    logger.warning(f'no language set, falling back to default: {DEFAULT_LANG}')
-    t = gettext.translation(
-        'hanggame',
-        localedir='locales',
-        languages=[DEFAULT_LANG]
-    )
-    t.install()
-_ = t.gettext
+
+
+def setup():
+    try:
+        t = gettext.translation('hanggame', localedir=LOCALES_DIR)
+    except FileNotFoundError as err:
+        logger = logging.getLogger(__name__)
+        logger.warning(
+            f'no language set, falling back to default: {DEFAULT_LANG}')
+        t = gettext.translation(
+            'hanggame',
+            localedir=LOCALES_DIR,
+            languages=[DEFAULT_LANG]
+        )
+        t.install()
+    return t
+
+
+_ = setup().gettext
 
 # In UI
 IN_MSG_LETTER = _('Enter your letter: ')

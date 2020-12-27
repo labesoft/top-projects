@@ -81,4 +81,5 @@ class HangGame:
                 if not self.hangman.attempt:
                     self.ui.end_game(i18n.OUT_MSG_LOSER)
                     return self.ui.ask_play_again()
-        return True
+        else:
+            return False

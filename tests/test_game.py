@@ -5,7 +5,12 @@ About this module
 -----------------
 The objective of this module is to test the game module
 """
-import random
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 
@@ -40,8 +45,12 @@ class TestHangGame(TestCase):
         # Evaluate test
         calls = [call.attempt.__bool__(), call.draw(saved=True)]
         self.game.hangman.assert_has_calls(calls)
-        calls = [call.accept_letter(key), call.end_turn(i18n.OUT_MSG_CONGRATS[0]), call.end_game(i18n.OUT_MSG_WINNER),
-                 call.ask_play_again()]
+        calls = [
+            call.accept_letter(key),
+            call.end_turn(i18n.OUT_MSG_CONGRATS[0]),
+            call.end_game(i18n.OUT_MSG_WINNER),
+            call.ask_play_again()
+        ]
         self.game.ui.assert_has_calls(calls)
         calls = [call.__bool__(), call.unmask(key), call.is_mask()]
         self.game.word.assert_has_calls(calls)
@@ -60,13 +69,32 @@ class TestHangGame(TestCase):
         self.game.play_turn(key)
 
         # Evaluate test
-        calls = [call.attempt.__bool__(), call.missed.__iadd__(1), call.draw(), call.attempt.__bool__()]
+        calls = [
+            call.attempt.__bool__(),
+            call.missed.__iadd__(1),
+            call.draw(),
+            call.attempt.__bool__()
+        ]
         self.game.hangman.assert_has_calls(calls)
-        calls = [call.accept_letter(key), call.end_turn(i18n.OUT_MSG_COMPLAINTS[0]), call.end_game(i18n.OUT_MSG_LOSER),
-                 call.ask_play_again()]
+        calls = [
+            call.accept_letter(key),
+            call.end_turn(i18n.OUT_MSG_COMPLAINTS[0]),
+            call.end_game(i18n.OUT_MSG_LOSER),
+            call.ask_play_again()
+        ]
         self.game.ui.assert_has_calls(calls)
         calls = [call.__bool__(), call.unmask(key)]
         self.game.word.assert_has_calls(calls)
+
+    def test_play_turn_empty_word(self):
+        # Prepare test
+        self.game.word.__bool__.return_value = False
+
+        # Run test
+        result = self.game.play_turn('a')
+
+        # Evaluate test
+        self.assertFalse(result)
 
     def test_run_loop(self):
         # Prepare test
@@ -78,6 +106,11 @@ class TestHangGame(TestCase):
         # Evaluate test
         calls = [call.draw(hanged=True), call.draw()]
         self.game.hangman.assert_has_calls(calls)
-        calls = [call.welcome_player(), call.init_game_metrics(), call.in_valid_letter(), call.init_game_metrics(),
-                 call.in_valid_letter()]
+        calls = [
+            call.welcome_player(),
+            call.init_game_metrics(),
+            call.in_valid_letter(),
+            call.init_game_metrics(),
+            call.in_valid_letter()
+        ]
         self.game.ui.assert_has_calls(calls)

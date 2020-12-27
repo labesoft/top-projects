@@ -5,6 +5,12 @@ About this module
 -----------------
 The objective of this module is to test the hangman module
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 from unittest import TestCase
 from unittest.mock import MagicMock
 
@@ -176,3 +182,10 @@ class TestHangman(TestCase):
         # Evaluate test
         self.assertEqual(self.hangman.missed, ZERO)
         self.hangman.draw.assert_called_once()
+
+    def test_reset_new_level(self):
+        # Run test
+        self.hangman.reset(GameLevel.INFERNO)
+
+        # Evaluate test
+        self.assertEqual(GameLevel.INFERNO.value, self.hangman.max_attempt)
