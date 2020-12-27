@@ -24,4 +24,34 @@ Project structure
         The word handling logic of The Hangman Game
     **words_alpha.txt**
         The words dictionary provided with The Hangman Game
+
+*hanggame.ui/*
+    **game_window.py**:
+        The game window of The Hangman Game
+    **game_window.ui**:
+        The Qt ui design for the game window of The Hangman Game
+    **greeterboard.py**:
+        The greeterboard of The Hangman Game
+    **greeterboard.ui**:
+        The Qt ui desing for the greeterboard of The Hangman Game
+    **keyboard.py**:
+        The keyboard of The Hangman Game
+    **keyboard.ui**:
+        The ui design for the keyboard of The Hangman Game
+    **login.py**:
+        The login of The Hangman Game
+    **login.ui**:
+        The Qt ui design for the login dialog of The Hangman Game
+    **progress_bar.py**:
+        The progress bar of The Hangman Game
+    **progress_bar.ui**:
+        The Qt ui design for the progress bar of The Hangman Game
+    **scoreboard.py**:
+        The scoreboard of The Hangman Game
+    **scoreboard.ui**:
+        The Qt ui design for the scoreboard of The Hangman Game
+    **word_view.py**:
+        The word label view of The Hangman Game
+    **word_view.ui**:
+        The Qt ui design for the word label view of The Hangman Game
 """

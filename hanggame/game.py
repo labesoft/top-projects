@@ -16,31 +16,25 @@ File structure
         the console.
     **random**
         randomly choose an item from a list or basically a sequence.
-    **time**
-        import the actual time from the machine to use in the program
 
 *constant*
-    **EMPTY_***
-        the empty constants
-    **YES_LIST, NO_LIST, YES_NO_LIST**
+    **EMPTY_STR***
+        An empty string constants
+    **YES_NO_LIST**
         lists of yes/no options that the player may use to answer the play again
         question.
 """
 import logging
 import random
 
-from hanggame.greeter import Greeter, OUT_MSG_CONGRATS, OUT_MSG_LOSER, OUT_MSG_WINNER, OUT_MSG_COMPLAINTS, _
+from hanggame.greeter import Greeter
+from hanggame import i18n
 from hanggame.hangman import Hangman
 from hanggame.level import GameLevel
 from hanggame.word import Word
 
-
 EMPTY_STR = ''
-YES_LIST = [_('y'), _('yes'), _('yeah'), _('sure'), _('ok'), _('always'), _('positive'), _('you bet'),
-            _('give it to me'), _('go for it')]
-NO_LIST = [_('n'), _('no'), _('nope'), _('not at all'), _('fuck off'), _('no fucking way'),
-           _('never'), _('negative'), _('this is rigged'), _('toaster'), _('not a chance')]
-YES_NO_LIST = YES_LIST + NO_LIST
+YES_NO_LIST = i18n.YES_LIST + i18n.NO_LIST
 
 
 class HangGame:
@@ -85,7 +79,7 @@ class HangGame:
         choice = ''
         while choice.lower() not in YES_NO_LIST:
             choice = self.greeter.in_new_game()
-        if choice.lower() in YES_LIST:
+        if choice.lower() in i18n.YES_LIST:
             self.reset()
         else:
             self.is_playing = False
@@ -120,15 +114,15 @@ class HangGame:
             self.greeter.out_init_attempt(str(self.hangman), self.hangman.attempt, str(self.word))
             current_letter = self.accept_letter()
             if self.word.unmask(current_letter):
-                self.greeter.out_end_turn(random.choice(OUT_MSG_CONGRATS))
+                self.greeter.out_end_turn(random.choice(i18n.OUT_MSG_CONGRATS))
                 if not self.word.is_masked():
                     self.hangman.draw(saved=True)
-                    self.greeter.out_end_game(str(self.hangman), OUT_MSG_WINNER, self.word.show())
+                    self.greeter.out_end_game(str(self.hangman), i18n.OUT_MSG_WINNER, self.word.show())
                     self.ask_play_again()
             else:
                 self.hangman.missed += 1
                 self.hangman.draw()
-                self.greeter.out_end_turn(random.choice(OUT_MSG_COMPLAINTS))
+                self.greeter.out_end_turn(random.choice(i18n.OUT_MSG_COMPLAINTS))
                 if not self.hangman.attempt:
-                    self.greeter.out_end_game(str(self.hangman), OUT_MSG_LOSER, self.word.show())
+                    self.greeter.out_end_game(str(self.hangman), i18n.OUT_MSG_LOSER, self.word.show())
                     self.ask_play_again()

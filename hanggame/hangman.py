@@ -27,24 +27,24 @@ from hanggame.level import GameLevel
 
 
 GALLOWS = [
-    "\t   _____",
-    "\t  |     |",
-    "\t  |     |",
-    "\t  |     |",
-    "\t  |",
-    "\t  |",
-    "\t  |",
-    "\t__|__"
+    "    _____",
+    "   |       |",
+    "   |       |",
+    "   |       |",
+    "   |",
+    "   |",
+    "   |",
+    "__|__"
 ]
 IMAGE_STRING_SEP = "\n"
-PART_ARM_LEFT = "\t  |    /|"
-PART_ARMS_HANGED = "\t  |    /|\\"
-PART_BODY = "\t  |     |"
-PART_HEAD_HANGED = "\t  |     O"
-PART_HEAD_SAVED = "\t  |    \\O/"
-PART_LEG_LEFT = "\t  |    /"
-PART_LEGS_HANGED = "\t  |    / \\"
-PART_LEGS_SAVED = "\t__|__  / \\"
+PART_ARM_LEFT = "   |      /|"
+PART_ARMS_HANGED = "   |      /|\\"
+PART_BODY = "   |       |"
+PART_HEAD_HANGED = "   |       O"
+PART_HEAD_SAVED = "   |     \\O/"
+PART_LEG_LEFT = "   |      /"
+PART_LEGS_HANGED = "   |      / \\"
+PART_LEGS_SAVED = "__|__   / \\"
 ZERO = 0
 
 
@@ -91,7 +91,8 @@ class Hangman:
 
         :param missed: missed attempt(s) to add
         """
-        self.__missed = missed
+        if not hasattr(self, '_Hangman__missed') or self.missed < self.max_attempt or missed == 0:
+            self.__missed = missed
 
     def draw(self, hanged=False, saved=False):
         """Change the hangman drawing to the current state
@@ -130,7 +131,9 @@ class Hangman:
         elif self.missed == self.max_attempt - GameLevel.INTERMEDIARY.value:
             self.gallows[4] = PART_HEAD_HANGED
 
-    def reset(self):
+    def reset(self, level=None):
         """Remove the hanged player from the gallows"""
         self.missed = ZERO
+        if level:
+            self.max_attempt = level.value
         self.draw()
