@@ -12,7 +12,8 @@ File structure
 --------------
 *import*
     **hanggame.level.GameLevel**
-        provide acces to all game levels used during the drawing of the hanged man
+        provide access to all game levels used during the drawing of the hanged
+        man
 *constant*
     **GALLOWS**
         parts list of the gallows without the hanged man
@@ -25,12 +26,13 @@ File structure
     **ZERO**
         standard int 0 constant
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 from hanggame.level import GameLevel
-
-
-IMAGE_STRING_SEP = "\n"
-SPACE_STR = ' '
-ZERO = 0
 
 GALLOWS = [
     "{left} _____ ",
@@ -40,22 +42,26 @@ GALLOWS = [
     "{left}|{middle}  ",
     "{left}|{middle}  ",
     "{left}|{middle}  ",
-    "{lfoot}__|__{middle}"
+    "{left_foot}__|__{middle}"
 ]
-PART_ARM_LEFT = "{left}|{middle}/|"
-PART_ARMS_HANGED = "{left}|{middle}/|\\"
-PART_BODY = "{left}|{middle} |"
-PART_HEAD_HANGED = "{left}|{middle} O"
-PART_HEAD_SAVED = "{left}|{middle}\\O/"
-PART_LEG_LEFT = "{left}|{middle}/"
-PART_LEGS_HANGED = "{left}|{middle}/ \\"
-PART_LEGS_SAVED = "{lfoot}__|__{rfoot}/ \\"
+GALLOWS_PART_ARM_LEFT = "{left}|{middle}/|"
+GALLOWS_PART_ARMS_HANGED = "{left}|{middle}/|\\"
+GALLOWS_PART_BODY = "{left}|{middle} |"
+GALLOWS_PART_HEAD_HANGED = "{left}|{middle} O"
+GALLOWS_PART_HEAD_SAVED = "{left}|{middle}\\O/"
+GALLOWS_PART_LEG_LEFT = "{left}|{middle}/"
+GALLOWS_PART_LEGS_HANGED = "{left}|{middle}/ \\"
+GALLOWS_PART_LEGS_SAVED = "{left_foot}__|__{right_foot}/ \\"
+IMAGE_STR_SEP = "\n"
+SPACE_STR = ' '
+ZERO = 0
 
 
 class Hangman:
     """The Hangman draws the state of the hanged player"""
-    def __init__(self, level=GameLevel.BEGINNER, sep=IMAGE_STRING_SEP, lspaces=SPACE_STR*2,
-                 mspaces=SPACE_STR*4, lfoot='', rfoot=SPACE_STR*2):
+    def __init__(self, level=GameLevel.BEGINNER, sep=IMAGE_STR_SEP,
+                 left_spaces=SPACE_STR * 2, middle_spaces=SPACE_STR * 4,
+                 left_foot='', right_foot=SPACE_STR * 2):
         """Initializes the players gallows
 
         Which include the maximum attempts allowed. The GALLOWS is cloned to
@@ -63,10 +69,10 @@ class Hangman:
 
         :param level: current player's game level
         """
-        self.lspaces = lspaces
-        self.mspaces = mspaces
-        self.lfoot = lfoot
-        self.rfoot = rfoot
+        self.left_spaces = left_spaces
+        self.middle_spaces = middle_spaces
+        self.left_foot = left_foot
+        self.right_foot = right_foot
         self.sep = sep
         self.max_attempt = level.value
         self.missed = ZERO
@@ -77,10 +83,17 @@ class Hangman:
 
         :return: an image of a hangman
         """
-        lines_result = [line.format(left=self.lspaces, middle=self.mspaces,
-                                    lfoot=self.lfoot, rfoot=self.rfoot)
-                        for line in self.gallows]
-        result = self.sep.join(lines_result)
+        lines = []
+        for line in self.gallows:
+            lines += [
+                line.format(
+                    left=self.left_spaces,
+                    middle=self.middle_spaces,
+                    left_foot=self.left_foot,
+                    right_foot=self.right_foot
+                )
+            ]
+        result = self.sep.join(lines)
         return result
 
     @property
@@ -116,35 +129,35 @@ class Hangman:
         allowed. It is also possible to draw a complete man on the fly totally
         unrelated with the current state which could be hanged or saved
 
-        :param saved: if True, the player wins and is happy to be safe. Otherwise,
-         False will fall back to the current state
-        :param hanged: if True, draw a complete hanged man on the fly. Otherwise,
-         False will fall back to the current state.
+        :param saved: if True, the player wins and is happy to be safe.
+         Otherwise, False will fall back to the current state
+        :param hanged: if True, draw a complete hanged man on the fly.
+         Otherwise, False will fall back to the current state.
         """
         self.gallows = list(GALLOWS)
         if saved:
-            self.gallows[5] = PART_HEAD_SAVED
-            self.gallows[6] = PART_BODY
-            self.gallows[7] = PART_LEGS_SAVED
+            self.gallows[5] = GALLOWS_PART_HEAD_SAVED
+            self.gallows[6] = GALLOWS_PART_BODY
+            self.gallows[7] = GALLOWS_PART_LEGS_SAVED
         elif self.missed == self.max_attempt or hanged:
-            self.gallows[4] = PART_HEAD_HANGED
-            self.gallows[5] = PART_ARMS_HANGED
-            self.gallows[6] = PART_LEGS_HANGED
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
+            self.gallows[5] = GALLOWS_PART_ARMS_HANGED
+            self.gallows[6] = GALLOWS_PART_LEGS_HANGED
         elif self.missed == self.max_attempt - GameLevel.EXTREME.value:
-            self.gallows[4] = PART_HEAD_HANGED
-            self.gallows[5] = PART_ARMS_HANGED
-            self.gallows[6] = PART_LEG_LEFT
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
+            self.gallows[5] = GALLOWS_PART_ARMS_HANGED
+            self.gallows[6] = GALLOWS_PART_LEG_LEFT
         elif self.missed == self.max_attempt - GameLevel.INFERNO.value:
-            self.gallows[4] = PART_HEAD_HANGED
-            self.gallows[5] = PART_ARMS_HANGED
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
+            self.gallows[5] = GALLOWS_PART_ARMS_HANGED
         elif self.missed == self.max_attempt - GameLevel.ELITE.value:
-            self.gallows[4] = PART_HEAD_HANGED
-            self.gallows[5] = PART_ARM_LEFT
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
+            self.gallows[5] = GALLOWS_PART_ARM_LEFT
         elif self.missed == self.max_attempt - GameLevel.PRO.value:
-            self.gallows[4] = PART_HEAD_HANGED
-            self.gallows[5] = PART_BODY
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
+            self.gallows[5] = GALLOWS_PART_BODY
         elif self.missed == self.max_attempt - GameLevel.INTERMEDIARY.value:
-            self.gallows[4] = PART_HEAD_HANGED
+            self.gallows[4] = GALLOWS_PART_HEAD_HANGED
 
     def reset(self, level=None):
         """Remove the hanged player from the gallows"""

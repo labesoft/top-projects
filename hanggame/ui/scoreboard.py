@@ -14,12 +14,11 @@ File structure
     **PyQt5.***
         provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
-
 
 from PyQt5 import QtCore, QtWidgets, uic
 
@@ -28,7 +27,7 @@ from hanggame.level import GameLevel
 
 
 class Scoreboard(QtWidgets.QWidget):
-    """This is the view of the game score regrouped in one widget."""
+    """This is the view of the game score regrouped in one widget"""
 
     def __init__(self, parent):
         """Initializes the Scoreboard while inheriting QWidget properties
@@ -36,10 +35,13 @@ class Scoreboard(QtWidgets.QWidget):
         Also loads the UI from a .ui template file
         """
         super(Scoreboard, self).__init__()
+        self.parent = parent
         uic.loadUi('scoreboard.ui', self)
         self.level_combo.lineEdit().setAlignment(QtCore.Qt.AlignCenter)
         self.level_combo.lineEdit().setReadOnly(True)
-        self.level_name_map = {level.translated_name: level.name for level in GameLevel}
+        self.level_name_map = {
+            level.translated_name: level.name for level in GameLevel
+        }
         self.level_combo.addItems([level for level in self.level_name_map])
 
     @property
@@ -63,7 +65,9 @@ class Scoreboard(QtWidgets.QWidget):
         This would happen one time only, before the game starts
         """
         self.level_label.setText(hanggame.i18n.OUT_MSG_LEVEL)
-        self.remaining_label.setText(hanggame.i18n.OUT_MSG_NB_ATTEMPT.format(''))
+        self.remaining_label.setText(
+            hanggame.i18n.OUT_MSG_NB_ATTEMPT.format('')
+        )
         self.missed_label.setText(hanggame.i18n.OUT_MSG_ERROR)
 
     def set_level(self, level):

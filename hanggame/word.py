@@ -24,27 +24,39 @@ File structure
         the symbol used to mask a letter
     **DEFAULT_WORDS_FILEPATH**
         the default word dictionary
+    **VOWELS**
+        defines the vowels for these words
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-21"
+__copyright__ = "Copyright 2020, Benoit Lapointe"
+__version__ = "1.0.0"
+
 import random
 from os.path import dirname
 from pathlib import Path
 
 from hanggame import i18n
 
+
 EMPTY_MASK = {}
 EMPTY_WORD = ''
 MASK_STR = '_'
 DEFAULT_WORDS_FILEPATH = Path(dirname(__file__), i18n.WORDS_ALPHA_TXT)
 TRANSLATION_TABLE = str.maketrans("àâçéêèëîïôùûüÿ", "aaceeeeiiouuuy")
+VOWELS = 'aeiouy'
 
 
 class Word:
     """The representation of a word for The Hangman Game"""
+
     def __init__(self, words_file=DEFAULT_WORDS_FILEPATH):
         """Initializes the words bank without choosing one yet
 
         :param words_file: a file containing all available words
         """
+        self.vowels = VOWELS
         self.word_bank = self.load_words(words_file)
         self.__word = EMPTY_WORD
         self.__mask = EMPTY_MASK
@@ -92,7 +104,10 @@ class Word:
     @word_bank.setter
     def word_bank(self, words):
         """Sets the current list of words"""
-        self.__word_bank = [w for w in words if len(w) > 2 and w.isalpha() and self.has_vowel(w)]
+        self.__word_bank = []
+        for w in words:
+            if len(w) > 2 and w.isalpha() and self.has_vowel(w):
+                self.__word_bank += [w]
 
     def has_vowel(self, w):
         """Checks if a word has at least one vowel
@@ -101,8 +116,7 @@ class Word:
         :return: True if it detected at least one vowel, false otherwise
         """
         w = w.lower()
-        vowels = 'aeiouy'
-        for v in vowels:
+        for v in self.vowels:
             if v in w:
                 return True
         return False
@@ -140,7 +154,7 @@ class Word:
         """Tries to unmask a letter and tells if it worked
 
         :param letter: the letter to unmask
-        :return: True if the word contains the letter and was not unmasked already,
+        :return: True if the letter is not unmasked already,
                   False otherwise
         """
         if self.is_masked(letter):

@@ -14,21 +14,21 @@ File structure
         printing its output too fast.
 
 *constant*
-    **SPACE_STR**
-        standard spacing constant
+    **FORMAT_NEWLINE_**
+        used to add new lines to strings
     **IN_SLEEP**
         the delay time of 100ms is usually enough and goes unnoticed to
         the player
-    **FORMAT_NEWLINE_**
-        used to add new lines to strings
+    **SPACE_STR**
+        standard spacing constant
     **YES_NO_LIST**
         lists of yes/no options that the player may use to answer the play again
         question.
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 from time import sleep
@@ -37,10 +37,10 @@ from hanggame import i18n
 from hanggame.game import HangGame
 from hanggame.hangman import Hangman
 
-SPACE_STR = ' '
-IN_SLEEP = 0.1
 FORMAT_NEWLINE_PRE = "\n{}".format
 FORMAT_NEWLINE_END = "{}\n".format
+IN_SLEEP = 0.1
+SPACE_STR = ' '
 YES_NO_LIST = i18n.IN_YES_LIST + i18n.IN_NO_LIST
 
 
@@ -144,10 +144,9 @@ class Console:
     def welcome_player(self):
         """Welcomes the player in the game
 
-        It prints the welcome message, the image of a hanged man, ask the name
-        of the player, greets him and print the start of the game.
-
-        :param hangman: the image of a hanged man
+        It prints the welcome message, the image of a hanged man,
+        ask the name of the player, greets him and print the start
+        of the game.
         """
         self.c_out(i18n.OUT_MSG_WELCOME)
         self.c_out(str(self.hangman))

@@ -13,18 +13,14 @@ File structure
 --------------
 *import*
     **functools**
-        provides useful args addictions when delgating a method
+        provides useful args addictions when delegating a method
     **PyQt5.***
         provides PyQt 5 GUI component essentials for the main window
-
-*constant*
-    **ALPHA_LAYOUT**
-        Layout of the keyboard. Each string represents a row of keys
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 import functools
@@ -40,16 +36,23 @@ class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent):
         """Initialize the Keyboard while inheriting QWidget properties
         
-        Also loads the UI from a .ui template file and populate a keys dictionnary for convenience. It is also
-        setting the shorcut for every key.
+        Also loads the UI from a .ui template file and populate a keys
+        dictionary for convenience. It is also setting the shortcut for
+        every key.
         """
         super(Keyboard, self).__init__()
+        self.parent = parent
         uic.loadUi(i18n.KEYBOARD_LAYOUT, self)
         self.keys = {}
         for row in i18n.ALPHA_LAYOUT:
             for letter in row:
-                self.keys[letter] = self.findChild(QtWidgets.QPushButton, f'Key_{letter.upper()}')
-                self.keys[letter].setShortcut(getattr(QtCore.Qt, self.keys[letter].objectName()))
+                self.keys[letter] = self.findChild(
+                    QtWidgets.QPushButton,
+                    f'Key_{letter.upper()}'
+                )
+                self.keys[letter].setShortcut(
+                    getattr(QtCore.Qt, self.keys[letter].objectName())
+                )
         self.keys['Space'] = self.findChild(QtWidgets.QPushButton, 'Key_Space')
         self.keys['Space'].setText(i18n.SPACE_KEY)
 

@@ -14,10 +14,10 @@ File structure
     **PyQt5.***
         provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 from PyQt5 import QtWidgets
@@ -27,6 +27,12 @@ from hanggame import i18n
 
 class WordView(QtWidgets.QLabel):
     """This is the UI of the word that the player has do discover"""
+
+    def __init__(self, parent):
+        """Initialize the view of a word in a pyqt GUI"""
+        super(WordView, self).__init__()
+        self.parent = parent
+        self.word = None
 
     @property
     def word(self):

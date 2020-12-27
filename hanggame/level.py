@@ -14,6 +14,12 @@ File structure
     **types.DynamicClassAttribute
         routes dynamically the enum to the current translated name attribute
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-21"
+__copyright__ = "Copyright 2020, Benoit Lapointe"
+__version__ = "1.0.0"
+
 from enum import Enum
 from types import DynamicClassAttribute
 

@@ -27,8 +27,8 @@ Project structure
     **words_alpha.txt**
         The words dictionary provided with The Hangman Game
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"

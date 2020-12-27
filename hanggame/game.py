@@ -17,6 +17,12 @@ File structure
     **random**
         randomly choose an item from a list or basically a sequence.
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 import random
 
 from hanggame import i18n

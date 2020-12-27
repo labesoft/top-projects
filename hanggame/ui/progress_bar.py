@@ -14,10 +14,10 @@ File structure
     **PyQt5.***
         provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 from PyQt5 import QtWidgets
@@ -29,10 +29,9 @@ class ProgressBar(QtWidgets.QProgressBar):
     """This is the progress bar usable for The Hangman Game"""
 
     def set_value(self, w):
-        """Set the current value of the progress based on the completion of the word
+        """The progress accomplished based on the completion of the word
 
         :param w: the word to evaluate
         """
         value = int(100 * (1 - w.count(MASK_STR) / len(w.replace(' ', ''))))
         self.setValue(value)
-
