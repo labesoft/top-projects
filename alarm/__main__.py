@@ -52,14 +52,16 @@ import sys
 from alarm.controller import AlarmController
 
 # Logging patterns
-LOG_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
+LOG_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 LOG_FORMAT = "%(asctime)s.%(msecs).05f %(name)-12s [%(levelname)s] %(message)s"
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Ring an alarm')
-    parser.add_argument('--verbose', '-v', action='store_const', const=logging.DEBUG, default=logging.INFO,
+    parser.add_argument('--verbose', '-v', action='store_const',
+                        const=logging.DEBUG, default=logging.INFO,
                         help='run in debug mode')
     args = parser.parse_args(sys.argv[1:])
-    logging.basicConfig(format=LOG_FORMAT, level=args.verbose, datefmt=LOG_DATEFORMAT)
+    logging.basicConfig(format=LOG_FORMAT, level=args.verbose,
+                        datefmt=LOG_DATE_FORMAT)
     AlarmController().run()

@@ -61,7 +61,7 @@ class TestAlarm(TestCase):
         hours = 1
         mins = 2
         secs = 3
-        a_time = ATIME(hours, mins, secs)
+        a_time = A_TIME(hours, mins, secs)
 
         # Run test
         self.alarm.time = a_time

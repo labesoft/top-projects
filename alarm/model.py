@@ -84,7 +84,8 @@ if os.name == 'nt':
 elif os.name == 'posix':
     from subprocess import Popen, DEVNULL
     SOUND_CMD = Popen
-    ARGS = [['ffplay', '-nodisp', '-autoexit', '-hide_banner', '-v', '0', '/usr/share/sounds/purple/login.wav']]
+    ARGS = [['ffplay', '-nodisp', '-autoexit', '-hide_banner', '-v', '0',
+             '/usr/share/sounds/purple/login.wav']]
     KWARGS = {'stdout': DEVNULL, 'stderr': DEVNULL}
 
 # Logging messages
@@ -94,7 +95,7 @@ MSG_DEBUG_SLEEP = "self.alarm_time={}, self.sleep_time={}"
 MSG_INFO_WAKEUP = "Wake up Dude"
 
 # Time related
-ATIME = namedtuple('ATIME', ['hour', 'min', 'sec'])
+A_TIME = namedtuple('A_TIME', ['hour', 'min', 'sec'])
 TIME_INTERVAL = 0.9985
 TIME_FORMAT = "{:0>2}:{:0>2}:{:0>2}"
 TIME_PATTERN = "%H:%M:%S"
@@ -111,7 +112,9 @@ class Alarm:
     """
     def __init__(self):
         """Initialize the logger and the time to sleep and time parameters"""
-        self.logger = logging.getLogger(__name__).getChild(self.__class__.__name__)
+        self.logger = logging.getLogger(__name__).getChild(
+            self.__class__.__name__
+        )
         self.sleep_time = TIME_INTERVAL
         self.hour = ZERO
         self.min = ZERO
@@ -126,15 +129,14 @@ class Alarm:
         return TIME_FORMAT.format(self.hour, self.min, self.sec)
 
     @time.setter
-    def time(self, atime):
+    def time(self, a_time):
         """Set the current alarm time
 
-        :param atime: a time that will be set
-        :return: None
+        :param a_time: a time that will be set
         """
-        self.hour = atime.hour
-        self.min = atime.min
-        self.sec = atime.sec
+        self.hour = a_time.hour
+        self.min = a_time.min
+        self.sec = a_time.sec
 
     def is_alive(self):
         """Determine is the alarm should continue to run or stop
@@ -154,7 +156,8 @@ class Alarm:
         if dt_now == self.time:
             self.ring()
         else:
-            self.logger.debug(MSG_DEBUG_SLEEP.format(self.time, self.sleep_time))
+            self.logger.debug(MSG_DEBUG_SLEEP.format(self.time,
+                                                     self.sleep_time))
             time.sleep(self.sleep_time)
 
     def ring(self):

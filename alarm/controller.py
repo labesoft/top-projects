@@ -46,7 +46,7 @@ File structure
 """
 import threading
 
-from alarm.model import Alarm, ATIME, ZERO
+from alarm.model import Alarm, A_TIME, ZERO
 from alarm.view import AlarmView
 
 
@@ -70,10 +70,10 @@ class AlarmController:
 
         :return: None
         """
-        atime = ATIME(hour=self.alarm_view.hour_var.get(),
-                      min=self.alarm_view.min_var.get(),
-                      sec=self.alarm_view.sec_var.get())
-        Alarm.time = atime
+        a_time = A_TIME(hour=self.alarm_view.hour_var.get(),
+                        min=self.alarm_view.min_var.get(),
+                        sec=self.alarm_view.sec_var.get())
+        self.alarm.time = a_time
 
     def run(self):
         """Initiate the model thread in parallel to the main UI thread
