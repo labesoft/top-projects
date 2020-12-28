@@ -33,7 +33,8 @@ __version__ = "1.0.0"
 
 from math import sin, pi, cos
 
-from direct.actor.Actor import Actor
+from direct.actor.Actor import Actor, Point3
+from direct.interval.MetaInterval import Sequence
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
 
@@ -62,6 +63,26 @@ class Dice3D(ShowBase):
         self.pandaActor.reparentTo(self.render)
         # Loop its animation.
         self.pandaActor.loop("walk")
+
+        # Create the four Lerp intervals needed for the panda to
+        # walk back and forth
+        posInterval1 = self.pandaActor.posInterval(13,
+                                                   Point3(0, -10, 0),
+                                                   startPos=Point3(0, 10, 0))
+        posInterval2 = self.pandaActor.posInterval(13,
+                                                   Point3(0, 10, 0),
+                                                   startPos=Point3(0, -10, 0))
+        hprInterval1 = self.pandaActor.hprInterval(3,
+                                                   Point3(180, 0, 0),
+                                                   startHpr=Point3(0, 0, 0))
+        hprInterval2 = self.pandaActor.hprInterval(3,
+                                                   Point3(0, 0, 0),
+                                                   startHpr=Point3(180, 0, 0))
+        # Create and play the sequence that coordinates the intervals
+        self.pandaPace = Sequence(posInterval1, hprInterval1,
+                                  posInterval2, hprInterval2,
+                                  name="pandaPace")
+        self.pandaPace.loop()
 
     # Define a procedure to move the camera.
     def spinCameraTask(self, task):
