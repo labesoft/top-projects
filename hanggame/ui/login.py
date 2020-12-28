@@ -9,16 +9,13 @@ starts that offers the player to enter his name.
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
-
-*constant*
-
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-22"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 from PyQt5 import QtWidgets, uic
@@ -27,15 +24,16 @@ from hanggame import i18n
 
 
 class Login(QtWidgets.QDialog):
-    """This class is the login page which will spawn before the game is loaded"""
+    """The login page which will spawn before the game is loaded"""
 
-    def __init__(self):
+    def __init__(self, hangman):
         """Initialize the Login while inheriting QtWidget properties
 
         Also loads the UI from a .ui template file
         """
         super(Login, self).__init__()
         uic.loadUi('login.ui', self)
+        self.greeterboard.hangman = hangman
         self.greeterboard.welcome_player(i18n.IN_MSG_NAME)
         self.greeterboard.update_gallows()
         self.start.setText(i18n.START)
@@ -44,8 +42,15 @@ class Login(QtWidgets.QDialog):
         self.show()
 
     def handle_login(self):
-        """Validate that some text has been entered in, otherwise the game will not begin"""
+        """Validate that some text has been entered in
+
+        Otherwise the game will not begin.
+        """
         if len(self.name.text()) != 0:
             self.accept()
         else:
-            QtWidgets.QMessageBox.warning(self, i18n.OUT_MSG_ERROR, i18n.OUT_MSG_BAD_ENTRY)
+            QtWidgets.QMessageBox.warning(
+                self,
+                i18n.OUT_MSG_ERROR,
+                i18n.OUT_MSG_BAD_ENTRY
+            )

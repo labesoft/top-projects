@@ -11,11 +11,15 @@ File structure
 *import*
     **enum.Enum**
         the parent which defines the rules to build enum classes
-
-*class*
-    **GameLevel(Enum)**
-        'The Hangman Game levels defining their maximum number of attempts'
+    **types.DynamicClassAttribute
+        routes dynamically the enum to the current translated name attribute
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-21"
+__copyright__ = "Copyright 2020, Benoit Lapointe"
+__version__ = "1.0.0"
+
 from enum import Enum
 from types import DynamicClassAttribute
 

@@ -1,4 +1,7 @@
 # [The Hangman Game in Python](https://data-flair.training/blogs/hangman-game-python-code/)
+
+![img.png](img.png)
+
 Going back to our old school days, some of the pen-paper games were always a top for
 our leisure time. Hangman was one, other than some chit games, to guess words according
 to the guesses determined and as soon as they lost all their wrong guesses, they were
@@ -28,7 +31,7 @@ the hangman.
 - [X] Implement a command line main thread.
 - [X] Passing the function in the program to run.
 - [X] Create a OO design
-- [ ] Create a tkinter GUI
+- [X] Create a PyQt GUI
 - [ ] Create an Angular GUI
 
 So that is basically what we will do in this Python project. Let's start.

@@ -5,6 +5,12 @@ About this module
 -----------------
 The objective of this module is to test the hangman module
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 from unittest import TestCase
 from unittest.mock import MagicMock
 
@@ -23,7 +29,14 @@ class TestHangman(TestCase):
 
     def test___str__(self):
         # Evaluate test
-        self.assertEqual(str(self.hangman), IMAGE_STRING_SEP.join(self.hangman.gallows))
+        lines_result = [line.format(left=self.hangman.left_spaces,
+                                    middle=self.hangman.middle_spaces,
+                                    left_foot=self.hangman.left_foot,
+                                    right_foot=self.hangman.right_foot)
+                        for line in self.hangman.gallows]
+        result = self.hangman.sep.join(lines_result)
+
+        self.assertEqual(str(self.hangman), result)
 
     def test_attempt(self):
         """Tests that the attempt is max_attempt - missed"""
@@ -63,7 +76,7 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 1
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
 
         # Run test
         self.hangman.draw()
@@ -76,8 +89,8 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 2
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
-        gallows[5] = PART_BODY
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
+        gallows[5] = GALLOWS_PART_BODY
 
         # Run test
         self.hangman.draw()
@@ -90,8 +103,8 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 3
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
-        gallows[5] = PART_ARM_LEFT
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
+        gallows[5] = GALLOWS_PART_ARM_LEFT
 
         # Run test
         self.hangman.draw()
@@ -104,8 +117,8 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 4
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
-        gallows[5] = PART_ARMS_HANGED
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
+        gallows[5] = GALLOWS_PART_ARMS_HANGED
 
         # Run test
         self.hangman.draw()
@@ -118,9 +131,9 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 5
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
-        gallows[5] = PART_ARMS_HANGED
-        gallows[6] = PART_LEG_LEFT
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
+        gallows[5] = GALLOWS_PART_ARMS_HANGED
+        gallows[6] = GALLOWS_PART_LEG_LEFT
 
         # Run test
         self.hangman.draw()
@@ -133,9 +146,9 @@ class TestHangman(TestCase):
         # Prepare test
         self.hangman.missed = 6
         gallows = list(GALLOWS)
-        gallows[4] = PART_HEAD_HANGED
-        gallows[5] = PART_ARMS_HANGED
-        gallows[6] = PART_LEGS_HANGED
+        gallows[4] = GALLOWS_PART_HEAD_HANGED
+        gallows[5] = GALLOWS_PART_ARMS_HANGED
+        gallows[6] = GALLOWS_PART_LEGS_HANGED
 
         # Run test
         self.hangman.draw()
@@ -147,9 +160,9 @@ class TestHangman(TestCase):
         """Tests the gallows with saved man"""
         # Prepare test
         gallows = list(GALLOWS)
-        gallows[5] = PART_HEAD_SAVED
-        gallows[6] = PART_BODY
-        gallows[7] = PART_LEGS_SAVED
+        gallows[5] = GALLOWS_PART_HEAD_SAVED
+        gallows[6] = GALLOWS_PART_BODY
+        gallows[7] = GALLOWS_PART_LEGS_SAVED
 
         # Run test
         self.hangman.draw(saved=True)
@@ -169,3 +182,10 @@ class TestHangman(TestCase):
         # Evaluate test
         self.assertEqual(self.hangman.missed, ZERO)
         self.hangman.draw.assert_called_once()
+
+    def test_reset_new_level(self):
+        # Run test
+        self.hangman.reset(GameLevel.INFERNO)
+
+        # Evaluate test
+        self.assertEqual(GameLevel.INFERNO.value, self.hangman.max_attempt)

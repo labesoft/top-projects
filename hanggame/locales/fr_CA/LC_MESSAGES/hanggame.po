@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-22 11:24-0500\n"
+"POT-Creation-Date: 2020-12-25 14:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_CA\n"
@@ -18,231 +18,255 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: i18n.py:46
+#: i18n.py:47
 msgid "Enter your letter: "
 msgstr "Entre une lettre: "
 
-#: i18n.py:47
+#: i18n.py:48
 msgid "Enter your name: "
 msgstr "Entrez votre nom: "
 
-#: i18n.py:48
+#: i18n.py:49
 msgid "Do You want to play again? y = yes, n = no"
 msgstr "Veux-tu rejouer? o = oui, n = non"
 
 #: i18n.py:50
-msgid "The word was: {}"
-msgstr "Le mot était: {}"
-
-#: i18n.py:51
-msgid "You must enter you name to play"
-msgstr "Vous devez entrer votre nom pour jouer"
-
-#: i18n.py:52
-msgid "Wrong guess ?! :O"
-msgstr "Mauvais choix ?! :O"
-
-#: i18n.py:52
-msgid "Error :("
-msgstr "Erreur :("
-
-#: i18n.py:52
-msgid "Missed ???"
-msgstr "Manqué ???"
-
-#: i18n.py:52
-msgid "Sorry, you were wrong :_("
-msgstr "Désolé, tu t'es trompé :_("
-
-#: i18n.py:53
-msgid "Good guess! Keep it up!!"
-msgstr "Bon choix! Continue comme ça!!"
-
-#: i18n.py:53
-msgid "Wow! you're strong!!"
-msgstr "Hou là là! tu es fort!!"
-
-#: i18n.py:53
-msgid "I want to marry you <3"
-msgstr "Je veux t'épouser <3"
-
-#: i18n.py:54
-msgid "What a genius!!"
-msgstr "Quel génie!!"
-
-#: i18n.py:54
-msgid "Dude, you're a machine!!"
-msgstr "Mec, tu es une machine!!"
-
-#: i18n.py:55
-msgid "Errors so far: "
-msgstr "Erreurs accumulés: "
-
-#: i18n.py:56
-msgid "See you soon {}!"
-msgstr "À bientôt {}!"
-
-#: i18n.py:57
-msgid "Invalid input, try another letter"
-msgstr "Entrée non valide, essaie une autre lettre"
-
-#: i18n.py:58
-msgid "You are out of attempt... Hanged!!"
-msgstr "Tu as épuisé tes choix... Pendu!!"
-
-#: i18n.py:59
-msgid "Hello {}! Best of Luck!"
-msgstr "Bonjour {}! Bonne chance!"
-
-#: i18n.py:60
-msgid "Hit SPACE bar to begin"
-msgstr "Appuyez sur la barre d'espace pour commencer"
-
-#: i18n.py:61
-msgid "Attempts remaining: {}"
-msgstr "Choix restant: {}"
-
-#: i18n.py:62
-msgid "The game is about to start... let's play Hangman!"
-msgstr "Le jeu est sur le point de démarrer... jouons au Pendu!"
-
-#: i18n.py:63
-msgid "Thanks for playing The Hangman Game!"
-msgstr "Merci d'avoir joué au Jeu du Pendu"
-
-#: i18n.py:64
-msgid "The Hangman Game"
-msgstr "Le Jeu Du Pendu"
-
-#: i18n.py:65
-msgid "Try another letter plz"
-msgstr "Essaie une autre lettre svp"
-
-#: i18n.py:66
-msgid "Welcome to The Hangman Game by labesoft"
-msgstr "Bienvenue dans le Jeu du Pendu de labesoft"
-
-#: i18n.py:67
-msgid "Congrats!! You have guessed the word correctly.."
-msgstr "Félicitation!! Tu as bien deviné le mot.."
-
-#: i18n.py:68
-msgid "Level: "
-msgstr "Niveau: "
-
-#: i18n.py:70
-msgid "Space"
-msgstr "Espace"
-
-#: i18n.py:71
-msgid "Start"
-msgstr "Démarrer"
-
-#: i18n.py:73
 msgid "n"
 msgstr "n"
 
-#: i18n.py:73
+#: i18n.py:50
 msgid "no"
 msgstr "non"
 
-#: i18n.py:73
+#: i18n.py:50
 msgid "nope"
 msgstr "nan"
 
-#: i18n.py:73
+#: i18n.py:50
 msgid "not at all"
 msgstr "pas du tout"
 
-#: i18n.py:73
+#: i18n.py:50
 msgid "fuck off"
 msgstr "va te faire foutre"
 
-#: i18n.py:73
+#: i18n.py:50
 msgid "no fucking way"
 msgstr "pas question putain"
 
-#: i18n.py:74
+#: i18n.py:51
 msgid "never"
 msgstr "jamais"
 
-#: i18n.py:74
+#: i18n.py:51
 msgid "negative"
 msgstr "négatif"
 
-#: i18n.py:74
+#: i18n.py:51
 msgid "this is rigged"
 msgstr "c'est truqué"
 
-#: i18n.py:74
+#: i18n.py:51
 msgid "toaster"
 msgstr "grille-pain"
 
-#: i18n.py:74
+#: i18n.py:51
 msgid "not a chance"
 msgstr "aucune chance"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "y"
 msgstr "o"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "yes"
 msgstr "oui"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "yeah"
 msgstr "ouais"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "sure"
 msgstr "certain"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "ok"
 msgstr "d'accord"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "always"
 msgstr "toujours"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "positive"
 msgstr "positif"
 
-#: i18n.py:75
+#: i18n.py:52
 msgid "you bet"
 msgstr "tu paries"
 
-#: i18n.py:76
+#: i18n.py:53
 msgid "give it to me"
 msgstr "donne le moi"
 
-#: i18n.py:76
+#: i18n.py:53
 msgid "go for it"
 msgstr "on fonce"
 
+#: i18n.py:56
+msgid "The word was: {}"
+msgstr "Le mot était: {}"
+
+#: i18n.py:57
+msgid "You must enter you name to play"
+msgstr "Vous devez entrer votre nom pour jouer"
+
+#: i18n.py:58
+msgid "Letters available"
+msgstr "Lettres disponibles"
+
+#: i18n.py:59
+msgid "Wrong guess ?! :O"
+msgstr "Mauvais choix ?! :O"
+
+#: i18n.py:59
+msgid "Error :("
+msgstr "Erreur :("
+
+#: i18n.py:59
+msgid "Missed ???"
+msgstr "Manqué ???"
+
+#: i18n.py:59
+msgid "Sorry, you were wrong :_("
+msgstr "Désolé, tu t'es trompé :_("
+
+#: i18n.py:60
+msgid "Good guess! Keep it up!!"
+msgstr "Bon choix! Continue comme ça!!"
+
+#: i18n.py:60
+msgid "Wow! you're strong!!"
+msgstr "Hou là là! tu es fort!!"
+
+#: i18n.py:60
+msgid "I want to marry you <3"
+msgstr "Je veux t'épouser <3"
+
+#: i18n.py:61
+msgid "What a genius!!"
+msgstr "Quel génie!!"
+
+#: i18n.py:61
+msgid "Dude, you're a machine!!"
+msgstr "Mec, tu es une machine!!"
+
+#: i18n.py:62
+msgid "Errors so far: "
+msgstr "Erreurs accumulés: "
+
+#: i18n.py:63
+msgid "See you soon {}!"
+msgstr "À bientôt {}!"
+
+#: i18n.py:64
+msgid "Invalid input, try another letter"
+msgstr "Entrée non valide, essaie une autre lettre"
+
+#: i18n.py:65
+msgid "You are out of attempt... Hanged!!"
+msgstr "Tu as épuisé tes choix... Pendu!!"
+
+#: i18n.py:66
+msgid "Hello {}! Best of Luck!"
+msgstr "Bonjour {}! Bonne chance!"
+
+#: i18n.py:67
+msgid "Hit SPACE bar to begin"
+msgstr "Appuyez sur la barre d'espace pour commencer"
+
+#: i18n.py:68
+msgid "Attempts remaining: {}"
+msgstr "Choix restant: {}"
+
+#: i18n.py:69
+msgid "The game is about to start... let's play Hangman!"
+msgstr "Le jeu est sur le point de démarrer... jouons au Pendu!"
+
+#: i18n.py:70
+msgid "Thanks for playing The Hangman Game!"
+msgstr "Merci d'avoir joué au Jeu du Pendu"
+
+#: i18n.py:71
+msgid "The Hangman Game"
+msgstr "Le Jeu Du Pendu"
+
+#: i18n.py:72
+msgid "Try another letter plz"
+msgstr "Essaie une autre lettre svp"
+
+#: i18n.py:73
+msgid "Welcome to The Hangman Game by labesoft"
+msgstr "Bienvenue dans le Jeu du Pendu de labesoft"
+
+#: i18n.py:74
+msgid "Congrats!! You have guessed correctly..."
+msgstr "Félicitation!! Tu as bien deviné..."
+
+#: i18n.py:75
+msgid "Level: "
+msgstr "Niveau: "
+
+#: i18n.py:77
+msgid "Space"
+msgstr "Espace"
+
 #: i18n.py:78
+msgid "Start"
+msgstr "Démarrer"
+
+#: i18n.py:81
 msgid "BEGINNER"
 msgstr "DÉBUTANT"
 
-#: i18n.py:78
+#: i18n.py:81
 msgid "INTERMEDIARY"
 msgstr "INTERMÉDIAIRE"
 
-#: i18n.py:78
+#: i18n.py:81
 msgid "PRO"
 msgstr "PRO"
 
-#: i18n.py:78
+#: i18n.py:81
 msgid "ELITE"
 msgstr "ÉLITE"
 
-#: i18n.py:79
+#: i18n.py:82
 msgid "INFERNO"
 msgstr "INFERNAL"
 
-#: i18n.py:79
+#: i18n.py:82
 msgid "EXTREME"
 msgstr "EXTRÊME"
+
+#: i18n.py:85
+msgid "words_alpha.txt"
+msgstr "words_alpha_fr.txt"
+
+#: i18n.py:86
+msgid "qwertyuiop"
+msgstr "qwertyuiop"
+
+#: i18n.py:86
+msgid "asdfghjkl"
+msgstr ""
+
+#: i18n.py:86
+msgid "zxcvbnm"
+msgstr ""
+
+#: i18n.py:89
+msgid "keyboard.ui"
+msgstr ""
 

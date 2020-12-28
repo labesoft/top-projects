@@ -11,35 +11,31 @@ title, the hang state and the greetings
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
-
-*constant*
-
+    **PyQt5**
+        provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
 from PyQt5 import QtWidgets, uic
 
 from hanggame import i18n
-from hanggame.hangman import Hangman
 
 
 class Greeterboard(QtWidgets.QWidget):
-    """This is the UI representation of most of the messages intended to the player"""
+    """UI representation of most of the messages intended to the player"""
 
     def __init__(self, parent):
-        """Initialize the GreeterBoard while inheriting QWidget properties
+        """Initialize the Greeterboard while inheriting QWidget properties
         
         Also loads the UI from a .ui template file
         """
         super(Greeterboard, self).__init__()
+        self.parent = parent
         uic.loadUi('greeterboard.ui', self)
-        self.hangman = Hangman()
 
     def greets(self, msg):
         """Greets the player with a positive comment
@@ -62,16 +58,15 @@ class Greeterboard(QtWidgets.QWidget):
         self.hangman.reset(level)
         self.greets(msg)
 
-    def saved(self):
-        """Draws the player out of the gallows"""
-        self.hangman.draw(saved=True)
-
     def update_gallows(self):
         """Presents the current status of the gallows"""
         self.gallows.setText(str(self.hangman))
 
     def welcome_player(self, msg):
-        """Welcomes the players in the game with a hanged man and wish him luck"""
+        """Welcomes the players in the game with a hanged man greetings
+
+        :param msg: the message to greets the player
+        """
         self.welcome_title.setText(i18n.OUT_MSG_WELCOME)
         self.hangman.draw(hanged=True)
         self.greets(msg)

@@ -34,23 +34,13 @@ File structure
         The date simulated in the test.
     **TEST_TIME**
         The time string simulated in the test
-
-*class*
-    **AlarmTest**
-        'Test the core functionalities of the alarm'
-    **test_is_alive(self)**
-        'Test that the alarm is alive by default'
-    **test_ring(self, sleep, popen, logger)**
-        'Test that the alarm use the well formed subprocess command to play the
-        sound'
-    **test_run(self, logger)**
-        'Test the basic run behavior: logging and managing the alarm time'
-    **test_time_to_ring(self, ring, atime)**
-        'Test that the alarm rings at the proper time'
-    **test_time_to_sleep(self, logger, sleep)**
-        'Test that the alarm sleep at the ideal 1s time internal while not
-        ringing'
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 from unittest import TestCase, skipIf
 from unittest.mock import patch, MagicMock, call
 
@@ -66,20 +56,20 @@ class TestAlarm(TestCase):
         self.alarm = Alarm()
 
     def test_time_setter(self):
-        """Test the time setter useing the namedTuple"""
+        """Test the time setter using the namedTuple"""
         # Prepare test
-        hour = 1
-        min = 2
-        sec = 3
-        atime = ATIME(hour, min, sec)
+        hours = 1
+        mins = 2
+        secs = 3
+        a_time = A_TIME(hours, mins, secs)
 
         # Run test
-        self.alarm.time = atime
+        self.alarm.time = a_time
 
         # Evaluate test
-        self.assertEqual(self.alarm.hour, hour)
-        self.assertEqual(self.alarm.min, min)
-        self.assertEqual(self.alarm.sec, sec)
+        self.assertEqual(self.alarm.hour, hours)
+        self.assertEqual(self.alarm.min, mins)
+        self.assertEqual(self.alarm.sec, secs)
 
     def test_is_alive(self):
         """Test that the alarm is alive by default"""
@@ -93,7 +83,7 @@ class TestAlarm(TestCase):
     @patch('alarm.model.SOUND_CMD')
     @skipIf(os.name == 'nt', f"Not on a posix machine os.name={os.name}")
     def test_ring_posix(self, cmd, logger):
-        """Test that the alarm use the well formed subprocess command to play the sound"""
+        """Test that the alarm uses the right command to play the sound"""
         # Run test
         self.alarm.ring()
 
@@ -105,7 +95,7 @@ class TestAlarm(TestCase):
     @patch('alarm.model.SOUND_CMD')
     @skipIf(os.name == 'posix', f"Not on a nt machine os.name={os.name}")
     def test_ring_nt(self, cmd, logger):
-        """Test that the alarm use the well formed subprocess command to play the sound"""
+        """Test that the alarm uses the right command to play the sound"""
         # Run test
         self.alarm.ring()
 
@@ -143,7 +133,7 @@ class TestAlarm(TestCase):
     @patch('time.sleep')
     @patch.object(logging.getLogger('alarm.model.Alarm'), 'debug')
     def test_time_to_sleep(self, logger, sleep):
-        """Test that the alarm sleep at the ideal 1s time internal while not ringing"""
+        """Test the sleep is at the ideal 1s time internal while not ringing"""
         # Run test
         self.alarm.manage_time()
 

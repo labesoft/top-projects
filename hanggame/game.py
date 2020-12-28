@@ -16,25 +16,16 @@ File structure
         the console.
     **random**
         randomly choose an item from a list or basically a sequence.
-
-*constant*
-    **EMPTY_STR***
-        An empty string constants
-    **YES_NO_LIST**
-        lists of yes/no options that the player may use to answer the play again
-        question.
 """
-import logging
+
+__author__ = "Benoit Lapointe"
+__date__ = "2020-12-18"
+__copyright__ = "Copyright 2020, labesoft"
+__version__ = "1.0.0"
+
 import random
 
-from hanggame.greeter import Greeter
 from hanggame import i18n
-from hanggame.hangman import Hangman
-from hanggame.level import GameLevel
-from hanggame.word import Word
-
-EMPTY_STR = ''
-YES_NO_LIST = i18n.YES_LIST + i18n.NO_LIST
 
 
 class HangGame:
@@ -42,87 +33,53 @@ class HangGame:
 
     The course of the game follows the rules defined in this class.
     """
-    def __init__(self, level=GameLevel.BEGINNER, word=Word(), greeter=Greeter()):
+    def __init__(self, level, word, hangman, ui):
         """Initializes The Hangman Game and all of its attributes
 
-        :param level: the level of The Hangman Game (default: Beginner)
+        :param level: the level of The Hangman Game
         :param word: the word to unveil and its inner logic
-        :param greeter: i/o tool which interacts with the player
+        :param hangman: the hangman that tries to hang the player
+        :param ui: the user interface (console
         """
-        self.logger = logging.getLogger(__name__).getChild(self.__class__.__name__)
         self.game_level = level
-        self.hangman = Hangman(level=self.game_level)
+        self.hangman = hangman
         self.word = word
-        self.word.load_words()
-        self.word.choose()
-        self.greeter = greeter
-        self.is_playing = True
+        self.ui = ui
 
-    def accept_letter(self):
-        """Asks the player to choose a new letter until the choice is valid
-
-        :return: the letter chosen by the player
-        """
-        result = EMPTY_STR
-        while not self.is_valid(result):
-            result = self.greeter.in_new_letter()
-            if not self.is_valid(result):
-                self.greeter.out_invalid_letter()
-        return result
-
-    def ask_play_again(self):
-        """Asks the player to play again
-
-        If the answer is yes the game reset itself and is ready to restart.
-        Otherwise, the game is triggered to stop and greets the player
-        """
-        choice = ''
-        while choice.lower() not in YES_NO_LIST:
-            choice = self.greeter.in_new_game()
-        if choice.lower() in i18n.YES_LIST:
-            self.reset()
-        else:
-            self.is_playing = False
-            self.greeter.out_farewell()
-
-    def is_valid(self, candidate):
-        """Determines if the candidate string is a valid choice
-
-        :param candidate: a candidate letter
-        :return: True if the candidate string is an alpha character and an unmasked letter,
-         False otherwise.
-        """
-        is_alpha_char = len(candidate) == 1 and candidate.isalpha()
-        return is_alpha_char and not self.word.is_unmasked(candidate)
-
-    def reset(self):
-        """Reset The Hangman Game an choose a new word"""
-        self.hangman.reset()
-        self.word.choose()
-        self.is_playing = True
-
-    def run(self):
+    def run_loop(self):
         """Runs the game until the player does not want to play again
 
-        This include the running loop which handles each step of The Hangman Game.
+        It includes the running loop which processes The Hangman Game.
         """
         self.hangman.draw(hanged=True)
-        self.greeter.out_in_welcome(str(self.hangman))
+        self.ui.welcome_player()
         self.hangman.draw()
 
-        while self.is_playing:
-            self.greeter.out_init_attempt(str(self.hangman), self.hangman.attempt, str(self.word))
-            current_letter = self.accept_letter()
-            if self.word.unmask(current_letter):
-                self.greeter.out_end_turn(random.choice(i18n.OUT_MSG_CONGRATS))
-                if not self.word.is_masked():
+        self.ui.init_game_metrics()
+        while self.play_turn(self.ui.in_valid_letter()):
+            self.ui.init_game_metrics()
+
+    def play_turn(self, key):
+        """Plays one complete turn with the letter provided
+
+        If the game ended during the turn the player is asked to play again.
+
+        :param key: the letter to test during this turn
+        """
+        if self.word and self.hangman.attempt:
+            letter = self.ui.accept_letter(key)
+            if self.word.unmask(letter):
+                self.ui.end_turn(random.choice(i18n.OUT_MSG_CONGRATS))
+                if not self.word.is_mask():
                     self.hangman.draw(saved=True)
-                    self.greeter.out_end_game(str(self.hangman), i18n.OUT_MSG_WINNER, self.word.show())
-                    self.ask_play_again()
+                    self.ui.end_game(i18n.OUT_MSG_WINNER)
+                    return self.ui.ask_play_again()
             else:
                 self.hangman.missed += 1
                 self.hangman.draw()
-                self.greeter.out_end_turn(random.choice(i18n.OUT_MSG_COMPLAINTS))
+                self.ui.end_turn(random.choice(i18n.OUT_MSG_COMPLAINTS))
                 if not self.hangman.attempt:
-                    self.greeter.out_end_game(str(self.hangman), i18n.OUT_MSG_LOSER, self.word.show())
-                    self.ask_play_again()
+                    self.ui.end_game(i18n.OUT_MSG_LOSER)
+                    return self.ui.ask_play_again()
+        else:
+            return False

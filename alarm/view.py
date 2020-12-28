@@ -112,8 +112,10 @@ class AlarmView(tkinter.Frame):
         f1 = Font(self, font=("Helevetica", 40, "bold"))
         f2 = Font(self, font=("Arial", 25, "italic"))
 
-        l1 = Label(self, text="  When to wake you up ?  ", fg="black", bg="lightgray", font=f1)
-        l2 = Label(self, text="Enter time in 24 hour format!", fg="green", bg="white", font=("Arial", 30, "italic"))
+        l1 = Label(self, text="  When to wake you up ?  ", fg="black",
+                   bg="lightgray", font=f1)
+        l2 = Label(self, text="Enter time in 24 hour format!", fg="green",
+                   bg="white", font=("Arial", 30, "italic"))
         le1 = Label(f, text="Hour", bg="white",  font=f2)
         le2 = Label(f, text="Min", bg="white", font=f2)
         le3 = Label(f, text="Sec", bg="white", font=f2)
@@ -139,12 +141,12 @@ class AlarmView(tkinter.Frame):
         :return: None
         """
         f1 = Font(self, font=("Arial", 50, "bold"))
-        e1 = Entry(f, textvariable=self.hour_var, bg="lightyellow", fg="black", font=f1, justify="center",
-                   width=ENTRY_WIDTH)
-        e2 = Entry(f, textvariable=self.min_var, bg="lightyellow", fg="black", font=f1, justify="center",
-                   width=ENTRY_WIDTH)
-        e3 = Entry(f, textvariable=self.sec_var, bg="lightyellow", fg="black", font=f1, justify="center",
-                   width=ENTRY_WIDTH)
+        e1 = Entry(f, textvariable=self.hour_var, bg="lightyellow", fg="black",
+                   font=f1, justify="center", width=ENTRY_WIDTH)
+        e2 = Entry(f, textvariable=self.min_var, bg="lightyellow", fg="black",
+                   font=f1, justify="center", width=ENTRY_WIDTH)
+        e3 = Entry(f, textvariable=self.sec_var, bg="lightyellow", fg="black",
+                   font=f1, justify="center", width=ENTRY_WIDTH)
         e1.grid(row=ENTRY_ROW, column=0, padx=PAD_X)
         e2.grid(row=ENTRY_ROW, column=1, padx=PAD_X)
         e3.grid(row=ENTRY_ROW, column=2, padx=PAD_X)
@@ -154,6 +156,6 @@ class AlarmView(tkinter.Frame):
 
         :return: None
         """
-        b1 = Button(self, text="Set Alarm", font=("Arial", 30, "bold"), fg="black", bd=17, height=1, width=10,
-                    command=func)
+        b1 = Button(self, text="Set Alarm", font=("Arial", 30, "bold"),
+                    fg="black", bd=17, height=1, width=10, command=func)
         b1.pack(pady=25)

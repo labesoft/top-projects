@@ -11,30 +11,27 @@ during the game.
 File structure
 --------------
 *import*
-    **PyQt5: QtCore, QtGui, QtWidgets, uic**
-        Useful modules for a PyQt module
-
-*constant*
-
+    **PyQt5.***
+        provides PyQt 5 GUI component essentials for the main window
 """
+
 __author__ = "Benoit Lapointe"
 __date__ = "2020-12-18"
 __copyright__ = "Copyright 2020, labesoft"
-
 __version__ = "1.0.0"
 
-
 from PyQt5 import QtWidgets
+
+from hanggame.word import MASK_STR
 
 
 class ProgressBar(QtWidgets.QProgressBar):
     """This is the progress bar usable for The Hangman Game"""
-    def set_value(self, w, mask):
-        """Set the current value of the progress based on the completion of the word
+
+    def set_value(self, w):
+        """The progress accomplished based on the completion of the word
 
         :param w: the word to evaluate
-        :param mask: the letter used to mask the word
         """
-        value = int(100 * (1 - w.count(mask) / len(w.replace(' ', ''))))
+        value = int(100 * (1 - w.count(MASK_STR) / len(w.replace(' ', ''))))
         self.setValue(value)
-
