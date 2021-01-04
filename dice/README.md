@@ -1,6 +1,10 @@
 # [Dice Rolling Simulator Python Game](https://data-flair.training/blogs/dice-rolling-simulator-python/)
 ## About the project
 
+![assets/casino_2.png](assets/casino_2.png)
+
+[See the dice drop video here](assets/0000-2000.mp4)
+
 Snake and Ladders, Ludo and Checkers, are the most favorite games of all time. 
 But, it feels terrible when you drop the plan of playing just because you
 couldn’t find the dice. So, here is a fascinating option to give you a chance
