@@ -45,8 +45,8 @@ class DicePocFrame(ShowBase):
         """Initialize the DicePocFrame while inheriting ShowBase properties"""
         super(DicePocFrame, self).__init__()
         self.prepare_window()
-        self.scene = self.prepare_scene("models/craps_table.bam")
-        self.dice_actor = self.create_dice_actor("models/dice.bam")
+        self.scene = self.prepare_scene("craps_table.bam")
+        self.dice_actor = self.create_dice_actor("dice.bam")
         self.prepare_camera()
         self.set_lighting()
         self.action_map = {
