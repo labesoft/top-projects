@@ -11,11 +11,17 @@ website](https://data-flair.training/blogs)
 * [Alarm Clock with GUI](alarm/)
 * [Hangman Game in Python](hanggame/)
 * [Mad Libs Generator](madlibs/)
-* [Dice Rolling Simulator Python Game](dice/)
-* [Password Generator]()
-* [Currency Converter]()
-* [Text to Speech]()
-* [Message Encode Decode in Python with Tkinter]()
-* [COVID-19 Spread Analysis with Flask]()
-* [Simple Calculator]()
-* [Library Managememnt System]()
+* Rock Paper Scissors Game
+* Dice Rolling Simulator Game
+* Password Generator
+* Currency Converter
+* Text to Speech
+* YouTube Downloader with Pytube
+* Message Encode Decode in Python with Tkinter
+* Address Book
+* Keyboard Jump Game
+* Fruit Ninja Game
+* COVID-19 Spread Analysis with Flask
+* Simple Calculator
+* Snake Game
+* Library Managememnt System
