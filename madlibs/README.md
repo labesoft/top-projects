@@ -27,10 +27,10 @@ concept of python and tkinter.
 
 These are the required steps to build Mad Libs generator python project:
 
-- [ ] Import modules
-- [ ] Create a display window
-- [ ] Define functions
-- [ ] Create buttons
+- [x] Import modules
+- [x] Create a display window
+- [x] Define functions
+- [x] Create buttons
 
 So that is basically what we will do in this Python project. Let's start.
 
