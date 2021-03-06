@@ -10,6 +10,7 @@ website](https://data-flair.training/blogs)
 ## Projects Included 
 * [Alarm Clock with GUI](alarm/)
 * [Hangman Game in Python](hanggame/)
+* [Mad Libs Generator](madlibs/)
 * [Dice Rolling Simulator Python Game](dice/)
 * [Password Generator]()
 * [Currency Converter]()
