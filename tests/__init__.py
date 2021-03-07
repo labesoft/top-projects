@@ -3,10 +3,12 @@
 Package structure
 -----------------
 *tests/*
-    **test_rpsgame**:
+    **test_rpsgame.py**:
         Test of Rock Paper Scissor Game
     **test_madlibs.py**:
         Test the MadLibs Game
+    **test_dice.py**:
+        The Test of the Rolling Dice Simulator
 """
 
 __author__ = "Benoit Lapointe"
