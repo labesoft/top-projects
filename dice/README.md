@@ -1,9 +1,8 @@
-# [Dice Rolling Simulator Python Game](https://data-flair.training/blogs/dice-rolling-simulator-python/)
-## About the project
+# [Dice Rolling Simulator](https://data-flair.training/blogs/dice-rolling-simulator-python/)
 
-![assets/casino_2.png](assets/game_intro.png)
+![assets/casino_2.png](archives/assets/game_intro.png)
 
-[See the dice drop video here](assets/game_intro.mp4)
+[See the dice drop video here](archives/assets/game_intro.mp4)
 
 Snake and Ladders, Ludo and Checkers, are the most favorite games of all time. 
 But, it feels terrible when you drop the plan of playing just because you
@@ -11,17 +10,35 @@ couldn’t find the dice. So, here is a fascinating option to give you a chance
 to make something cool. Let’s build a Dice Rolling Simulator with basic
 knowledge of Python.
 
+![img.png](img.png)
+
+## About the project
+
+We all know about dice. It’s a simple cube with numbers from 1 to 6 written 
+on its face. But what is simulation? It is making a computer model. Thus, a 
+dice simulator is a simple computer model that can roll a dice for us.
+
+We now aim to build a dice simulator.
+
 ## Prerequisite
-For this game we need to continue our good coding practices, our GUI design
-knowledge plus the integration of a new 3d GUI that will display the rolling
-dice based on our model. The new knowledge to integrate here is to follow a
-TDD process as it is still a simple application to develop.
+
+Python offers various packages to design the GUI, i.e. the Graphical User 
+Interface. Tkinter is the most common, fast, and easy to use Python package 
+used to build Graphical User Interface applications. It provides a powerful 
+Object-Oriented Interface and is easy to use. Also, you develop an 
+application; you can use it on any platform, which reduces the need of 
+amendments required to use an app on Windows, Mac, or Linux.
 
 ## Project Plan
-The project will develop as following:
 
-- [ ] The 3D library integration plan
-- [ ] The OO design + doc
-- [ ] The unit testing plan and implementation
-- [ ] The MVC implementation
-- [ ] The review (code, tests, doc)
+The project will develop as followed:
+
+- [ ] Importing the required modules: Tkinter, Image, ImageTk, Random
+- [ ] Building a top-level widget to make the main window for our 
+  application (tk)
+- [ ] Designing the buttons
+- [ ] Forming a list of images to be randomly displayed
+- [ ] Constructing a label for image, adding a button and assigning 
+  functionality
+- [ ] Launching the main loop
+- [ ] Write unit test for every function/class/method

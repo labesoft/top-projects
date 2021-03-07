@@ -11,8 +11,8 @@ website](https://data-flair.training/blogs)
 * [Alarm Clock with GUI](alarm/)
 * [Hangman Game in Python](hanggame/)
 * [Mad Libs Generator](madlibs/)
-* [Rock Paper Scissors Game](rpsgame/)
-* Dice Rolling Simulator Game
+* [Rock Paper Scissors](rpsgame/)
+* [Dice Rolling Simulator](dice/)
 * Password Generator
 * Currency Converter
 * Text to Speech
