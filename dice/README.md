@@ -33,12 +33,12 @@ amendments required to use an app on Windows, Mac, or Linux.
 
 The project will develop as followed:
 
-- [ ] Importing the required modules: Tkinter, Image, ImageTk, Random
-- [ ] Building a top-level widget to make the main window for our 
+- [x] Importing the required modules: Tkinter, Image, ImageTk, Random
+- [x] Building a top-level widget to make the main window for our 
   application (tk)
-- [ ] Designing the buttons
-- [ ] Forming a list of images to be randomly displayed
-- [ ] Constructing a label for image, adding a button and assigning 
+- [x] Designing the buttons
+- [x] Forming a list of images to be randomly displayed
+- [x] Constructing a label for image, adding a button and assigning 
   functionality
-- [ ] Launching the main loop
-- [ ] Write unit test for every function/class/method
+- [x] Launching the main loop
+- [x] Write unit test for every function/class/method
