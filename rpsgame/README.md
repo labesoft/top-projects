@@ -1,5 +1,8 @@
 # [Rock Paper Scissor Game](https://data-flair.training/blogs/python-rock-paper-scissors-game/)
 
+![img.png](img.png)
+![img_1.png](img_1.png)
+
 Rock paper scissors game is also known as stone paper scissors. It is a hand 
 game that is usually played between 2 people, each player can randomly form 
 any one of three from their hand.
