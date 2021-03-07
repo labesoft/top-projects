@@ -13,7 +13,7 @@ website](https://data-flair.training/blogs)
 * [Mad Libs Generator](madlibs/)
 * [Rock Paper Scissors](rpsgame/)
 * [Dice Rolling Simulator](dice/)
-* Password Generator
+* [Password Generator](pwdgen/)
 * Currency Converter
 * Text to Speech
 * YouTube Downloader with Pytube
