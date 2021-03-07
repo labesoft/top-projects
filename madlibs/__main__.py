@@ -1,10 +1,6 @@
 """Main module of the Mad Libs Generator Game
 -----------------------------
 
-Project structure
------------------
-*madlibs/*
-
 About this Module
 ------------------
 These are the required steps to build Mad Libs generator python project:
@@ -33,9 +29,9 @@ def madlib1():
     verb = input('enter a verb in ing form: ')
     food = input('food name: ')
     print(
-        "say {0}, the photographer said as the camera flashed! {1} and I had \n"
-        "gone to {2} to get our photos taken on my birthday. The first photo \n"
-        "we really wanted was a picture of us dressed as {3} pretending to be \n"
+        "say {0}, the photographer said as the camera flashed! {1} and I had\n"
+        "gone to {2} to get our photos taken on my birthday. The first photo\n"
+        "we really wanted was a picture of us dressed as {3} pretending to be\n"
         "a {4}. when we saw the second photo, it was exactly what I wanted. \n"
         "We both looked like {5} wearing {6} and {7} --exactly what I had in \n"
         "mind".format(
@@ -74,13 +70,13 @@ def madlib3():
     things = input('enter a thing name : ')
 
     print(
-        "Today we picked apple from {0}'s Orchard. I had no idea there were so\n"
-        " many different varieties of apples. I ate {1} apples straight off the\n"
-        " tree that tested like {2}. Then there was a {3} apple that looked\n"
-        " like a {4}.When our bag were full, we went on a free hay ride to {5}\n"
-        " and back. It ended at a hay pile where we got to {6} {7}. I can\n"
-        " hardly wait to get home and cook with the apples. We are going to\n"
-        " make appple {8} and {9} pies!.".format(
+        "Today we picked apple from {0}'s Orchard. I had no idea there were\n"
+        " so many different varieties of apples. I ate {1} apples straight\n"
+        " off the tree that tested like {2}. Then there was a {3} apple that \n"
+        " looked like a {4}.When our bag were full, we went on a free hay\n"
+        " ride to {5} and back. It ended at a hay pile where we got to {6}\n"
+        " {7}. I can hardly wait to get home and cook with the apples. We are\n"
+        " going to make appple {8} and {9} pies!.".format(
             person, color, foods, adjective, thing, place, verb, adverb, food,
             things))
 

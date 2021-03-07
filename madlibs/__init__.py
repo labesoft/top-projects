@@ -16,7 +16,9 @@ Package structure
 -----------------
 *madlibs/*
     **__init__.py**:
-        
+        Python Mad Libs Generator Game
+    **__main__.py**:
+        Main module of the Mad Libs Generator Game
 """
 
 __author__ = "Benoit Lapointe"
