@@ -1,5 +1,12 @@
-"""
+"""The tests package of Beginner projects in Python
 
+Package structure
+-----------------
+*tests/*
+    **test_rpsgame**:
+        Test of Rock Paper Scissor Game
+    **test_madlibs.py**:
+        Test the MadLibs Game
 """
 
 __author__ = "Benoit Lapointe"
