@@ -9,6 +9,8 @@ Package structure
         Test the MadLibs Game
     **test_dice.py**:
         The Test of the Rolling Dice Simulator
+    **test_pwdgen.py**:
+        The Test of the Password Generator
 """
 
 __author__ = "Benoit Lapointe"
