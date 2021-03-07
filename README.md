@@ -1,4 +1,4 @@
-# [Top Python Projects](https://data-flair.training/blogs/python-project-ideas/)
+# [Beginner Python Projects](https://data-flair.training/blogs/python-project-ideas/)
 
 Working on real-time projects to head start our company. Python is the most used
 programming language on the planet. Gaining Python knowledge is our best investment
@@ -11,7 +11,7 @@ website](https://data-flair.training/blogs)
 * [Alarm Clock with GUI](alarm/)
 * [Hangman Game in Python](hanggame/)
 * [Mad Libs Generator](madlibs/)
-* Rock Paper Scissors Game
+* [Rock Paper Scissors Game](rpsgame/)
 * Dice Rolling Simulator Game
 * Password Generator
 * Currency Converter
