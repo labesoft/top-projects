@@ -3,7 +3,12 @@
 
 About this Project
 ------------------
-Talker is an application which transform written word in audio.
+The objective of this project is to convert the text into voice with the 
+click of a button. This project will be developed using Tkinter, gTTs, and 
+playsound library.
+
+In this project, we add a message which we want to convert into voice and 
+click on play button to play the voice of that text message.
 
 Package structure
 -----------------
