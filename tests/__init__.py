@@ -15,6 +15,8 @@ Package structure
         The Test of the Money Changer
     **test_talker.py**:
         Test the speech function of The Talker
+    **test_metube.py**:
+        Test the MeTube application download procedure
 """
 
 __author__ = "Benoit Lapointe"
