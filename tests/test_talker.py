@@ -1,9 +1,9 @@
-"""Test the speech function of The Talker
+"""Test the speech play of The Talker
 -----------------------------
 
 About this module
 -----------------
-The objective of this module is to test the speech procedure
+The objective of this module is to test the speech play procedure
 """
 
 __author__ = "Benoit Lapointe"
@@ -21,14 +21,16 @@ from talker.__main__ import SAVE_PATH, play
 class TalkerTest(TestCase):
     @patch("talker.__main__.playsound")
     @patch("talker.__main__.gTTS")
-    def test_text_to_speech(self, tts, play):
+    def test_play(self, tts, ps):
+        """Test the play-tts function of Talker"""
+        # Prepare test
         talker.__main__.entry_field = MagicMock()
 
         # Run test
         play()
 
         # Evaluate test
-        play.assert_called_once_with(SAVE_PATH)
+        ps.assert_called_once_with(SAVE_PATH)
         calls = [
             call(text=talker.__main__.entry_field.get(), lang='fr'),
             call().save(SAVE_PATH)
