@@ -3,7 +3,8 @@
 
 About this Module
 ------------------
-This module is the main entry point of the Talker application.
+This module is the main entry point of the Talker application. It also
+includes basic functions triggered by UI components.
 """
 
 __author__ = "Benoit Lapointe"
