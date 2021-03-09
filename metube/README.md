@@ -1,5 +1,7 @@
 # [MeTube](https://data-flair.training/blogs/python-youtube-downloader-with-pytube/)
 
+![img.png](img.png)
+
 MeTube Video Downloader is an application to download videos from 
 YouTube. This provides users to download videos they need in their devices 
 and watch them offline.
@@ -29,8 +31,8 @@ To implement this project we use basic concept of python, tkinter, pytube librar
 These are the following steps to build MeTube downloader project in 
 python :
 
-- [ ] Import libraries
-- [ ] Create display window
-- [ ] Create field to enter link
-- [ ] Create function to start downloading
-- [ ] Add unit tests
+- [x] Import libraries
+- [x] Create display window
+- [x] Create field to enter link
+- [x] Create function to start downloading
+- [x] Add unit tests
