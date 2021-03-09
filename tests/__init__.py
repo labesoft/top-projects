@@ -13,6 +13,8 @@ Package structure
         The Test of the Password Generator
     **test_converter.py**:
         The Test of the Money Changer
+    **test_talker.py**:
+        Test the speech function of The Talker
 """
 
 __author__ = "Benoit Lapointe"

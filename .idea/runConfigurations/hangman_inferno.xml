@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="hangman inferno" type="PythonConfigurationType" factoryName="Python">
+  <configuration default="false" name="hangman inferno" type="PythonConfigurationType" factoryName="Python" folderName="New Folder">
     <module name="top-projects" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
