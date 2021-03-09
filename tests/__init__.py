@@ -12,7 +12,7 @@ Package structure
     **test_pwdgen.py**:
         The Test of the Password Generator
     **test_converter.py**:
-        Test of the Money Changer
+        The Test of the Money Changer
 """
 
 __author__ = "Benoit Lapointe"

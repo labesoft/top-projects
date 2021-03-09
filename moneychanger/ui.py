@@ -45,7 +45,7 @@ class CurrencyConverterUI(Tk):
         self.intro_label.place(x=10, y=5)
         self.date_label.place(x=170, y=50)
         # Entry box
-        valid = (self.register(self.restrictNumberOnly), '%P')
+        valid = (self.register(self.restrict_number_only), '%P')
         # restric NumberOnly function will restrict this user to enter
         # invavalid number in Amount field. We will define it later in code
         self.amount_field = Entry(self, bd=3, relief=RIDGE,
@@ -104,7 +104,7 @@ class CurrencyConverterUI(Tk):
         converted_amount = round(converted_amount, 2)
         self.converted_amount_field_label.config(text=str(converted_amount))
 
-    def restrictNumberOnly(self, string):
+    def restrict_number_only(self, string):
         """Restrict the uses of numbers only in text fields
 
         :param string: the input to validate

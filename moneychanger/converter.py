@@ -38,7 +38,7 @@ class CurrencyConverter:
         # first convert it into USD if it is not in USD.
         # because our base currency is USD
         if from_currency != 'USD':
-            amount = amount / self.currencies[from_currency]
+            amount /= self.currencies[from_currency]
 
         # limiting the precision to 4 decimal places
         amount = round(amount * self.currencies[to_currency], 4)
