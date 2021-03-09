@@ -43,4 +43,4 @@ Steps to Build the Python Project on Currency Converter
 - [x] CurrencyConverter Class
 - [x] UI for CurrencyConverter
 - [x] Main Function
-- [ ] Unit test for the model
+- [x] Unit test for the model
