@@ -21,7 +21,7 @@ from playsound import playsound
 SAVE_PATH = 'labesoft.mp3'
 
 
-def text_to_speech():
+def play():
     """Convert written text to audio and play the sound in french
 
     :return: None
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     entry_field = Entry(root, textvariable=msg, width='50')
     entry_field.place(x=20, y=100)
-    Button(root, text="PLAY", font='arial 15 bold', command=text_to_speech,
+    Button(root, text="PLAY", font='arial 15 bold', command=play,
            width='4').place(x=25, y=140)
     Button(root, font='arial 15 bold', text='EXIT', width='4',
            command=exit_talker,

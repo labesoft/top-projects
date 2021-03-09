@@ -15,7 +15,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock, call, patch
 
 import talker
-from talker.__main__ import SAVE_PATH, text_to_speech
+from talker.__main__ import SAVE_PATH, play
 
 
 class TalkerTest(TestCase):
@@ -25,7 +25,7 @@ class TalkerTest(TestCase):
         talker.__main__.entry_field = MagicMock()
 
         # Run test
-        text_to_speech()
+        play()
 
         # Evaluate test
         play.assert_called_once_with(SAVE_PATH)
