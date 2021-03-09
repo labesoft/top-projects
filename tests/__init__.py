@@ -11,6 +11,8 @@ Package structure
         The Test of the Rolling Dice Simulator
     **test_pwdgen.py**:
         The Test of the Password Generator
+    **test_converter.py**:
+        Test of the Money Changer
 """
 
 __author__ = "Benoit Lapointe"
