@@ -15,7 +15,7 @@ website](https://data-flair.training/blogs)
 * [Dice Rolling Simulator](dice/)
 * [Password Generator](pwdgen/)
 * [Currency Converter](moneychanger/)
-* Text to Speech
+* [Text to Speech](talker/)
 * YouTube Downloader with Pytube
 * Message Encode Decode in Python with Tkinter
 * Address Book
