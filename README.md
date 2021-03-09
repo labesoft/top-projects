@@ -14,7 +14,7 @@ website](https://data-flair.training/blogs)
 * [Rock Paper Scissors](rpsgame/)
 * [Dice Rolling Simulator](dice/)
 * [Password Generator](pwdgen/)
-* Currency Converter
+* [Currency Converter](moneychanger/)
 * Text to Speech
 * YouTube Downloader with Pytube
 * Message Encode Decode in Python with Tkinter
