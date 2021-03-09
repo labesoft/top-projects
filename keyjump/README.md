@@ -33,3 +33,4 @@ To build this game here are the steps:
 - [ ] Initialize window
 - [ ] Define functions
 - [ ] Main loop
+- [ ] Add unit tests

@@ -12,6 +12,14 @@ __date__ = "2021-03-09"
 __copyright__ = "Copyright 2021, labesoft"
 __version__ = "1.0.0"
 
+# Importing libraries
+
+
 if __name__ == '__main__':
     """Main entry point of snaky"""
+    # Creating a game screen
+    # Creating snake and food
+    # Keyboard binding
+    # Game mainloop
+    # Add unit tests
     pass

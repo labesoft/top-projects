@@ -12,6 +12,13 @@ __date__ = "2021-03-09"
 __copyright__ = "Copyright 2021, labesoft"
 __version__ = "1.0.0"
 
+# Importing module
+
+
 if __name__ == '__main__':
     """Main entry point of addbook"""
+    # Initializing window
+    # Define buttons
+    # Define functions
+    # Add unit tests
     pass

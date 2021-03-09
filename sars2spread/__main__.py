@@ -14,4 +14,9 @@ __version__ = "1.0.0"
 
 if __name__ == '__main__':
     """Main entry point of sars2spread"""
+    # app.py
+    # home.html
+    # base.html
+    # style.css
+    # Add unit tests
     pass

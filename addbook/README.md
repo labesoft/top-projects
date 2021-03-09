@@ -33,3 +33,4 @@ These are the step to build a contact book python project:
 - [ ] Initializing window
 - [ ] Define buttons
 - [ ] Define functions
+- [ ] Add unit tests

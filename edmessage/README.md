@@ -38,5 +38,3 @@ These are the step to build message encode – decode python project
 - [ ] Define function
 - [ ] Define labels and buttons
 - [ ] Add unit tests
-
-

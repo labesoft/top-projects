@@ -12,6 +12,13 @@ __date__ = "2021-03-09"
 __copyright__ = "Copyright 2021, labesoft"
 __version__ = "1.0.0"
 
+# Import module
+
+
 if __name__ == '__main__':
     """Main entry point of edmessage"""
+    # Create display window
+    # Define function
+    # Define labels and buttons
+    # Add unit tests
     pass
