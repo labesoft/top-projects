@@ -21,11 +21,10 @@ Project Prerequisites
 
 Below are the project steps:
 
-- [ ] create the database
-- [ ] main.py – which does function call to all other python files
-- [ ] AddBook.py – To add the book
-- [ ] ViewBooks.py – To View the list of books in the library
-- [ ] DeleteBook.py – To Delete a book from library
-- [ ] IssueBook.py – To Issue a book from library
-- [ ] ReturnBook.py – To Return a book to the library
-- [ ] Add unit tests
+- [x] create the database
+- [x] main.py – which does function call to all other python files
+- [x] AddBook.py – To add the book
+- [x] ViewBooks.py – To View the list of books in the library
+- [x] DeleteBook.py – To Delete a book from library
+- [x] IssueBook.py – To Issue a book from library
+- [x] ReturnBook.py – To Return a book to the library

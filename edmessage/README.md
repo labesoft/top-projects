@@ -33,8 +33,7 @@ base64 library.
 
 These are the step to build message encode – decode python project
 
-- [ ] Import module
-- [ ] Create display window
-- [ ] Define function
-- [ ] Define labels and buttons
-- [ ] Add unit tests
+- [X] Import module
+- [X] Create display window
+- [X] Define function
+- [X] Define labels and buttons

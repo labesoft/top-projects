@@ -27,7 +27,7 @@ In this python project, we require:
 
 These are the steps to build fruit ninja game :
 
-- [ ] Importing required modules
-- [ ] Initialize window
-- [ ] Define functions
-- [ ] Game loop
+- [X] Importing required modules
+- [X] Initialize window
+- [X] Define functions
+- [X] Game loop

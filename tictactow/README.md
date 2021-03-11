@@ -31,9 +31,8 @@ concept of python
 
 These are the step to build Tic-Tac-Toe game using python :
 
-- [ ] Import modules
-- [ ] Initialize window
-- [ ] Function to check result
-- [ ] Function to check the winner
-- [ ] Define labels and buttons
-- [ ] Add unit tests
+- [X] Import modules
+- [X] Initialize window
+- [X] Function to check result
+- [X] Function to check the winner
+- [X] Define labels and buttons

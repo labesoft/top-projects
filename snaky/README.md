@@ -25,9 +25,8 @@ time module, and concept of python.
 
 Steps to build a snake game project in python:
 
-- [ ] Importing libraries
-- [ ] Creating a game screen
-- [ ] Creating snake and food
-- [ ] Keyboard binding
-- [ ] Game mainloop
-- [ ] Add unit tests
+- [X] Importing libraries
+- [X] Creating a game screen
+- [X] Creating snake and food
+- [X] Keyboard binding
+- [X] Game mainloop

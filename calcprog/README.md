@@ -18,8 +18,7 @@ Interface, and one such utility is Tkinter which is most commonly used.
 
 ## Project Plan
 
-- [ ] Importing the necessary modules
-- [ ] Making a window for our calculator
-- [ ] Designing the buttons
-- [ ] Mapping the buttons to their functionalities
-- [ ] Add unit tests
+- [X] Importing the necessary modules
+- [X] Making a window for our calculator
+- [X] Designing the buttons
+- [X] Mapping the buttons to their functionalities

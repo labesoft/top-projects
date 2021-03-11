@@ -29,8 +29,7 @@ modules, and basic concepts of python.
 
 To build this game here are the steps:
 
-- [ ] Importing modules
-- [ ] Initialize window
-- [ ] Define functions
-- [ ] Main loop
-- [ ] Add unit tests
+- [X] Importing modules
+- [X] Initialize window
+- [X] Define functions
+- [X] Main loop

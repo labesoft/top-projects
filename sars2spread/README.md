@@ -24,7 +24,7 @@ We will be using flask and folium python packages for making interactive dashboa
 
 The project will be created by this order:
 
-- [ ] app.py
-- [ ] home.html
-- [ ] base.html
-- [ ] style.css
+- [X] app.py
+- [X] home.html
+- [X] base.html
+- [X] style.css
