@@ -8,6 +8,16 @@ Package structure
         The Library Management System in Python
     **__main__.py**:
         The Library Management System Application
+    **addbook.py**:
+        To add books to the library
+    **deletebook.py**:
+        To delete books from the library
+    **issuebook.py**:
+        To issue books from the library
+    **returnbook.py**:
+        To returns books to the library
+    **viewbook.py**:
+        To view books from the library
 """
 
 __author__ = "Benoit Lapointe"
