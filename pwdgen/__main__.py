@@ -20,11 +20,6 @@ import pyperclip
 from tkinter import BOTTOM, Button, Entry, IntVar, Label, Spinbox, StringVar, Tk
 
 
-root = Tk()
-pass_str = StringVar()
-pass_len = IntVar()
-
-
 # Define Functions
 def generator():
     """Generate a new password taking input parameters
@@ -54,6 +49,10 @@ def copy_password():
 if __name__ == '__main__':
     """Main entry point of pwdgen"""
     # Initialized Window
+    root = Tk()
+    pass_str = StringVar()
+    pass_len = IntVar()
+
     root.geometry("400x400")
     root.resizable(0, 0)
     root.title("labesoft - PASSWORD GENERATOR")

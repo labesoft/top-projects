@@ -8,20 +8,20 @@ level up our programming skills. For more information you may visit the [data-fl
 website](https://data-flair.training/blogs)
 
 ## Projects Included 
-* [Alarm Clock with GUI](alarm/)
-* [Hangman Game in Python](hanggame/)
-* [Mad Libs Generator](madlibs/)
-* [Rock Paper Scissors](rpsgame/)
-* [Dice Rolling Simulator](dice/)
-* [Password Generator](pwdgen/)
-* [Currency Converter](moneychanger/)
-* [Text to Speech](talker/)
-* [YouTube Downloader with Pytube](metube/)
-* Message Encode Decode in Python with Tkinter
-* Address Book
-* Keyboard Jump Game
-* Fruit Ninja Game
-* COVID-19 Spread Analysis with Flask
-* Simple Calculator
-* Snake Game
-* Library Managememnt System
+* [Alarm Clock with GUI](alarm)
+* [Hangman Game in Python](hanggame)
+* [Mad Libs Generator](madlibs)
+* [Rock Paper Scissors](rpsgame)
+* [Dice Rolling Simulator](dice)
+* [Password Generator](pwdgen)
+* [Currency Converter](moneychanger)
+* [Text to Speech](talker)
+* [YouTube Downloader with Pytube](metube)
+* [Message Encode Decode](edmessage)
+* [Address Book](addbook)
+* [Keyboard Jump Game](keyjump)
+* [Fruit Ninja Game](ninjafruits)
+* [COVID-19 Spread Analysis](sars2spread)
+* [Simple Calculator](calcprog)
+* [Snake Game](snaky)
+* [Library Management System](booksys)

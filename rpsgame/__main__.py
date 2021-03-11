@@ -27,9 +27,6 @@ LOOSE_GAME_2 = 'you loose,computer select scissors'
 WIN_GAME_1 = 'you win,computer select scissors'
 LOOSE_GAME_1 = 'you loose,computer select paper'
 TIE_GAME = 'tie,you both select same'
-root = Tk()
-Result = StringVar()
-user_take = StringVar()
 
 
 def play():
@@ -92,6 +89,10 @@ def pick_comp_choice():
 if __name__ == '__main__':
     """Main entry point of rpsgame"""
     # Initialize window
+    root = Tk()
+    Result = StringVar()
+    user_take = StringVar()
+
     root.geometry('400x400')
     root.resizable(0, 0)
     root.title('DataFlair-Rock,Paper,Scissors')

@@ -17,99 +17,125 @@ from unittest.mock import MagicMock, call, patch
 import rpsgame
 from rpsgame.__main__ import (
     INVALID_CHOICE, LOOSE_GAME_1, LOOSE_GAME_2, LOOSE_GAME_3, PAPER, ROCK,
-    Result, SCISSORS,
-    TIE_GAME,
-    WIN_GAME_1, WIN_GAME_2, WIN_GAME_3, exit_rps, pick_comp_choice, play, reset,
-    user_take
+    SCISSORS, TIE_GAME, WIN_GAME_1, WIN_GAME_2, WIN_GAME_3, exit_rps,
+    pick_comp_choice, play, reset
 )
 
 
 class TestRpsGame(TestCase):
+    def setUp(self) -> None:
+        rpsgame.__main__.Result = MagicMock()
+        rpsgame.__main__.user_take = MagicMock()
+
     @patch('rpsgame.__main__.pick_comp_choice', return_value=SCISSORS)
-    @patch('rpsgame.__main__.user_take.get', return_value=SCISSORS)
-    def test_play_tie(self, user, comp):
+    def test_play_tie(self, comp):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = SCISSORS
+
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), TIE_GAME, "The tie game was not "
-                                                 "declare as such")
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, TIE_GAME,
+                             "The tie game was not declare as such")
 
     @patch('rpsgame.__main__.pick_comp_choice', return_value=PAPER)
-    @patch('rpsgame.__main__.user_take.get', return_value=ROCK)
-    def test_play_loose_1(self, user, comp):
-        # Run test
-        play()
-
-        # Evaluate test
-        self.assertEqual(Result.get(), LOOSE_GAME_1, "The lost game was not "
-                                                     "declare as such")
-
-    @patch('rpsgame.__main__.pick_comp_choice', return_value=SCISSORS)
-    @patch('rpsgame.__main__.user_take.get', return_value=ROCK)
-    def test_play_win_1(self, user, comp):
+    def test_play_loose_1(self, comp):
         # Prepare test
-        rpsgame.__main__.pick_comp_choice = MagicMock(return_value=SCISSORS)
-        rpsgame.__main__.user_take.get = MagicMock(return_value=ROCK)
+        rpsgame.__main__.user_take.get.return_value = ROCK
 
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), WIN_GAME_1, "The won game was not "
-                                                   "declare as such")
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, LOOSE_GAME_1,
+                             "The lost game was not declare as such")
 
     @patch('rpsgame.__main__.pick_comp_choice', return_value=SCISSORS)
-    @patch('rpsgame.__main__.user_take.get', return_value=PAPER)
-    def test_play_loose_2(self, user, comp):
+    def test_play_win_1(self, comp):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = ROCK
+
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), LOOSE_GAME_2, "The lost game was not "
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, WIN_GAME_1,
+                             "The won game was not declare as such")
+
+    @patch('rpsgame.__main__.pick_comp_choice', return_value=SCISSORS)
+    def test_play_loose_2(self, comp):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = PAPER
+
+        # Run test
+        play()
+
+        # Evaluate test
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, LOOSE_GAME_2, "The lost game was not "
                                                      "declare as such")
 
     @patch('rpsgame.__main__.pick_comp_choice', return_value=ROCK)
-    @patch('rpsgame.__main__.user_take.get', return_value=PAPER)
-    def test_play_win_2(self, user, comp):
+    def test_play_win_2(self, comp):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = PAPER
+
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), WIN_GAME_2, "The won game was not "
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, WIN_GAME_2, "The won game was not "
                                                    "declare as such")
 
     @patch('rpsgame.__main__.pick_comp_choice', return_value=ROCK)
-    @patch('rpsgame.__main__.user_take.get', return_value=SCISSORS)
-    def test_play_loose_3(self, user, comp):
+    def test_play_loose_3(self, comp):
         # Prepare test
-        rpsgame.__main__.pick_comp_choice = MagicMock(return_value=ROCK)
-        rpsgame.__main__.user_take.get = MagicMock(return_value=SCISSORS)
+        rpsgame.__main__.user_take.get.return_value = SCISSORS
 
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), LOOSE_GAME_3, "The lost game was not "
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, LOOSE_GAME_3, "The lost game was not "
                                                      "declare as such")
 
     @patch('rpsgame.__main__.pick_comp_choice', return_value=PAPER)
-    @patch('rpsgame.__main__.user_take.get', return_value=SCISSORS)
-    def test_play_win_3(self, user, comp):
+    def test_play_win_3(self, comp):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = SCISSORS
+
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), WIN_GAME_3, "The won game was not "
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, WIN_GAME_3, "The won game was not "
                                                    "declare as such")
 
-    @patch('rpsgame.__main__.user_take.get', return_value="Wrong")
-    def test_play_invalid(self, user):
+    def test_play_invalid(self):
+        # Prepare test
+        rpsgame.__main__.user_take.get.return_value = "Wrong"
+
         # Run test
         play()
 
         # Evaluate test
-        self.assertEqual(Result.get(), INVALID_CHOICE, "The invalid choice was "
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, INVALID_CHOICE, "The invalid choice was "
                                                        "not declare as such")
 
     def test_reset(self):
@@ -117,12 +143,19 @@ class TestRpsGame(TestCase):
         reset()
 
         # Evaluate test
-        self.assertEqual("", Result.get(), "The result was not resetted")
-        self.assertEqual("", user_take.get(), "The user take was not resetted")
+        for callargs in rpsgame.__main__.Result.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, "", "The result was not "
+                                                     "resetted")
+        for callargs in rpsgame.__main__.user_take.set.call_args_list:
+            args = callargs.args[0]
+            self.assertEqual(args, "", "The user take was "
+                                                        "not resetted")
 
+    def test_exit(self):
+        # Prepare test
+        rpsgame.__main__.root = MagicMock()
 
-    @patch('rpsgame.__main__.root')
-    def test_exit(self, root):
         # Run test
         exit_rps()
 
@@ -130,8 +163,7 @@ class TestRpsGame(TestCase):
         calls = [
             call.destroy(),
         ]
-        root.assert_has_calls(calls)
-
+        rpsgame.__main__.root.assert_has_calls(calls)
 
     def test_pick_comp_choice(self):
         # Run test

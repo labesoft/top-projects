@@ -54,6 +54,9 @@ class TestCurrencyConverterUI(TestCurrencyConverter):
         super(TestCurrencyConverterUI, self).setUp()
         self.converter_ui = CurrencyConverterUI(self.converter)
 
+    def tearDown(self):
+        self.converter_ui.destroy()
+
     def test_perform(self):
         """Tests the display of the result value"""
         # Prepare test

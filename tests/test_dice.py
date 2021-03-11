@@ -12,21 +12,27 @@ __copyright__ = "Copyright 2021, Benoit Lapointe"
 __version__ = "1.0.0"
 
 from unittest import TestCase
+from unittest.mock import MagicMock
 
-from dice.__main__ import ImageLabel, rolling_dice
+import dice
+from dice.__main__ import rolling_dice
 
 
 class TestDice(TestCase):
+    def setUp(self) -> None:
+        dice.__main__.ImageLabel = MagicMock()
+
     """Test the rolling dice function"""
+
     def test_rolling_dice(self):
         # Prepare test
         rolling_dice()
-        previous_image = ImageLabel.image
+        previous_image = dice.__main__.ImageLabel.image
 
         # Run test
         rolling_dice()
 
         # Evaluate test
         self.assertIsNotNone(previous_image)
-        self.assertNotEqual(previous_image, ImageLabel.image, "The object "
-                                                              "didn't changed")
+        self.assertNotEqual(previous_image, dice.__main__.ImageLabel.image,
+                            "The object didn't changed")
