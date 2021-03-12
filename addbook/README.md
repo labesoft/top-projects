@@ -29,8 +29,8 @@ python concept.
 
 These are the step to build a contact book python project:
 
-- [ ] Importing module
-- [ ] Initializing window
-- [ ] Define buttons
-- [ ] Define functions
-- [ ] Add unit tests
+- [x] Importing module
+- [x] Initializing window
+- [x] Define buttons
+- [x] Define functions
+- [x] Add unit tests

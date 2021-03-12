@@ -21,12 +21,12 @@ from tkinter import (
 )
 
 contactlist = [
-    ['Parv Maheswari', '0176738493'],
-    ['David Sharma', '2684430000'],
-    ['Mandish Kabra', '4338354432'],
-    ['Prisha Modi', '6834552341'],
-    ['Rahul kaushik', '1234852689'],
-    ['Johena Shaa', '2119876543'],
+    ['Paul Henderson', '12121212121'],
+    ['Wayne Gretsky', '19999999999'],
+    ['Mario Lemieux', '16666666666'],
+    ['Sidney Crosby', '18787878787'],
+    ['Connor McDavid', '19797979797'],
+    ['Auston Matthews', '13434343434'],
 ]
 
 
