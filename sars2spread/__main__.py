@@ -66,7 +66,6 @@ if __name__ == '__main__':
     corona_df[['Lat', 'Long_', category]].apply(
         lambda x: circle_maker(x, m), axis=1
     )
-    m.save("templates/map.html")
 
     # Web server
     app = Flask(__name__)

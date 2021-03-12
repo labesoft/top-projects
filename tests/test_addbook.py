@@ -1,15 +1,9 @@
-"""$Module_title
+"""Tests of the address book
 -----------------------------
-
-Package structure
------------------
-*$Package/*
-    **$FILE_NAME**:
-        $Module_title
 
 About this module
 -----------------
-$About_this_module
+This module test the main functionalities of the address book application
 """
 
 __author__ = "Benoit Lapointe"
