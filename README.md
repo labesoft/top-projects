@@ -1,4 +1,4 @@
-# [Beginner Python Projects](https://data-flair.training/blogs/python-project-ideas/)
+# [Small Python Projects](https://data-flair.training/blogs/python-project-ideas/)
 
 Working on real-time projects to head start our company. Python is the most used
 programming language on the planet. Gaining Python knowledge is our best investment
