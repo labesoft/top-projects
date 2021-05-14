@@ -1,4 +1,4 @@
-# [Password Generator](https://data-flair.training/blogs/python-password-generator/)
+# Password Generator
 
 ![img.png](img.png)
 
