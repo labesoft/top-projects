@@ -1,4 +1,4 @@
-# [Rock Paper Scissor Game](https://data-flair.training/blogs/python-rock-paper-scissors-game/)
+# Rock Paper Scissor Game
 
 ![img.png](img.png)
 ![img_1.png](img_1.png)
