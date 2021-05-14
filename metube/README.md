@@ -1,4 +1,4 @@
-# [MeTube](https://data-flair.training/blogs/python-youtube-downloader-with-pytube/)
+# MeTube
 
 ![img.png](img.png)
 

@@ -1,4 +1,4 @@
-# [The Snaky Game in Python](https://data-flair.training/blogs/snake-game-python-program/)
+# The Snaky Game in Python
 
 ![img.png](img.png)
 

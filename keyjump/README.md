@@ -1,4 +1,4 @@
-# [The Keyboard Jump Game](https://data-flair.training/blogs/keyboard-jump-game-in-python/)
+# The Keyboard Jump Game
 
 ![img.png](img.png)
 

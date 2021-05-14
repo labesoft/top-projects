@@ -1,4 +1,4 @@
-# [Covid-19 Spread Analysis with Flask](https://data-flair.training/blogs/covid-19-spread-analysis-python/)
+# Covid-19 Spread Analysis with Flask
 
 ![img.png](img.png)
 

@@ -4,7 +4,9 @@ Working on real-time projects to head start the show of our skills. Python is th
 programming language on the planet. Gaining Python knowledge is our best investment
 for now. So, we want to show some of our expertise in Python with those real-time Python
 projects. That's why we are completing those quick and simple projects based on Python
-Python which will not level up but show a bit of our (re-)engineering skills.
+Python which will not level up but show a bit of our (re-)engineering skills 
+of some simple projects taken from a random tutorial blog 
+[site](https://data-flair.training/blogs/python-project-ideas/). 
 
 ## Projects Included 
 * [Alarm Clock with GUI](alarm)

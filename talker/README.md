@@ -1,4 +1,4 @@
-# [Talker](https://data-flair.training/blogs/python-text-to-speech/)
+# Talker
 
 ![img.png](img.png)
 

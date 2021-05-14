@@ -1,4 +1,4 @@
-# [A Python Simple Calculator](https://data-flair.training/blogs/python-calculator-project/)
+# A Python Simple Calculator
 
 ![img.png](img.png)
 

@@ -1,4 +1,4 @@
-# [The Library Management System](https://data-flair.training/blogs/library-management-system-python-project/)
+# The Library Management System
 
 ![img.png](img.png)
 
