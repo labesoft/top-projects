@@ -1,11 +1,10 @@
-# [Small Python Projects](https://data-flair.training/blogs/python-project-ideas/)
+# Small Python Projects
 
-Working on real-time projects to head start our company. Python is the most used
+Working on real-time projects to head start the show of our skills. Python is the most used
 programming language on the planet. Gaining Python knowledge is our best investment
-for now. So, we want to achieve expertise in Python with those real-time Python
-projects. That's why we are completing this data-flair formation on Python which will
-level up our programming skills. For more information you may visit the [data-flair 
-website](https://data-flair.training/blogs)
+for now. So, we want to show some of our expertise in Python with those real-time Python
+projects. That's why we are completing those quick and simple projects based on Python
+Python which will not level up but show a bit of our (re-)engineering skills.
 
 ## Projects Included 
 * [Alarm Clock with GUI](alarm)
