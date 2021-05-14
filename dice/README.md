@@ -1,4 +1,4 @@
-# [Dice Rolling Simulator](https://data-flair.training/blogs/dice-rolling-simulator-python/)
+# Dice Rolling Simulator
 
 ![assets/casino_2.png](archives/assets/game_intro.png)
 
