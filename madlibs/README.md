@@ -1,4 +1,4 @@
-# [Python Mad Libs Generator Game](https://data-flair.training/blogs/python-mad-libs-generator-game/)
+# Python Mad Libs Generator Game
 
 ![img.png](img.png)
 
