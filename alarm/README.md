@@ -1,4 +1,4 @@
-# [Alarm Clock with GUI](https://data-flair.training/blogs/python-project-ideas)
+# Alarm Clock with GUI
 
 ![img.png](img.png)
 
@@ -12,7 +12,7 @@ an alarm clock without it containing a dial, gear trains, etc. How? Let's find
 out further.
 
 ## About the project
-he objective of this project is to recreate an alarm that a user could set
+The objective of this project is to recreate an alarm that a user could set
 interactively and which will ring back at this preset time.
 
 ## Prerequisite
