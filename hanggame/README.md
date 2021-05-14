@@ -1,4 +1,4 @@
-# [The Hangman Game in Python](https://data-flair.training/blogs/hangman-game-python-code/)
+# The Hangman Game in Python
 
 ![img.png](img.png)
 
