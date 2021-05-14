@@ -1,4 +1,4 @@
-# [Money Changer: A currency converter](https://data-flair.training/blogs/currency-converter-python/)
+# Money Changer: A currency converter
 
 ![image](https://user-images.githubusercontent.com/11091581/110480777-dd49c500-80b4-11eb-98aa-0c4077e9fafc.png)
 
