@@ -12,6 +12,8 @@ Package structure
         To add books to the library
     **deletebook.py**:
         To delete books from the library
+    **home.py**:
+        The base windows of the Library application
     **issuebook.py**:
         To issue books from the library
     **returnbook.py**:

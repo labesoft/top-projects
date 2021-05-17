@@ -12,15 +12,12 @@ __copyright__ = "Copyright 2021, labesoft"
 __version__ = "1.0.0"
 
 from functools import partial
-from tkinter import BOTH, Button, Canvas, Entry, Frame, Label, Tk, messagebox
+from tkinter import messagebox
 
 import pymysql
 from pymysql import MySQLError
 
-
-class IssueBook:
-    """This class manages how to issue a book from the library"""
-    pass
+from booksys.home import Dialog, Home
 
 
 def connect():
@@ -30,14 +27,10 @@ def connect():
     return con, con.cursor(), "books_issued", "books", []
 
 
-def issue(inf1, inf2, label_frame, lb1, root):
+def issue(inf, destroy):
     con, cur, issue_table, book_table, all_bid = connect()
-    bid = inf1.get()
-    issue_to = inf2.get()
-    label_frame.destroy()
-    lb1.destroy()
-    inf1.destroy()
-    inf2.destroy()
+    bid = inf[0].get()
+    issue_to = inf[1].get()
 
     extract_bid = f"select bid from {book_table}"
     status = False
@@ -74,62 +67,35 @@ def issue(inf1, inf2, label_frame, lb1, root):
             cur.execute(up_status)
             con.commit()
             messagebox.showinfo('Success', "Book Issued Successfully")
-            root.destroy()
+            destroy()
         else:
             all_bid.clear()
             messagebox.showinfo('Message', "Book Already Issued")
-            root.destroy()
+            destroy()
             return
     except MySQLError as err:
         messagebox.showinfo(
             "Search Error", "The value entered is wrong, Try again"
         )
         print(err)
-    print(bid)
-    print(issue_to)
     all_bid.clear()
 
 
 def issue_book():
-    root = Tk()
-    root.title("Library")
-    root.minsize(width=400, height=400)
-    root.geometry("600x500")
+    issue_book_tk = IssueBook()
+    entries_args = [
+        ("Book ID : ", 0.2),
+        ("Issued To : ", 0.4)
+    ]
+    issue_book_tk.create_components(entries_args)
+    issue_book_tk.mainloop()
 
-    canvas1 = Canvas(root)
-    canvas1.config(bg="#D6ED17")
-    canvas1.pack(expand=True, fill=BOTH)
-    heading_frame1 = Frame(root, bg="#FFBB00", bd=5)
-    heading_frame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    heading_label = Label(heading_frame1, text="Issue Book", bg='black',
-                          fg='white', font=('Courier', 15))
-    heading_label.place(relx=0, rely=0, relwidth=1, relheight=1)
-
-    label_frame = Frame(root, bg='black')
-    label_frame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
-
-    # Book ID
-    lb1 = Label(label_frame, text="Book ID : ", bg='black', fg='white')
-    lb1.place(relx=0.05, rely=0.2)
-
-    inf1 = Entry(label_frame)
-    inf1.place(relx=0.3, rely=0.2, relwidth=0.62)
-
-    # Issued To Student name
-    lb2 = Label(label_frame, text="Issued To : ", bg='black', fg='white')
-    lb2.place(relx=0.05, rely=0.4)
-
-    inf2 = Entry(label_frame)
-    inf2.place(relx=0.3, rely=0.4, relwidth=0.62)
-
-    # Issue Button
-    func = partial(issue, inf1, inf2, label_frame, lb1, root)
-    issue_btn = Button(root, text="Issue", bg='#d1ccc0', fg='black',
-                       command=func)
-    issue_btn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
-
-    quit_btn = Button(root, text="Quit", bg='#aaa69d', fg='black',
-                      command=root.destroy)
-    quit_btn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
-    root.mainloop()
+class IssueBook(Home, Dialog):
+    """This class manages how to issue a book from the library"""
+    def create_components(self, args=None):
+        self.create_bg(color="#D6ED17")
+        self.create_header(title="Issue Book")
+        issue_entries = self.create_entries(args)
+        func = partial(issue, issue_entries, self.destroy)
+        self.create_submit_quit_buttons(func)
