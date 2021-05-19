@@ -1,4 +1,4 @@
-"""The Library Management System Application
+"""The main app of the Library Management System
 -----------------------------
 
 About this Module
@@ -14,15 +14,65 @@ __version__ = "1.0.0"
 
 import pymysql as pymysql
 
-from booksys.addbook import add_book
-from booksys.deletebook import delete
-from booksys.home import Home
-from booksys.issuebook import issue_book
-from booksys.returnbook import return_book
-from booksys.viewbooklist import view_booklist
+from booksys.views import (
+    BooklistDialog, DeleteBookDialog, Home, IssueBookDialog, NewBookDialog,
+    ReturnBookDialog
+)
+
+
+def new_book():
+    """Creates and displays the new book dialog"""
+    new_book_view = NewBookDialog()
+    new_book_form_args = [
+        ("Book ID : ", 0.2),
+        ("Title : ", 0.35),
+        ("Author : ", 0.50),
+        ("Status(Avail/issued) : ", 0.65)
+    ]
+    new_book_view.create_components(new_book_form_args)
+    new_book_view.mainloop()
+
+
+def delete():
+    """Create and displays delete book dialog"""
+    add_book_tk = DeleteBookDialog()
+    entries_args = [
+        ("Book ID : ", 0.5),
+    ]
+    add_book_tk.create_components(entries_args)
+    add_book_tk.mainloop()
+
+
+def issue_book():
+    """Creates and displays the issue book dialog"""
+    issue_book_tk = IssueBookDialog()
+    entries_args = [
+        ("Book ID : ", 0.2),
+        ("Issued To : ", 0.4)
+    ]
+    issue_book_tk.create_components(entries_args)
+    issue_book_tk.mainloop()
+
+
+def return_book():
+    """Creates and displays the return book dialog"""
+    return_book_tk = ReturnBookDialog()
+    entries_args = [
+        ("Book ID : ", 0.5),
+    ]
+    return_book_tk.create_components(entries_args)
+    return_book_tk.mainloop()
+
+
+def list_books():
+    """Creates and displays the book list dialog"""
+    view_book_tk = BooklistDialog()
+    view_book_tk.create_components()
+    view_book_tk.mainloop()
+
 
 if __name__ == '__main__':
-    """Main entry point of booksys"""
+    """Main entry point (Home) of Library Management System"""
     mypass = "bookuser"
     mydatabase = "db"
     con = pymysql.connect(
@@ -31,9 +81,9 @@ if __name__ == '__main__':
     cur = con.cursor()
     home = Home()
     btn_list = [
-        ("Add Book Details", add_book),
+        ("Add Book Details", new_book),
         ("Delete Book", delete),
-        ("View Book List", view_booklist),
+        ("View Book List", list_books),
         ("Issue Book to Student", issue_book),
         ("Return Book", return_book)
     ]

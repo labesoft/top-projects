@@ -1,10 +1,10 @@
-"""The base windows of the Library application
+"""The tkinter tools of the Library Management System
 -----------------------------
 
 About this Module
 ------------------
-The goal of this module is to build the home and dialog view of the Library
-application.
+The goal of this module is to provide constant and parent classes to the views
+of the Library application.
 """
 
 __author__ = "Benoit Lapointe"
@@ -22,9 +22,12 @@ MIN_HEIGHT = 400
 MIN_WIDTH = 400
 
 
-class Home(Tk):
+class Window(Tk):
+    """The Window view of the Library Management System"""
+
     def __init__(self):
-        super().__init__()
+        """Initialize home window components"""
+        super(Window, self).__init__()
         self.image = None
         self.image_tk = None
         self.background = None
@@ -32,19 +35,25 @@ class Home(Tk):
         self.minsize(width=MIN_WIDTH, height=MIN_HEIGHT)
         self.geometry(f"{WIDTH}x{HEIGHT}")
 
-    def create_components(self, btn_list=None):
-        self.create_bg("lib.jpg")
-        self.create_header(title="Welcome to \n labesoft Library")
-        for i, btn_info in enumerate(btn_list):
-            self.create_button(btn_info[0], btn_info[1], rely=0.3 + 0.1 * i)
-        self.bind("<Configure>", self.resize_bg)
-
     def prepare_image(self, image_filename):
+        """Prepares the proper size for the image loaded
+
+        Only loads the image if it does yet exists
+
+        :param image_filename: the name of the image file
+        """
         if not self.image:
             self.image = Image.open(image_filename)
         self.image = self.image.resize((WIDTH, HEIGHT), Image.ANTIALIAS)
 
     def create_bg(self, image_filename=None, color="white"):
+        """Creates a background for the window using label or a canvas
+
+        It uses a canvas when a filename is provided and a canvas otherwise.
+
+        :param image_filename: the file to use as background
+        :param color: the color of the background
+        """
         if image_filename:
             self.prepare_image(image_filename)
             self.image_tk = ImageTk.PhotoImage(self.image)
@@ -55,6 +64,10 @@ class Home(Tk):
         self.background.pack(expand=YES, fill=BOTH)
 
     def create_header(self, title):
+        """Creates the header frame on top of the window with a title
+
+        :param title: a title string
+        """
         frame = Frame(self, bg="#FFBB00", bd=5)
         frame.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
         header_label = Label(frame, text=title, bg='black', fg='white',
@@ -63,12 +76,23 @@ class Home(Tk):
 
     def create_button(self, text, command, relx=0.28, rely=0.9, relw=0.45,
                       relh=0.1, bg='black', fg='white'):
+        """Utility method to create a button
+
+        :param text: the text of the button
+        :param command: the command trigger of the button
+        :param relx, rely, relw, relh: positions and dimensions
+        :param bg, fg: background and foreground colors
+        """
         btn = Button(
             self, text=text, bg=bg, fg=fg, command=command
         )
         btn.place(relx=relx, rely=rely, relwidth=relw, relheight=relh)
 
     def create_submit_quit_buttons(self, submit_func):
+        """Creates both the submit button and the quit button
+
+        :param submit_func: the command trigger of the submit button
+        """
         # Submit button
         self.create_button(
             "SUBMIT", submit_func, relw=0.18, relh=0.08, bg='#d1ccc0',
@@ -80,7 +104,11 @@ class Home(Tk):
             bg='#f7f1e3', fg='black',
         )
 
-    def resize_bg(self, event):
+    def on_configure(self, event):
+        """Resize the background of the window from a configure callback
+
+        :param event: the event args of the callback
+        """
         if event.widget == self.background:
             self.image = self.image.resize((event.width, event.height))
             self.image_tk = ImageTk.PhotoImage(self.image)
@@ -88,25 +116,44 @@ class Home(Tk):
 
 
 class Dialog:
+    """The dialog view of the Library Management System"""
+
     def __init__(self):
-        self.label_frame = None
+        """Initialize fields of the dialog view"""
+        self.content_frame = None
 
-    def create_entries(self, entries_args):
-        self.create_entries_frame()
-        book_entries = []
+    def create_book_form(self, entries_args):
+        """Create the book form content to embed in the dialog
+
+        :param entries_args:
+        :return:
+        """
+        self.content_frame = self.create_content_frame()
+        lines = []
         for input_arg in entries_args:
-            book_entries += [
-                self.create_bookentry_line(input_arg[0], input_arg[1])
+            lines += [
+                self.create_bookform_line(input_arg[0], input_arg[1])
             ]
-        return book_entries
+        return lines
 
-    def create_bookentry_line(self, text, rely):
-        lb1 = Label(self.label_frame, text=text, bg='black', fg='white')
+    def create_bookform_line(self, text, rely):
+        """Creates a line consisting of a label and an entry
+
+        :param text: the text of the label
+        :param rely: the y position of the label
+        :return: an initialized and positioned line
+        """
+        lb1 = Label(self.content_frame, text=text, bg='black', fg='white')
         lb1.place(relx=0.05, rely=rely, relheight=0.08)
-        book_entry = Entry(self.label_frame)
+        book_entry = Entry(self.content_frame)
         book_entry.place(relx=0.3, rely=rely, relwidth=0.62, relheight=0.08)
         return book_entry
 
-    def create_entries_frame(self):
-        self.label_frame = Frame(self, bg='black')
-        self.label_frame.place(relx=0.1, rely=0.4, relwidth=0.8, relheight=0.4)
+    def create_content_frame(self):
+        """Creates the frame embedding the content of the dialog
+
+        :return: an initialized and positioned frame
+        """
+        frame = Frame(self, bg='black')
+        frame.place(relx=0.1, rely=0.4, relwidth=0.8, relheight=0.4)
+        return frame

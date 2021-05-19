@@ -1,25 +1,6 @@
 """The view of an alarm
 --------------------
 
-About this Project
-------------------
-The objective of this project is to recreate an alarm that a user could set
-interactively and which will ring back at this preset time.
-
-Project structure
------------------
-*alarm/*
-    **__main__.py**:
-        The application of an alarm
-    **alarm_test.py**:
-        The tests of an alarm
-    **controller.py**:
-        The controller of an alarm
-    **model.py**:
-        The model of an alarm
-    **-->** **view.py**:
-        The GUI of an alarm
-
 About this module
 -----------------
 The objective of our project is to implement an alarm using Python. Python
@@ -27,43 +8,15 @@ consists of some very innovative libraries such as logging and tkinter which
 helped us to build the project using the current date and time as well as to
 provide a user interface to set the alarm according to the requirement in
 24-hour format.
-
-File structure
---------------
-*imports*
-    **tkinter**
-        module belongs is a GUI tool that belongs to the Python's Standard
-        library. It helped us creating a dialog box with information we want to
-        provide/get to/from the users.
-
-*constants*
-    ***_ENTRY_ROW**
-        Row position of entry objects
-    **MIN_***
-        Minimum dimension of graphic objects
-    **PAD_X**
-        Padding columns
-    **TITLE**
-        The title of the window
-
-*class*
-    **AlarmView**
-        'The GUI of an alarm using tkinter'
-    **__init__(self)**
-        'Initialize the tk window, variables, title, geometry'
-    **create_gui(self, button_callback)**
-        'Creates the content of this tkinter object'
-    **create_labels(self)**
-        'Creates labels essential to the alarm'
-    **def init_entry_vars(self)**
-        'Initialize time attributes to a StringVar component'
-    **create_entries(self)**
-        'Creates the entries essentials to set the alarm on the alarm'
-    **create_button(self, button_callback)**
-        'Creates the button that activates the alarm on the alarm'
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2021-05-18"
+__copyright__ = "Copyright 2021, labesoft"
+__version__ = "1.0.0"
+
 import tkinter
-from tkinter import Label, StringVar, Entry, Button
+from tkinter import Button, Entry, Label, StringVar
 from tkinter.font import Font
 
 # View constants
@@ -78,6 +31,7 @@ TITLE = "LABESOFT Alarm"
 
 class AlarmView(tkinter.Frame):
     """The GUI of an alarm using tkinter"""
+
     def __init__(self):
         """Initialize the tk window, variables, title, geometry
 
@@ -116,7 +70,7 @@ class AlarmView(tkinter.Frame):
                    bg="lightgray", font=f1)
         l2 = Label(self, text="Enter time in 24 hour format!", fg="green",
                    bg="white", font=("Arial", 30, "italic"))
-        le1 = Label(f, text="Hour", bg="white",  font=f2)
+        le1 = Label(f, text="Hour", bg="white", font=f2)
         le2 = Label(f, text="Min", bg="white", font=f2)
         le3 = Label(f, text="Sec", bg="white", font=f2)
 

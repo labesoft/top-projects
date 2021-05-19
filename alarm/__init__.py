@@ -20,3 +20,8 @@ Project structure
     **view.py**:
         The GUI of an alarm
 """
+
+__author__ = "Benoit Lapointe"
+__date__ = "2021-05-18"
+__copyright__ = "Copyright 2021, labesoft"
+__version__ = "1.0.0"

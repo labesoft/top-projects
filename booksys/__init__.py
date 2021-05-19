@@ -7,19 +7,13 @@ Package structure
     **__init__.py**:
         The Library Management System in Python
     **__main__.py**:
-        The Library Management System Application
-    **addbook.py**:
-        To add books to the library
-    **deletebook.py**:
-        To delete books from the library
-    **home.py**:
-        The base windows of the Library application
-    **issuebook.py**:
-        To issue books from the library
-    **returnbook.py**:
-        To returns books to the library
-    **viewbook.py**:
-        To view books from the library
+        The main app of the Library Management System
+    **tktools.py**:
+        The tkinter tools of the Library Management System
+    **models.py**:
+        The model of the Library Management System
+    **views.py**:
+        The views of the Library Management System
 """
 
 __author__ = "Benoit Lapointe"
